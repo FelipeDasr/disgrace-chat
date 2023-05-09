@@ -77,6 +77,14 @@ public class SecondStepGenericScreen {
 		label.setText(labelName);
 	}
 
+	public JTextField getFirstFormInputTextField() {
+		return (JTextField) this.firstFormInput.getComponent(1);
+	}
+
+	public JTextField getSecondFormInputTextField() {
+		return (JTextField) this.secondFormInput.getComponent(1);
+	}
+
 	public void show() {
 		this.frame.setVisible(true);
 	}
