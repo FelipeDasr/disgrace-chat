@@ -39,22 +39,7 @@ public class SecondStepGenericScreen {
 		this.panelTitle.setAlignmentX(JTextField.CENTER_ALIGNMENT); // CENTRALIZA O TEXTO NO MEIO DO PANEL
 	
 		this.mainButton = this.getCommonButton("");
-	}
 
-	public void setButtonLabel(String label) { // Muda o texto do botão
-		this.mainButton.setText(label);
-	}
-
-	public void setFirstFormInput(String labelName) { // Muda o texto do primeiro form input
-		this.firstFormInput = this.getFormInput(labelName);
-	}
-
-	public void setSecondFormInput(String labelName) { // Muda o texto do primeiro form input
-		this.secondFormInput = this.getFormInput(labelName);
-	}
-
-	public void show() {
-		// Adiciona as funções no panel
 		this.mainPanel.add(Box.createVerticalStrut(55));
 		this.mainPanel.add(this.panelTitle);
 
@@ -73,8 +58,27 @@ public class SecondStepGenericScreen {
 		this.frame.setSize(743, 558);
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+
+	public void setButtonLabel(String label) { // Muda o texto do botão
+		this.mainButton.setText(label);
+	}
+
+	public void setFirstFormInput(String labelName) { // Muda o texto do primeiro form input
+		this.firstFormInput = this.getFormInput(labelName);
+	}
+
+	public void setSecondFormInput(String labelName) { // Muda o texto do primeiro form input
+		this.secondFormInput = this.getFormInput(labelName);
+	}
+
+	public void show() {
 		this.frame.setVisible(true);
+	}
+
+	public void hide() {
+		this.frame.setVisible(false);
 	}
 	
 	private JButton getCommonButton(String label) {	
