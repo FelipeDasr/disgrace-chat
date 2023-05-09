@@ -19,12 +19,12 @@ class UserConversationItem extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setMaximumSize(new Dimension(200, 65));
 
-        Image userAvatarImage = new Assets().getAppIcon();
-		ImageIcon resizedUserAvatar = new ImageIcon(userAvatarImage.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH));
+        Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId());
+		ImageIcon userAvatarIcon = new ImageIcon(userAvatarImage);
 		
 		JLabel userAvatarLabel = new JLabel();
         userAvatarLabel.setAlignmentX(JLabel.LEFT);
-		userAvatarLabel.setIcon(resizedUserAvatar);
+		userAvatarLabel.setIcon(userAvatarIcon);
 
         Font mainFont = new Assets().getMainFont().deriveFont(Font.BOLD, 17);
 
