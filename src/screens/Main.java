@@ -8,15 +8,16 @@ import javax.swing.*;
 import src.components.Assets;
 import src.components.GenericButton;
 
-public class Main {	
+class MainScreen {	
     private final Assets appAssets = new Assets();
+	private final JFrame frame;
 	
-	public Main() throws FontFormatException, IOException {
-		JFrame frame = new JFrame("DisGrace");
+	public MainScreen() throws FontFormatException, IOException {
+		this.frame = new JFrame("DisGrace");
 		JPanel panel = new JPanel();
         panel.setBackground(new Color(255, 255, 255));
 
-		frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
+		this.frame.setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.X_AXIS));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setMaximumSize(new Dimension(743, 558));
 		frame.setIconImage(this.appAssets.getAppIcon());
@@ -38,12 +39,11 @@ public class Main {
 		panel.add(Box.createVerticalStrut(15));
 		panel.add(joinServerButton);
 
-		frame.add(panel);
-		frame.setSize(743, 558);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
+		this.frame.add(panel);
+		this.frame.setSize(743, 558);
+		this.frame.setLocationRelativeTo(null);
+		this.frame.setResizable(false);
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	private JLabel getAppLogo() {
@@ -55,8 +55,19 @@ public class Main {
 		
 		return logo;
 	}
-	
-	public static void main(String[] args) throws FontFormatException, IOException {
-		new Main();
+
+	public void show() {
+		this.frame.setVisible(true);
+	}
+
+	public void hide() {
+		this.frame.setVisible(false);
+	}
+}
+
+public class Main {
+	public static void main(String args[]) throws FontFormatException, IOException {
+		MainScreen mainScreen = new MainScreen();
+		mainScreen.show();
 	}
 }
