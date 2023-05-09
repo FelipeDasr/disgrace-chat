@@ -1,4 +1,4 @@
-package src.screens;
+package src.screens.FirstChoice;
 
 import java.awt.*;
 import java.io.IOException;
