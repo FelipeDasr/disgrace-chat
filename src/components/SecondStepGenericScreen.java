@@ -80,6 +80,10 @@ public class SecondStepGenericScreen {
 	public void hide() {
 		this.frame.setVisible(false);
 	}
+
+	public void dispose() {
+		this.frame.dispose();
+	}
 	
 	private JButton getCommonButton(String label) {	
 		JButton commonButton = new JButton(label);

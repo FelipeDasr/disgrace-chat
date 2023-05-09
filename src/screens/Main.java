@@ -63,6 +63,10 @@ class MainScreen {
 	public void hide() {
 		this.frame.setVisible(false);
 	}
+
+	public void dispose() {
+		this.frame.dispose();
+	}
 }
 
 public class Main {
