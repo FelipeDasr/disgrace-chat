@@ -10,6 +10,7 @@ import src.components.GenericButton;
 
 public class FirstChoiceScreen {	
     private final Assets appAssets = new Assets();
+	private final ScreenHandler screenHandler;
 	private final JFrame frame;
 	
 	public FirstChoiceScreen() throws FontFormatException, IOException {
@@ -21,14 +22,18 @@ public class FirstChoiceScreen {
         panel.setBackground(new Color(255, 255, 255));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setMaximumSize(new Dimension(743, 558));
+
+		this.screenHandler = new ScreenHandler(this);
 		
 		JLabel logoPresentation = this.getAppLogo();
 
 		GenericButton createServerButton = new GenericButton("Criar servidor");
 		createServerButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-
+		createServerButton.addActionListener(this.screenHandler.createServerOnClick());
+		
 		GenericButton joinServerButton = new GenericButton("Entrar em um servidor");
 		joinServerButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
+		joinServerButton.addActionListener(this.screenHandler.joinServerOnClick());
 
 		panel.add(Box.createVerticalStrut(25));
 		panel.add(logoPresentation);
