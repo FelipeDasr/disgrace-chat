@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import src.components.SecondStepGenericScreen;
+import src.screens.JoinServer.JoinServerScreen;
+import src.screens.ServerCreation.ServerCreationScreen;
 
 class ScreenHandler {
     private final FirstChoiceScreen frame;
@@ -19,13 +21,8 @@ class ScreenHandler {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
-					SecondStepGenericScreen createServerScreen = new SecondStepGenericScreen("Criar servidor");
-					
-					createServerScreen.setFirstFormInputLabel("Nome:               ");
-					createServerScreen.setSecondFormInputLabel("Porta:              ");
-					createServerScreen.setButtonLabel("Criar servidor");
-
 					frame.hide();
+					SecondStepGenericScreen createServerScreen = new ServerCreationScreen();
 					createServerScreen.show();
 				} catch (FontFormatException | IOException error) {
 					System.out.println(error.getMessage());
@@ -39,13 +36,8 @@ class ScreenHandler {
 			@Override
 			public void actionPerformed(ActionEvent event) {
 				try {
-					SecondStepGenericScreen createServerScreen = new SecondStepGenericScreen("Entrar em um servidor");
-					
-					createServerScreen.setFirstFormInputLabel("Host:               ");
-					createServerScreen.setSecondFormInputLabel("Porta:              ");
-					createServerScreen.setButtonLabel("Entrar");
-
 					frame.hide();
+					JoinServerScreen createServerScreen = new JoinServerScreen();
 					createServerScreen.show();
 				} catch (FontFormatException | IOException e) {
 					System.out.println(e.getMessage());
