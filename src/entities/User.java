@@ -22,7 +22,7 @@ public class User {
     }
 
     public void setAvatarId(int avatarId) {
-        if (avatarId >= 0 && avatarId <= 4) {
+        if (avatarId >= 0 && avatarId <= 7) {
             this.avatarId = avatarId;
         }
     }

@@ -1,4 +1,4 @@
-package src.components;
+package src.screens.SecondStepGeneric;
 
 import java.awt.*;
 import java.io.IOException;
@@ -39,22 +39,9 @@ public class SecondStepGenericScreen {
 		this.panelTitle.setAlignmentX(JTextField.CENTER_ALIGNMENT); // CENTRALIZA O TEXTO NO MEIO DO PANEL
 	
 		this.mainButton = this.getCommonButton("");
-	}
+		this.firstFormInput = this.getFormInput("");
+		this.secondFormInput = this.getFormInput("");
 
-	public void setButtonLabel(String label) { // Muda o texto do botão
-		this.mainButton.setText(label);
-	}
-
-	public void setFirstFormInput(String labelName) { // Muda o texto do primeiro form input
-		this.firstFormInput = this.getFormInput(labelName);
-	}
-
-	public void setSecondFormInput(String labelName) { // Muda o texto do primeiro form input
-		this.secondFormInput = this.getFormInput(labelName);
-	}
-
-	public void show() {
-		// Adiciona as funções no panel
 		this.mainPanel.add(Box.createVerticalStrut(55));
 		this.mainPanel.add(this.panelTitle);
 
@@ -73,8 +60,41 @@ public class SecondStepGenericScreen {
 		this.frame.setSize(743, 558);
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
+
+	public void setButtonLabel(String label) { // Muda o texto do botão
+		this.mainButton.setText(label);
+	}
+
+	public void setFirstFormInputLabel(String labelName) { // Muda o texto do primeiro form input
+		JLabel label = (JLabel) this.firstFormInput.getComponent(0);
+		label.setText(labelName);
+	}
+
+	public void setSecondFormInputLabel(String labelName) { // Muda o texto do primeiro form input
+		JLabel label = (JLabel) this.secondFormInput.getComponent(0);
+		label.setText(labelName);
+	}
+
+	public JTextField getFirstFormInputTextField() {
+		return (JTextField) this.firstFormInput.getComponent(1);
+	}
+
+	public JTextField getSecondFormInputTextField() {
+		return (JTextField) this.secondFormInput.getComponent(1);
+	}
+
+	public void show() {
 		this.frame.setVisible(true);
+	}
+
+	public void hide() {
+		this.frame.setVisible(false);
+	}
+
+	public void dispose() {
+		this.frame.dispose();
 	}
 	
 	private JButton getCommonButton(String label) {	
@@ -111,13 +131,5 @@ public class SecondStepGenericScreen {
 		formInputPanel.add(textInput);
 		return formInputPanel;
 
-	}
-
-	public static void main(String[] args) throws FontFormatException, IOException {
-		SecondStepGenericScreen frame = new SecondStepGenericScreen("CRIAR SERVIDOR");
-		frame.setFirstFormInput("Nome:            ");
-		frame.setSecondFormInput("Porta:             ");
-		frame.setButtonLabel("Criar");
-		frame.show();
 	}
 }
