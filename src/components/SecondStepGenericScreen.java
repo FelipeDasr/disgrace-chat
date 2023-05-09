@@ -39,6 +39,8 @@ public class SecondStepGenericScreen {
 		this.panelTitle.setAlignmentX(JTextField.CENTER_ALIGNMENT); // CENTRALIZA O TEXTO NO MEIO DO PANEL
 	
 		this.mainButton = this.getCommonButton("");
+		this.firstFormInput = this.getFormInput("");
+		this.secondFormInput = this.getFormInput("");
 
 		this.mainPanel.add(Box.createVerticalStrut(55));
 		this.mainPanel.add(this.panelTitle);
@@ -65,12 +67,14 @@ public class SecondStepGenericScreen {
 		this.mainButton.setText(label);
 	}
 
-	public void setFirstFormInput(String labelName) { // Muda o texto do primeiro form input
-		this.firstFormInput = this.getFormInput(labelName);
+	public void setFirstFormInputLabel(String labelName) { // Muda o texto do primeiro form input
+		JLabel label = (JLabel) this.firstFormInput.getComponent(0);
+		label.setText(labelName);
 	}
 
-	public void setSecondFormInput(String labelName) { // Muda o texto do primeiro form input
-		this.secondFormInput = this.getFormInput(labelName);
+	public void setSecondFormInputLabel(String labelName) { // Muda o texto do primeiro form input
+		JLabel label = (JLabel) this.secondFormInput.getComponent(0);
+		label.setText(labelName);
 	}
 
 	public void show() {
