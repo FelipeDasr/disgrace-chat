@@ -1,4 +1,4 @@
-package src.components;
+package src.screens.SecondStepGeneric;
 
 import java.awt.*;
 import java.io.IOException;

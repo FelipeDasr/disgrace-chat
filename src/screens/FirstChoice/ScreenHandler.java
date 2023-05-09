@@ -5,8 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import src.components.SecondStepGenericScreen;
 import src.screens.JoinServer.JoinServerScreen;
+import src.screens.SecondStepGeneric.SecondStepGenericScreen;
 import src.screens.ServerCreation.ServerCreationScreen;
 
 class ScreenHandler {

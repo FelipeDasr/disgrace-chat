@@ -3,7 +3,7 @@ package src.screens.JoinServer;
 import java.awt.FontFormatException;
 import java.io.IOException;
 
-import src.components.SecondStepGenericScreen;
+import src.screens.SecondStepGeneric.SecondStepGenericScreen;
 
 public class JoinServerScreen extends SecondStepGenericScreen {
     public JoinServerScreen() throws FontFormatException, IOException {
