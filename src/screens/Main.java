@@ -22,10 +22,10 @@ class MainScreen {
 		panel.setMaximumSize(new Dimension(743, 558));
 		frame.setIconImage(this.appAssets.getAppIcon());
 		
-		JButton createServerButton = new GenericButton("Criar servidor");
+		GenericButton createServerButton = new GenericButton("Criar servidor");
 		createServerButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
-		JButton joinServerButton = new GenericButton("Entrar em um servidor");
+		GenericButton joinServerButton = new GenericButton("Entrar em um servidor");
 		joinServerButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 		
 		JLabel logoPresentation = this.getAppLogo();
