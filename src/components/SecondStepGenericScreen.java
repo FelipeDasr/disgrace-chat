@@ -120,12 +120,4 @@ public class SecondStepGenericScreen {
 		return formInputPanel;
 
 	}
-
-	public static void main(String[] args) throws FontFormatException, IOException {
-		SecondStepGenericScreen frame = new SecondStepGenericScreen("CRIAR SERVIDOR");
-		frame.setFirstFormInput("Nome:            ");
-		frame.setSecondFormInput("Porta:             ");
-		frame.setButtonLabel("Criar");
-		frame.show();
-	}
 }
