@@ -6,6 +6,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import src.entities.User;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -13,7 +15,7 @@ import java.awt.Image;
 import java.io.IOException;
 
 class UserConversationItem extends JPanel {
-    public UserConversationItem(String userName) throws FontFormatException, IOException {
+    public UserConversationItem(User user) throws FontFormatException, IOException {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setMaximumSize(new Dimension(200, 65));
 
@@ -26,7 +28,7 @@ class UserConversationItem extends JPanel {
 
         Font mainFont = new Assets().getMainFont().deriveFont(Font.BOLD, 17);
 
-        JLabel userNameLabel = new JLabel(userName);
+        JLabel userNameLabel = new JLabel(user.getName());
         userNameLabel.setFont(mainFont);
 
         this.add(userAvatarLabel);
