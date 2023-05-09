@@ -8,27 +8,27 @@ import javax.swing.*;
 import src.components.Assets;
 import src.components.GenericButton;
 
-class MainScreen {	
+public class FirstChoiceScreen {	
     private final Assets appAssets = new Assets();
 	private final JFrame frame;
 	
-	public MainScreen() throws FontFormatException, IOException {
+	public FirstChoiceScreen() throws FontFormatException, IOException {
 		this.frame = new JFrame("DisGrace");
+		this.frame.setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.X_AXIS));
+		frame.setIconImage(this.appAssets.getAppIcon());
+
 		JPanel panel = new JPanel();
         panel.setBackground(new Color(255, 255, 255));
-
-		this.frame.setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.X_AXIS));
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 		panel.setMaximumSize(new Dimension(743, 558));
-		frame.setIconImage(this.appAssets.getAppIcon());
 		
+		JLabel logoPresentation = this.getAppLogo();
+
 		GenericButton createServerButton = new GenericButton("Criar servidor");
 		createServerButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
 
 		GenericButton joinServerButton = new GenericButton("Entrar em um servidor");
 		joinServerButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		
-		JLabel logoPresentation = this.getAppLogo();
 
 		panel.add(Box.createVerticalStrut(25));
 		panel.add(logoPresentation);
@@ -66,12 +66,5 @@ class MainScreen {
 
 	public void dispose() {
 		this.frame.dispose();
-	}
-}
-
-public class Main {
-	public static void main(String args[]) throws FontFormatException, IOException {
-		MainScreen mainScreen = new MainScreen();
-		mainScreen.show();
 	}
 }
