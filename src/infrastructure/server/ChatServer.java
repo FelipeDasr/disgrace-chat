@@ -19,6 +19,10 @@ public class ChatServer {
         this.port = port;
     }
 
+    public String getName() {
+        return this.name;
+    }
+
     public void bind() throws IOException {
         InetSocketAddress addressToBind = new InetSocketAddress(this.serverAddress, this.port);
         this.socket.bind(addressToBind);
