@@ -5,15 +5,16 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import src.components.GenericButton;
+
 public class SecondStepGenericScreen {
-	private final Color mainColor = new Color(101, 88, 245);
 	private final Color whiteColor = new Color(255, 255, 255);
 	private final ImageIcon icon;
 	private final Font mainFont;
 	
 	private final JFrame frame;
 	private final JPanel mainPanel;
-	private JButton mainButton;
+	private GenericButton mainButton;
 
 	private final JLabel panelTitle;
 	private JPanel firstFormInput;
@@ -38,7 +39,7 @@ public class SecondStepGenericScreen {
 		this.panelTitle.setFont(this.mainFont.deriveFont(Font.BOLD, 30));
 		this.panelTitle.setAlignmentX(JTextField.CENTER_ALIGNMENT); // CENTRALIZA O TEXTO NO MEIO DO PANEL
 	
-		this.mainButton = this.getCommonButton("");
+		this.mainButton = new GenericButton("");
 		this.firstFormInput = this.getFormInput("");
 		this.secondFormInput = this.getFormInput("");
 
@@ -95,18 +96,6 @@ public class SecondStepGenericScreen {
 
 	public void dispose() {
 		this.frame.dispose();
-	}
-	
-	private JButton getCommonButton(String label) {	
-		JButton commonButton = new JButton(label);
-		
-		commonButton.setMargin(new Insets(6, 16, 6, 16));
-		commonButton.setAlignmentX(JButton.CENTER_ALIGNMENT);
-		commonButton.setBackground(this.mainColor);
-		commonButton.setForeground(this.whiteColor);
-		commonButton.setFont(this.mainFont.deriveFont(Font.BOLD, 19));
-		
-		return commonButton;
 	}
 
 	private JPanel getFormInput(String labelName){
