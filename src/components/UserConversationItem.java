@@ -14,10 +14,14 @@ import java.awt.FontFormatException;
 import java.awt.Image;
 import java.io.IOException;
 
-class UserConversationItem extends JPanel {
+public class UserConversationItem extends JPanel {
+    private UnreadMessagesNotification unreadMessagesNotification;
+    private int unreadMessages;
+
     public UserConversationItem(User user) throws FontFormatException, IOException {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        this.setMaximumSize(new Dimension(200, 65));
+        this.setMaximumSize(new Dimension(225, 65));
+        unreadMessages = 0;
 
         Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId());
 		ImageIcon userAvatarIcon = new ImageIcon(userAvatarImage);
@@ -31,8 +35,36 @@ class UserConversationItem extends JPanel {
         JLabel userNameLabel = new JLabel(user.getName());
         userNameLabel.setFont(mainFont);
 
+        this.unreadMessagesNotification = new UnreadMessagesNotification(unreadMessages);
+
+        this.add(Box.createHorizontalStrut(7));
         this.add(userAvatarLabel);
         this.add(Box.createHorizontalStrut(7));
         this.add(userNameLabel);
+        this.add(Box.createHorizontalStrut(40));
+        this.add(this.unreadMessagesNotification);
+    }
+
+    public void setUnreadMessages(int unreadMessages) {
+        this.unreadMessages = unreadMessages;
+
+        // If there are no unread messages, hide the notification
+        if (unreadMessages <= 0) {
+            this.unreadMessagesNotification.setVisible(false);
+            this.unreadMessages = 0;
+            return;
+        }
+
+        // If there are unread messages, check if the notification is visible
+        if (!this.unreadMessagesNotification.isVisible()) {
+            this.unreadMessagesNotification.setVisible(true);
+        }
+
+        String unreadMessagesString = Integer.toString(unreadMessages);
+        this.unreadMessagesNotification.setText(unreadMessagesString);
+    }
+
+    public int getUnreadMessages() {
+        return this.unreadMessages;
     }
 }
