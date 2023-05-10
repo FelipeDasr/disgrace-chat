@@ -2,70 +2,84 @@ package Client;
 
 import java.awt.*;
 import javax.swing.*;
- 
-public class Usuario{
+import java.awt.event.*;
+
+public class Usuario extends JFrame implements ItemListener {
     private final JFrame frame;
-    private final JPanel panel;
-    //private final JComboBox dropdown;
-    private final JLabel selectAvatar, l1;
-    private final ImageIcon icon = new ImageIcon("src/assets/images/DisgraceIcon1.png");
+    private final JPanel Panel;
+    private final Color whiteColor = new Color(255, 255, 255);
+    private final JComboBox dropdown;
+    private final ImageIcon icon;
+    private final JLabel textSelect;
+    //private JButton mainButton;
 
-    
     public Usuario(){
-        frame = new JFrame("DisGrace");
-		panel = new JPanel();
+        this.frame = new JFrame("DisGrace");
+		this.Panel = new JPanel();
+		this.Panel.setBackground(this.whiteColor);
 
-        // create a object
-        //Usuario s = new Usuario();
+        this.icon = new ImageIcon("src/assets/images/DisgraceIcon1.png");
 
         frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
-		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setMaximumSize(new Dimension(743, 558));
+		this.Panel.setLayout(new BoxLayout(this.Panel, BoxLayout.Y_AXIS));
+		this.Panel.setMaximumSize(new Dimension(743, 558));
 		frame.setIconImage(this.icon.getImage());
 
-        // array of string containing "images"
-        String s1[] = { "Avatar 01", "Avatar 02", "Avatar 03", "Avatar 04", "Avatar 05" };
+
+        String options[] = {"Avatar 01", "Avatar 02", "Avatar 03",
+           "Avatar 04", "Avatar 05", "Avatar 06", "Avatar 07", "Avatar 08" };
 
         // create checkbox
-        JComboBox dropdown = new JComboBox<>(s1);
-        dropdown.setAlignmentX(JComboBox.CENTER_ALIGNMENT);
-        dropdown.setMaximumSize(new Dimension(97, 40));
+        dropdown = new JComboBox(options);
 
+        this.textSelect = new JLabel("Selecione o seu avatar");
+        
 
-        // add ItemListener
-        //dropdown.addItemListener(s);
+        dropdown.setMaximumSize(new Dimension(100, 27));
+        dropdown.setSize(100,30);
 
-        // Create labels
-        selectAvatar = new JLabel("Selecione o seu avatar:");
-        l1 = new JLabel("AVATAR SELECIONADO!");
+        dropdown.addItemListener(new ItemListener(){
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getSource() == dropdown) {
+                    textSelect.setText(dropdown.getSelectedItem() + " Selecionado");
+                }
+            }
+        });
 
         // set color of text
-        selectAvatar.setForeground(Color.white);
-        l1.setForeground(Color.white);
+        textSelect.setForeground(Color.red);
 
-        panel.add(Box.createVerticalStrut(45));
-        panel.add(selectAvatar);
+        Panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
-        panel.add(Box.createVerticalStrut(45));
-        panel.add(dropdown);
-        
-        panel.add(Box.createVerticalStrut(45));
-        panel.add(l1);
+        Panel.add(dropdown);
+        Panel.add(textSelect);
+        // Add o panel the screen
+        frame.add(Panel);
 
-
-
-
-        
-        frame.add(panel);
+        //config the window 
 		frame.setSize(743, 558);
+        
+        //frame.show();
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 
     }
+    
+
+    
+    public void itemStateChanged(ItemEvent e) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'itemStateChanged'");
+    }
+
+    // main class
     public static void main(String[] args){
         new Usuario();
-
     }
+
 }
+
+    
+
