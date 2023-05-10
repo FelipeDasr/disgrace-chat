@@ -1,6 +1,7 @@
 package src.infrastructure.server;
 
 import java.io.IOException;
+
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
@@ -18,15 +19,12 @@ public class ChatServer {
         this.port = port;
     }
 
-    public void start() {
-
+    public void bind() throws IOException {
+        InetSocketAddress addressToBind = new InetSocketAddress(this.serverAddress, this.port);
+        this.socket.bind(addressToBind);
     }
 
-    public void close() {
-
-    }
-
-    public void listen() {
-        
+    public void close() throws IOException {
+        this.socket.close();
     }
 }
