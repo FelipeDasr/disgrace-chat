@@ -15,7 +15,7 @@ import java.awt.Graphics;
 public class UnreadMessagesNotification extends JLabel {
 
     public UnreadMessagesNotification(int unreadMessages) throws FontFormatException, IOException {
-        Border emptyBorder = BorderFactory.createEmptyBorder(3, 7, 4, 8);
+        Border emptyBorder = BorderFactory.createEmptyBorder(2, 7, 4, 8);
 
         this.setOpaque(false);
         this.setVisible(false);
