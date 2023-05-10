@@ -1,8 +1,8 @@
 package src.entities;
 
 public class User {
-    String name;
-    int avatarId;
+    protected String name;
+    protected int avatarId;
     
     public User(String name, int avatarId) {
         this.avatarId = avatarId;
