@@ -25,5 +25,6 @@ public class GenericButton extends JButton {
 		this.setBackground(this.mainColor);
 		this.setForeground(this.whiteColor);
 		this.setFont(this.mainFont.deriveFont(Font.BOLD, 19));
-    }
+		this.setFocusPainted(false);
+	}
 }
