@@ -43,6 +43,8 @@ public class SecondStepGenericScreen {
 		this.firstFormInput = this.getFormInput("");
 		this.secondFormInput = this.getFormInput("");
 
+		this.mainButton.setAlignmentX(GenericButton.CENTER_ALIGNMENT);
+
 		this.mainPanel.add(Box.createVerticalStrut(55));
 		this.mainPanel.add(this.panelTitle);
 
