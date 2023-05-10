@@ -88,6 +88,10 @@ public class SecondStepGenericScreen {
 		return (JTextField) this.secondFormInput.getComponent(1);
 	}
 
+	public GenericButton getMainButton() {
+		return this.mainButton;
+	}
+
 	public void show() {
 		this.frame.setVisible(true);
 	}
