@@ -1,9 +1,9 @@
 package src.infrastructure.client;
 
-public class ClientSocket {
+public class ChatClient {
     private String name;
     
-    public ClientSocket(String name) {
+    public ChatClient(String name) {
         this.name = name;
     }
 }
