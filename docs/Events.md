@@ -2,7 +2,7 @@
 
 Aqui se encontram todos os eventos que podem ser enviados e recebidos pelo servidor. Todos os eventos devem seguir o padrão **`JSON`**, e sempre devem conter o campo **`event`** que indica o tipo de evento que está ocorrendo, e o campo **`data`** que contém os dados do evento.
 
-[Voltar ao README.md](README.md)
+[Voltar ao README.md](../README.md)
 
 </br>
 

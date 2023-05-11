@@ -10,4 +10,4 @@ Projeto criado para o trabalho final da disciplica de LPOO (Linguagem de program
 </br>
 
 ### Documentação dos eventos
-  * [Requisições e respostas](Events.documentation.md#documentação-dos-eventos)
+  * [Requisições e respostas](docs/Events.md#documentação-dos-eventos)
