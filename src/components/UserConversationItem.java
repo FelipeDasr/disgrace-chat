@@ -23,7 +23,7 @@ public class UserConversationItem extends JPanel {
         this.setMaximumSize(new Dimension(225, 65));
         unreadMessages = 0;
 
-        Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId());
+        Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId()).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);;
 		ImageIcon userAvatarIcon = new ImageIcon(userAvatarImage);
 		
 		JLabel userAvatarLabel = new JLabel();

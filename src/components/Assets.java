@@ -25,10 +25,10 @@ public class Assets {
         return getImage("src/assets/images/DisgraceLogo.png");
     }
 
-    public Image getAvatarImage(int avatarId) {
+    public ImageIcon getAvatarImage(int avatarId) {
         if (avatarId < 0 || avatarId > 7) avatarId = 1;
         String path = "src/assets/images/avatars/" + avatarId + ".png";
-        return new ImageIcon(path).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(path);
     }
 
     private Image getImage(String path) {
