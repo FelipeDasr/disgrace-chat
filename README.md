@@ -7,3 +7,7 @@ Projeto criado para o trabalho final da disciplica de LPOO (Linguagem de program
   * [Layson Henrique](https://github.com/LaysonHenrique)
   * [Yan Santana](https://github.com/Yan-Santana)
   
+</br>
+
+### Documentação dos eventos
+  * [Requisições e respostas](Events.documentation.md#documentação-dos-eventos)
