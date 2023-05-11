@@ -1,6 +1,8 @@
 package src.screens.SecondStepGeneric;
 
+
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -20,6 +22,8 @@ public class SecondStepGenericScreen {
 	private JPanel firstFormInput;
 	private JPanel secondFormInput;
 	
+	private final ScreenHandler screenHandler;
+
 	public SecondStepGenericScreen(String panelTitle) throws FontFormatException, IOException {
 		this.frame = new JFrame("DisGrace");
 		this.mainPanel = new JPanel();
@@ -45,6 +49,8 @@ public class SecondStepGenericScreen {
 
 		this.mainButton.setAlignmentX(GenericButton.CENTER_ALIGNMENT);
 
+		this.screenHandler = new ScreenHandler(this);
+
 		this.mainPanel.add(Box.createVerticalStrut(55));
 		this.mainPanel.add(this.panelTitle);
 
@@ -58,6 +64,9 @@ public class SecondStepGenericScreen {
 		this.mainPanel.add(mainButton);
 
 		this.mainPanel.add(Box.createVerticalStrut(250));
+
+		this.getSecondFormInputTextField().addKeyListener(this.screenHandler.checkKeyPressed());
+
 
 		this.frame.add(this.mainPanel);
 		this.frame.setSize(743, 558);
