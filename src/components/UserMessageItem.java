@@ -8,12 +8,12 @@ import java.io.IOException;
 import javax.swing.BorderFactory;
 import javax.swing.JTextArea;
 
-import src.entities.UserMessage;
+import src.entities.ClientMessage;
 
 class UserMessageItem extends JTextArea {
-    private final UserMessage userMessage;
+    private final ClientMessage userMessage;
 
-    public UserMessageItem(UserMessage userMessage) throws FontFormatException, IOException {
+    public UserMessageItem(ClientMessage userMessage) throws FontFormatException, IOException {
         this.userMessage = userMessage;
 
         this.setFont(new Assets().getMainFont().deriveFont(Font.BOLD, 19));

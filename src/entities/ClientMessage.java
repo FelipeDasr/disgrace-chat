@@ -4,12 +4,12 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UserMessage {
+public class ClientMessage {
     private final Client user;
     private final String content;
     private final Date date;
 
-    public UserMessage(Client user, String content, Date date) {
+    public ClientMessage(Client user, String content, Date date) {
         this.user = user;
         this.content = content;
         this.date = date;
