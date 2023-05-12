@@ -19,4 +19,8 @@ public class ServerHandler {
             }
         };
     }
+
+    private void emitEventToClient(int channelId, JSONObject eventObject) {
+
+    }
 }
