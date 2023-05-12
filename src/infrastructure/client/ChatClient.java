@@ -11,8 +11,8 @@ public class ChatClient extends Client {
     private InetAddress serverAddress;
     private Socket socket;
     
-    public ChatClient(String name, int avatarId) {
-        super(name, avatarId);
+    public ChatClient(String name, int avatarId, int channelId) {
+        super(name, avatarId, channelId);
         this.socket = new Socket();
     }
 
