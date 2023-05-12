@@ -1,8 +1,8 @@
 package src.entities;
 
 public class Client {
-    protected String name;
-    protected int avatarId;
+    private String name;
+    private int avatarId;
     private int channelId;
     
     public Client(String name, int avatarId, int channelId) {
@@ -15,11 +15,11 @@ public class Client {
         return name;
     }
 
-    public int getAvatarId() {
+    protected int getAvatarId() {
         return avatarId;
     }
 
-    public void setName(String name) {
+    protected void setName(String name) {
         this.name = name;
     }
 
@@ -31,7 +31,7 @@ public class Client {
         return channelId;
     }
 
-    public void setAvatarId(int avatarId) {
+    protected void setAvatarId(int avatarId) {
         if (avatarId >= 0 && avatarId <= 7) {
             this.avatarId = avatarId;
         }
