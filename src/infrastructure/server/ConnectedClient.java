@@ -46,6 +46,21 @@ public class ConnectedClient extends Client {
         }
     }
 
+    public void listenEventsInParallel() {
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    listenEvents();
+                } 
+                catch (IOException | ClassNotFoundException error) { }
+            }
+        };
+
+        Thread parallelThread = new Thread(runnable);
+        parallelThread.start();
+    }
+
     public void closeConnection() throws IOException {
         this.socket.close();
     }
