@@ -27,6 +27,17 @@ public class ConnectedClient extends Client {
         this.outputChannel.writeObject(dataString);
     }
 
+    private void listenEvents() throws IOException, ClassNotFoundException {
+        while(this.socket.isConnected()) { 
+            String dataString = (String) this.inputChannel.readObject();
+            JSONObject eventObject = new JSONObject(dataString);
+            String event = eventObject.getString("event");
+            JSONObject data = eventObject.getJSONObject("data");
+        
+            //this.executeEventHandler(event, data);
+        }
+    }
+
     public void closeConnection() throws IOException {
         this.socket.close();
     }
