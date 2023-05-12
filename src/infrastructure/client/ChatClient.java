@@ -5,9 +5,9 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-import src.entities.User;
+import src.entities.Client;
 
-public class ChatClient extends User {
+public class ChatClient extends Client {
     private InetAddress serverAddress;
     private Socket socket;
     

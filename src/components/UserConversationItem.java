@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import src.entities.User;
+import src.entities.Client;
 
 import java.awt.Dimension;
 import java.awt.Font;
@@ -18,7 +18,7 @@ public class UserConversationItem extends JPanel {
     private UnreadMessagesNotification unreadMessagesNotification;
     private int unreadMessages;
 
-    public UserConversationItem(User user) throws FontFormatException, IOException {
+    public UserConversationItem(Client user) throws FontFormatException, IOException {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setMaximumSize(new Dimension(225, 65));
         unreadMessages = 0;

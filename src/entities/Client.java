@@ -1,10 +1,10 @@
 package src.entities;
 
-public class User {
+public class Client {
     protected String name;
     protected int avatarId;
     
-    public User(String name, int avatarId) {
+    public Client(String name, int avatarId) {
         this.avatarId = avatarId;
         this.name = name;
     }

@@ -5,17 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class UserMessage {
-    private final User user;
+    private final Client user;
     private final String content;
     private final Date date;
 
-    public UserMessage(User user, String content, Date date) {
+    public UserMessage(Client user, String content, Date date) {
         this.user = user;
         this.content = content;
         this.date = date;
     }
 
-    public User getUser() {
+    public Client getUser() {
         return this.user;
     }
 
