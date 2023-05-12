@@ -17,27 +17,27 @@ public class Client {
         this.avatarId = 0;
     }
 
-    protected String getName() {
+    public String getName() {
         return name;
     }
 
-    protected int getAvatarId() {
+    public int getAvatarId() {
         return avatarId;
     }
 
-    protected void setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    protected void setChannelId(int channelId) {
+    public void setChannelId(int channelId) {
         this.channelId = channelId;
     }
 
-    protected int getChannelId() {
+    public int getChannelId() {
         return channelId;
     }
 
-    protected void setAvatarId(int avatarId) {
+    public void setAvatarId(int avatarId) {
         if (avatarId >= 0 && avatarId <= 7) {
             this.avatarId = avatarId;
         }
