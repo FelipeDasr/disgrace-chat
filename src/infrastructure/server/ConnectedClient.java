@@ -22,7 +22,7 @@ public class ConnectedClient extends Client {
         this.inputChannel = new ObjectInputStream(this.socket.getInputStream());
     }
 
-    public void emmitEvent(String event, JSONObject data) throws IOException {
+    public void emitEvent(String event, JSONObject data) throws IOException {
         String dataString = data.toString();
         this.outputChannel.writeObject(dataString);
     }
