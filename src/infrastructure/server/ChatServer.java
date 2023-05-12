@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class ChatServer {
     private ServerSocket socket;
     private InetAddress serverAddress; 
+    private ServerHandler handler;
     private String name;
     private int port;
 
@@ -22,6 +23,7 @@ public class ChatServer {
         this.port = port;
 
         this.connectedClients = new ArrayList<ConnectedClient>();
+        this.handler = new ServerHandler(this);
     }
 
     public String getName() {
