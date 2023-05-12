@@ -12,7 +12,7 @@ public class ChatServer {
     private String name;
     private int port;
 
-    public void ServerSocker(String name, int port) throws IOException {
+    public ChatServer(String name, int port) throws IOException {
         this.serverAddress = InetAddress.getByName("localhost");
         this.socket = new ServerSocket();
         this.name = name;
