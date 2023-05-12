@@ -18,8 +18,8 @@ public class ConnectedClient extends Client {
 
     private InputEventHandler inputEventHandler;
 
-    public ConnectedClient(String name, int avatarId, Socket socket) throws IOException {
-        super(name, avatarId);
+    public ConnectedClient(int channelId, Socket socket) throws IOException {
+        super(channelId);
         this.socket = socket;
         this.outputChannel = new ObjectOutputStream(this.socket.getOutputStream());
         this.inputChannel = new ObjectInputStream(this.socket.getInputStream());
