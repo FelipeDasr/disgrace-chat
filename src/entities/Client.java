@@ -11,7 +11,13 @@ public class Client {
         this.name = name;
     }
 
-    public String getName() {
+    public Client(int channelId) {
+        this.name = "Anônimo " + channelId;
+        this.channelId = channelId;
+        this.avatarId = 0;
+    }
+
+    protected String getName() {
         return name;
     }
 
