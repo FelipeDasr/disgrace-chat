@@ -1,10 +1,14 @@
 package Client;
 
 import src.components.Assets;
-import src.entities.User;
+import src.components.GenericButton;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GridLayout;
 import java.awt.event.*;
 import java.io.IOException;
 
@@ -15,7 +19,7 @@ public class Usuario extends JFrame implements ItemListener {
     private final JComboBox dropdown;
     private final ImageIcon icon;
     private final Font mainFont;
-    //private JButton mainButton;
+    private final GenericButton enterButton;
 
     public Usuario() throws FontFormatException, IOException {
         this.mainFont = new Assets().getMainFont();
@@ -36,18 +40,20 @@ public class Usuario extends JFrame implements ItemListener {
         this.panelDropdown.setLayout((new BoxLayout(panelDropdown, BoxLayout.X_AXIS)));
         //panelDropdown.setAlignmentY(JPanel.CENTER_ALIGNMENT);
         panelDropdown.setMaximumSize(new Dimension(30, 30));
+
         // secondary panel
         this.secondaryPanel = new JPanel();
         this.secondaryPanel.setLayout((new BoxLayout(secondaryPanel, BoxLayout.Y_AXIS)));
         secondaryPanel.setBackground(Color.white);
 
         String options[] = {"Avatar 01", "Avatar 02", "Avatar 03",
-           "Avatar 04", "Avatar 05", "Avatar 06", "Avatar 07", "Avatar 08" };
+           "Avatar 04", "Avatar 05", "Avatar 06", "Avatar 07"};
 
         // create checkbox
         dropdown = new JComboBox(options);
-        dropdown.setMaximumSize(new Dimension(100, 27));
+        dropdown.setMaximumSize(new Dimension(130, 40));
         dropdown.setSize(100,30);
+        dropdown.setFont(this.mainFont.deriveFont(Font.BOLD, 18));
 
         JLabel userAvatar = new JLabel();
         userAvatar.setIcon(this.getAvatarImage(0));
@@ -69,42 +75,42 @@ public class Usuario extends JFrame implements ItemListener {
 
         dropdown.setAlignmentX(JComboBox.BOTTOM_ALIGNMENT);
 
-        // Adiciona dois JTextField e formara seu tamanho
+        // Adiciona o JTextField e formata seu tamanho
 		JTextField textNameUser = new JTextField();
-		textNameUser.setMaximumSize(new Dimension(200, 35));
-        textNameUser.setMinimumSize(new Dimension(200, 35));
+		textNameUser.setMaximumSize(new Dimension(250, 35));
+        textNameUser.setMinimumSize(new Dimension(250, 35));
 
         textNameUser.setAlignmentY(JTextField.CENTER_ALIGNMENT);
+        
         // text username 
-		JLabel textNameUsername = new JLabel("Nome de usuario: ");
+		JLabel textNameUsername = new JLabel("Nome de usuario:                             ");
 		textNameUsername.setFont(this.mainFont.deriveFont(Font.BOLD, 18));
-
 		textNameUsername.setAlignmentX(JTextField.CENTER_ALIGNMENT);
 
-      
-
-
-        // set color of text
+        // Button
+        enterButton = new GenericButton("Salvar");
+        enterButton.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+        
 
         this.mainPanel.add(panelDropdown);
 
-        panelDropdown.add(Box.createHorizontalStrut(120));
+        panelDropdown.add(Box.createHorizontalStrut(210));
         panelDropdown.add(userAvatar);
+        panelDropdown.add(Box.createHorizontalStrut(60));
         panelDropdown.add(dropdown);
-        //Panel.add(Box.createHorizontalStrut(10));
         
+        secondaryPanel.add(Box.createVerticalStrut(69));
         secondaryPanel.add(textNameUsername);  
         //Panel.add(Box.createVerticalStrut(2));
-        secondaryPanel.add(textNameUser);
+        secondaryPanel.add(textNameUser);   
+        secondaryPanel.add(Box.createVerticalStrut(60));
+        secondaryPanel.add(enterButton);
 
         mainPanel.add(secondaryPanel);
 
         // Add o mainPanel the screen
-        
         frame.add(mainPanel);
-        
-        
-
+    
         //config the window 
 		frame.setSize(743, 558);
         
@@ -113,7 +119,6 @@ public class Usuario extends JFrame implements ItemListener {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-
     }
 
     private ImageIcon getAvatarImage(int avatarId) {
@@ -124,14 +129,10 @@ public class Usuario extends JFrame implements ItemListener {
         );
     }
     
-
-    
     public void itemStateChanged(ItemEvent e) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'itemStateChanged'");
     }
 
-     
     public static void main(String[] args) throws FontFormatException, IOException{
         new Usuario();
     }
