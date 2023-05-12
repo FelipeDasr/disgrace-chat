@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class ChatServer {
@@ -37,5 +38,18 @@ public class ChatServer {
 
     public void close() throws IOException {
         this.socket.close();
+    }
+
+    public void listenConnections() throws IOException {
+        while(true) {
+            Socket clientSocket = this.socket.accept();
+            int newClientChannelId = this.connectedClients.size() + 1;
+
+            ConnectedClient connectedClient = new ConnectedClient(newClientChannelId, clientSocket);
+            this.connectedClients.add(connectedClient);
+
+            connectedClient.setEventHandler(this.handler.handleEventOnReceive());
+            connectedClient.listenEventsInParallel();
+        }
     }
 }
