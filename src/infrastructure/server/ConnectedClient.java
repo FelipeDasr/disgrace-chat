@@ -74,7 +74,7 @@ public class ConnectedClient extends Client {
         return this.isIdentified;
     }
 
-    public void setIsIdentified(boolean isIdentified) {
-        this.isIdentified = isIdentified;
+    public void setAsIdentified() {
+        this.isIdentified = true;
     }
 }
