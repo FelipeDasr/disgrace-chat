@@ -14,7 +14,7 @@ public class ServerHandler {
     public InputEventHandler handleEventOnReceive() {
         return new InputEventHandler() {
             @Override
-            public void execute(String event, JSONObject data) {
+            public void execute(ConnectedClient connectedClient, String event, JSONObject data) {
                 switch (event) {
                     case "join":
                         joinEvent(data);

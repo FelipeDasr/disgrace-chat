@@ -47,7 +47,7 @@ public class ConnectedClient extends Client {
             String event = eventObject.getString("event");
             JSONObject data = eventObject.getJSONObject("data");
 
-            this.inputEventHandler.execute(event, data);
+            this.inputEventHandler.execute(this, event, data);
         }
     }
 
