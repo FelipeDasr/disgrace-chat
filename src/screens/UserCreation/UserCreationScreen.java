@@ -121,6 +121,10 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         return this.dropdown;
     }
 
+    public JTextField getUsernameField() {
+        return this.usernameTextInput;
+    }
+
     public JLabel getUserAvatarLabel(){
         return this.userAvatar;
     }
