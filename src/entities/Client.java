@@ -11,6 +11,12 @@ public class Client {
         this.name = name;
     }
 
+    public Client(int channelId) {
+        this.name = "Anônimo " + channelId;
+        this.channelId = channelId;
+        this.avatarId = 0;
+    }
+
     public Client() {
         this.name = "Anônimo";
         this.channelId = -1;
