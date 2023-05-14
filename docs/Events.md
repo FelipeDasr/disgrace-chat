@@ -23,18 +23,18 @@ Evento de resposta
 {
     "event": "joined",
     "data": {
-        "clientChannelId": 2,
+        "channelId": 2,
         "server": {
             "name": "Servidor do Fulano",
             "connectedClients": [
                 {
                     "name": "Fulano de tal",
-                    "clientChannelId": 2,
+                    "channelId": 2,
                     "avatarId": 1
                 },
                 {
                     "name": "Ciclano de tal",
-                    "clientChannelId": 3,
+                    "channelId": 3,
                     "avatarId": 2
                 }
             ]
@@ -53,7 +53,7 @@ Evento de resposta
     "event": "client_joined",
     "data": {
         "name": "Beltrano de tal",
-        "clientChannelId": 4,
+        "channelId": 4,
         "avatarId": 3
     }
 }
@@ -68,7 +68,7 @@ Evento de resposta
 {
     "event": "client_left",
     "data": {
-        "clientChannelId": 4
+        "channelId": 4
     }
 }
 ```
@@ -82,7 +82,7 @@ Evento de requisição
 {
     "event": "send_message",
     "data": {
-        "clientChannelId": 1,
+        "channelId": 1,
         "message": "Olá, mundo!"
     }
 }
@@ -97,7 +97,7 @@ Evento de resposta
 {
     "event": "received_message",
     "data": {
-        "clientChannelId": 2,
+        "channelId": 2,
         "message": "E aí, pessoal, como estão?",
     }
 }
