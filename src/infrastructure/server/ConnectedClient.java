@@ -15,6 +15,7 @@ public class ConnectedClient extends Client {
     private final ObjectOutputStream outputChannel;
     private final ObjectInputStream inputChannel;
     private final Socket socket;
+    private boolean isIdentified;
 
     private InputEventHandler inputEventHandler;
 
@@ -24,6 +25,7 @@ public class ConnectedClient extends Client {
         this.outputChannel = new ObjectOutputStream(this.socket.getOutputStream());
         this.inputChannel = new ObjectInputStream(this.socket.getInputStream());
         this.inputEventHandler = null;
+        this.isIdentified = false;
     }
 
     public void setEventHandler(InputEventHandler inputEventHandler) {
@@ -63,5 +65,13 @@ public class ConnectedClient extends Client {
 
     public void closeConnection() throws IOException {
         this.socket.close();
+    }
+
+    public boolean isIdentified() {
+        return this.isIdentified;
+    }
+
+    public void setIsIdentified(boolean isIdentified) {
+        this.isIdentified = isIdentified;
     }
 }
