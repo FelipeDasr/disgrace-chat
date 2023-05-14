@@ -17,8 +17,7 @@ public class ChatClient extends Client {
     private ObjectOutputStream outputChannel;
     private Socket socket;
     
-    public ChatClient(String name, int avatarId, int channelId) {
-        super(name, avatarId, channelId);
+    public ChatClient() {
         this.socket = new Socket();
     }
 
