@@ -11,21 +11,16 @@ public class ScreenHandler {
     }
 
     public ItemListener selectAvatarOnClick(){
-        String options[] = {"Avatar 01", "Avatar 02", "Avatar 03",
-        "Avatar 04", "Avatar 05", "Avatar 06", "Avatar 07"};
-
         return new ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (e.getSource() == frame.getDropdown()) {
-                    int avatarId = 0;
-                    for(int i=0;i < 7;i++){
-                        if(e.getItem() == options[i]){
-                            avatarId = i;
-                        }
-                    }
-                    frame.getUserAvatarLabel().setIcon(frame.getAvatarImage(avatarId));
+                    int avatarId = frame.getDropdown().getSelectedIndex();
+                     frame.getUserAvatarLabel().setIcon(frame.getAvatarImage(avatarId));
                 }
+            }
+        };
+    }
             }
         };
     }
