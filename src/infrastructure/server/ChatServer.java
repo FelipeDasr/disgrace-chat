@@ -45,6 +45,10 @@ public class ChatServer {
         return this.connectedClients;
     }
 
+    public void removeClient(ConnectedClient client) {
+        this.connectedClients.remove(client);
+    }
+
     public void bind() throws IOException {
         InetSocketAddress addressToBind = new InetSocketAddress(this.serverAddress, this.port);
         this.socket.bind(addressToBind);
