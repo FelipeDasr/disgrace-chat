@@ -58,7 +58,9 @@ public class ConnectedClient extends Client {
                 try {
                     listenEvents();
                 } 
-                catch (IOException | ClassNotFoundException error) { }
+                catch (IOException | ClassNotFoundException error) {
+                    try { closeConnection(); } catch (IOException error_) {}
+                }
             }
         };
 
@@ -68,6 +70,12 @@ public class ConnectedClient extends Client {
 
     public void closeConnection() throws IOException {
         this.socket.close();
+        this.inputChannel.close();
+        this.outputChannel.close();
+
+        JSONObject data = new JSONObject();
+        data.put("channelId", this.getChannelId());
+        this.emitEvent("client_left", data);
     }
 
     public boolean isIdentified() {
