@@ -33,8 +33,11 @@ public class ConnectedClient extends Client {
     }
         
     public void emitEvent(String event, JSONObject data) throws IOException {
-        String dataString = data.toString();
-        this.outputChannel.writeObject(dataString);
+        JSONObject eventObject = new JSONObject();
+        eventObject.put("event", event);
+        eventObject.put("data", data);
+
+        this.outputChannel.writeObject(eventObject.toString());
     }
 
     private void listenEvents() throws IOException, ClassNotFoundException {
