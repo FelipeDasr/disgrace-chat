@@ -31,8 +31,14 @@ public class ChatServer {
         return this.name;
     }
 
-    public ArrayList<ConnectedClient> getConnectedClients() {
-        return this.connectedClients;
+    public ConnectedClient getClientByChannelId(int channelId) {
+        for (ConnectedClient client: this.connectedClients) {
+            if (client.getChannelId() == channelId) {
+                return client;
+            }
+        }
+
+        return null;
     }
 
     public void bind() throws IOException {
