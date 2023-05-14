@@ -41,6 +41,10 @@ public class ChatServer {
         return null;
     }
 
+    public ArrayList<ConnectedClient> getConnectedClients() {
+        return this.connectedClients;
+    }
+
     public void bind() throws IOException {
         InetSocketAddress addressToBind = new InetSocketAddress(this.serverAddress, this.port);
         this.socket.bind(addressToBind);
