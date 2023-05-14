@@ -20,6 +20,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
     private final Font mainFont;
     private final GenericButton enterButton;
     private final ScreenHandler screenHandler;
+    private final JTextField usernameTextInput;
     private final JLabel userAvatar;
 
     public UserCreationScreen() throws FontFormatException, IOException {
@@ -64,15 +65,15 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         this.dropdown.setAlignmentX(JComboBox.BOTTOM_ALIGNMENT);
 
         // Adiciona o JTextField e formata seu tamanho e alinhamento
-		JTextField textNameUser = new JTextField();
-		textNameUser.setMaximumSize(new Dimension(250, 35));
-        textNameUser.setMinimumSize(new Dimension(250, 35));
-        textNameUser.setAlignmentY(JTextField.CENTER_ALIGNMENT);
+		this.usernameTextInput = new JTextField();
+		this.usernameTextInput.setMaximumSize(new Dimension(250, 35));
+        this.usernameTextInput.setMinimumSize(new Dimension(250, 35));
+        this.usernameTextInput.setAlignmentY(JTextField.CENTER_ALIGNMENT);
         
         // text username 
-		JLabel textNameUsername = new JLabel("Nome de usuario:                             ");
-		textNameUsername.setFont(this.mainFont.deriveFont(Font.BOLD, 18));
-		textNameUsername.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+		JLabel textInputLabel = new JLabel("Nome de usuario:                             ");
+		textInputLabel.setFont(this.mainFont.deriveFont(Font.BOLD, 18));
+		textInputLabel.setAlignmentX(JTextField.CENTER_ALIGNMENT);
 
         // Button
         enterButton = new GenericButton("Salvar");
@@ -88,8 +89,8 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         panelDropdown.add(dropdown);
         
         secondaryPanel.add(Box.createVerticalStrut(69));
-        secondaryPanel.add(textNameUsername);  
-        secondaryPanel.add(textNameUser);   
+        secondaryPanel.add(textInputLabel);  
+        secondaryPanel.add(this.usernameTextInput);   
         secondaryPanel.add(Box.createVerticalStrut(60));
         secondaryPanel.add(enterButton);
 
