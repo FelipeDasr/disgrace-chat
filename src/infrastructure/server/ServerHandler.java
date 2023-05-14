@@ -15,12 +15,23 @@ public class ServerHandler {
         return new InputEventHandler() {
             @Override
             public void execute(String event, JSONObject data) {
-                System.out.println("Event received: " + event + "\nBody: " + data.toString(4));
+                switch (event) {
+                    case "join":
+                        joinEvent(data);
+                        break;
+
+                    default:
+                        break;
+                }
             }
         };
     }
 
     private void emitEventToClient(int channelId, JSONObject eventObject) {
+
+    }
+
+    private void joinEvent(JSONObject data) {
 
     }
 }
