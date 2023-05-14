@@ -78,6 +78,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         // Button
         enterButton = new GenericButton("Salvar");
         enterButton.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+        enterButton.addActionListener(this.screenHandler.confirmUserCreationOnClick());
         
         // add
         this.mainPanel.add(panelDropdown);
