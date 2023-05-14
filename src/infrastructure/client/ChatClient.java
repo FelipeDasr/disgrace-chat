@@ -1,6 +1,8 @@
 package src.infrastructure.client;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
@@ -9,6 +11,8 @@ import src.entities.Client;
 
 public class ChatClient extends Client {
     private InetAddress serverAddress;
+    private ObjectInputStream inputChannel;
+    private ObjectOutputStream outputChannel;
     private Socket socket;
     
     public ChatClient(String name, int avatarId, int channelId) {
