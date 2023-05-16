@@ -2,6 +2,8 @@ package src.screens.UserCreation;
 
 import src.components.Assets;
 import src.components.GenericButton;
+import src.infrastructure.client.ChatClient;
+
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,6 +24,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
     private final ScreenHandler screenHandler;
     private final JTextField usernameTextInput;
     private final JLabel userAvatar;
+    private final ChatClient chatClient;
 
     public UserCreationScreen() throws FontFormatException, IOException {
         this.screenHandler = new ScreenHandler(this);
@@ -104,6 +107,9 @@ public class UserCreationScreen extends JFrame implements ItemListener {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+
+        this.chatClient = new ChatClient();
+        this.chatClient.connectToServer("localhost", 8080);
     }
 
     public ImageIcon getAvatarImage(int avatarId) {
@@ -124,6 +130,10 @@ public class UserCreationScreen extends JFrame implements ItemListener {
 
     public JTextField getUsernameField() {
         return this.usernameTextInput;
+    }
+
+    public ChatClient getChatClient() {
+        return this.chatClient;
     }
 
     public JLabel getUserAvatarLabel(){

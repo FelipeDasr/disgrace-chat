@@ -70,4 +70,10 @@ public class ChatServer {
             connectedClient.listenEventsInParallel();
         }
     }
+
+    public static void main(String[] args) throws IOException {
+        ChatServer server = new ChatServer("Chat Server", 8080);
+        server.bind();
+        server.listenConnections();
+    }
 }
