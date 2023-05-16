@@ -1,6 +1,7 @@
 package src.components;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
@@ -25,6 +26,8 @@ public class UserMessageItem extends JTextArea {
         this.setLineWrap(true);
         this.setWrapStyleWord(true);
         this.setEditable(false);
+
+        this.setMaximumSize(this.getMaximunHeightSize());
     }
 
     private String getFormatedContent() {
@@ -59,5 +62,18 @@ public class UserMessageItem extends JTextArea {
             default:
                 return new Color(32, 30, 30);
         }
+    }
+
+    private Dimension getMaximunHeightSize() {
+        int rowHeight = this.getRowHeight();
+        int contentLength = this.getFormatedContent().length();
+        int charactersPerRow = 70;
+        
+        int rowsCount = (int) (Math.ceil((double) contentLength / charactersPerRow));
+        
+        int maxHeight = 603;
+        int maxWidth = rowHeight * rowsCount;
+
+        return new Dimension(maxHeight, maxWidth);
     }
 }
