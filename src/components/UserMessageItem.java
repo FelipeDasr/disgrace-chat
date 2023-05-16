@@ -10,7 +10,7 @@ import javax.swing.JTextArea;
 
 import src.entities.ClientMessage;
 
-class UserMessageItem extends JTextArea {
+public class UserMessageItem extends JTextArea {
     private final ClientMessage userMessage;
 
     public UserMessageItem(ClientMessage userMessage) throws FontFormatException, IOException {
