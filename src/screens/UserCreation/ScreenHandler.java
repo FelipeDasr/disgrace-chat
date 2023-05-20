@@ -49,7 +49,7 @@ public class ScreenHandler {
                     userData.put("name", username);
                     userData.put("avatarId", avatarId);
 
-                    chatClient.emitEvent("join", userData);
+                    chatClient.getConnectedPoint().emitEvent("join", userData);
 
                 } catch (IOException e) {
                     e.printStackTrace();
