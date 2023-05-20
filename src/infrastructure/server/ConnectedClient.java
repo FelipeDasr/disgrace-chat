@@ -17,7 +17,7 @@ public class ConnectedClient extends Client {
     private final Socket socket;
     private boolean isIdentified;
 
-    private InputEventHandler inputEventHandler;
+    private InputEventHandler<ConnectedClient> inputEventHandler;
 
     public ConnectedClient(int channelId, Socket socket) throws IOException {
         super(channelId);
@@ -28,7 +28,7 @@ public class ConnectedClient extends Client {
         this.isIdentified = false;
     }
 
-    public void setEventHandler(InputEventHandler inputEventHandler) {
+    public void setEventHandler(InputEventHandler<ConnectedClient> inputEventHandler) {
         this.inputEventHandler = inputEventHandler;
     }
         

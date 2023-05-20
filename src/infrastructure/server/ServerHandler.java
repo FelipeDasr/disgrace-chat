@@ -15,8 +15,8 @@ public class ServerHandler {
         this.server = server;
     }
 
-    public InputEventHandler handleEventOnReceive() {
-        return new InputEventHandler() {
+    public InputEventHandler<ConnectedClient> handleEventOnReceive() {
+        return new InputEventHandler<ConnectedClient>() {
             @Override
             public void execute(ConnectedClient connectedClient, String event, JSONObject data) throws IOException {
                 switch (event) {
