@@ -1,7 +1,7 @@
 package src.infrastructure.server;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Vector;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,7 +43,7 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         JSONObject eventObject = new JSONObject();
         JSONObject serverInfoObject = new JSONObject();
 
-        ArrayList<ConnectedClient> connectedClients = this.server.getConnectedClients();
+        Vector<ConnectedClient> connectedClients = this.server.getConnectedClients();
         JSONArray clientsArray = new JSONArray();
 
         for (ConnectedClient clientItem: connectedClients) {

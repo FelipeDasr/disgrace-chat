@@ -6,7 +6,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.ArrayList;
+import java.util.Vector;
 
 public class ChatServer {
     private ServerSocket socket;
@@ -15,7 +15,7 @@ public class ChatServer {
     private String name;
     private int port;
 
-    private final ArrayList<ConnectedClient> connectedClients;
+    private final Vector<ConnectedClient> connectedClients;
 
     public ChatServer(String name, int port) throws IOException {
         this.serverAddress = InetAddress.getByName("localhost");
@@ -23,7 +23,7 @@ public class ChatServer {
         this.name = name;
         this.port = port;
 
-        this.connectedClients = new ArrayList<ConnectedClient>();
+        this.connectedClients = new Vector<ConnectedClient>();
         this.handler = new ServerHandler(this);
     }
 
@@ -41,7 +41,7 @@ public class ChatServer {
         return null;
     }
 
-    public ArrayList<ConnectedClient> getConnectedClients() {
+    public Vector<ConnectedClient> getConnectedClients() {
         return this.connectedClients;
     }
 
