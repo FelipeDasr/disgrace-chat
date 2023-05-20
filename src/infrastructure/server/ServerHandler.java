@@ -7,8 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import src.interfaces.InputEventHandler;
+import src.interfaces.PointHandler;
 
-public class ServerHandler {
+public class ServerHandler implements PointHandler<ConnectedClient> {
     private final ChatServer server;
 
     public ServerHandler(ChatServer server) {
