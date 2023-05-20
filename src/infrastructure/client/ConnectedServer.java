@@ -7,10 +7,15 @@ import java.net.Socket;
 
 import org.json.JSONObject;
 
-public class ConnectedServer {
+import src.interfaces.ConnectedPoint;
+import src.interfaces.InputEventHandler;
+
+public class ConnectedServer implements ConnectedPoint<ConnectedServer> {
     private final ObjectOutputStream outputChannel;
     private final ObjectInputStream inputChannel;
     private final Socket socket;
+
+    private InputEventHandler<ConnectedServer> inputEventHandler;
 
     public ConnectedServer(Socket socket) throws IOException {
         this.socket = socket;
@@ -33,7 +38,7 @@ public class ConnectedServer {
             String event = eventObject.getString("event");
             JSONObject data = eventObject.getJSONObject("data");
 
-            System.out.println("Event: " + event + "\nData: " + data.toString(4));
+            this.inputEventHandler.execute(this, event, data);
         }
     }
 
@@ -58,5 +63,9 @@ public class ConnectedServer {
         this.socket.close();
         this.inputChannel.close();
         this.outputChannel.close();
+    }
+
+    public void setEventHandler(InputEventHandler<ConnectedServer> inputEventHandler) {
+        this.inputEventHandler = inputEventHandler;
     }
 }
