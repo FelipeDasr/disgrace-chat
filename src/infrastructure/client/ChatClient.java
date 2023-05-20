@@ -31,6 +31,10 @@ public class ChatClient extends Client {
         this.socket.close();
     }
 
+    public ConnectedServer getConnectedPoint() {
+        return this.connectedPoint;
+    }
+
     private void createConnectedPoint() throws IOException {
         this.connectedPoint = new ConnectedServer(this.socket);
         this.connectedPoint.setEventHandler(this.handler.handleEventOnReceive());
