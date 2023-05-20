@@ -9,9 +9,10 @@ import java.net.Socket;
 import org.json.JSONObject;
 
 import src.entities.Client;
+import src.interfaces.ConnectedPoint;
 import src.interfaces.InputEventHandler;
 
-public class ConnectedClient extends Client {
+public class ConnectedClient extends Client implements ConnectedPoint<ConnectedClient> {
     private final ObjectOutputStream outputChannel;
     private final ObjectInputStream inputChannel;
     private final Socket socket;
