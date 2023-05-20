@@ -18,6 +18,14 @@ public class ConnectedServer {
         this.inputChannel = new ObjectInputStream(this.socket.getInputStream());
     }
 
+    public void emitEvent(String event, JSONObject data) throws IOException {
+        JSONObject eventObject = new JSONObject();
+        eventObject.put("event", event);
+        eventObject.put("data", data);
+
+        this.outputChannel.writeObject(eventObject.toString());
+    }
+
     private void listenEvents() throws IOException, ClassNotFoundException {
         while(this.socket.isConnected()) { 
             String dataString = (String) this.inputChannel.readObject();
