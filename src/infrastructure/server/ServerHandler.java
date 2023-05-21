@@ -40,7 +40,7 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         client.setAvatarId(avatarId);
         client.setAsIdentified();
 
-        JSONObject eventObject = new JSONObject();
+        JSONObject eventDataObject = new JSONObject();
         JSONObject serverInfoObject = new JSONObject();
 
         Vector<ConnectedClient> connectedClients = this.server.getConnectedClients();
@@ -60,9 +60,9 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         serverInfoObject.put("connectedClients", clientsArray);
         serverInfoObject.put("name", this.server.getName());
         
-        eventObject.put("channelId", client.getChannelId());
-        eventObject.put("server", serverInfoObject);
+        eventDataObject.put("channelId", client.getChannelId());
+        eventDataObject.put("server", serverInfoObject);
 
-        client.emitEvent("joined", eventObject);
+        client.emitEvent("joined", eventDataObject);
     }
 }
