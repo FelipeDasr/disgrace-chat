@@ -15,9 +15,12 @@ public class ChatClientHandler implements PointHandler<ConnectedServer>{
             public void execute(ConnectedServer connectedClient, String event, JSONObject data) throws IOException {
                 switch (event) {
                     case "joined":
-                        // System.out.println(data.toString(4));
+                        joinedEvent(connectedClient, data);
                         break;
                 }
+            }
+
+            private void joinedEvent(ConnectedServer connectedClient, JSONObject data) {
             }
         };
     }
