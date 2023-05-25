@@ -58,7 +58,7 @@ public class ChatServer {
         this.socket.close();
     }
 
-    public void listenConnections() throws IOException {
+    private void listenConnections() throws IOException {
         while(true) {
             Socket clientSocket = this.socket.accept();
             int newClientChannelId = this.connectedClients.size() + 1;
@@ -69,6 +69,22 @@ public class ChatServer {
             connectedClient.setEventHandler(this.handler.handleEventOnReceive());
             connectedClient.listenEventsInParallel();
         }
+    }
+
+    public void listenConnectionsInParallel() {
+        Runnable runnableFunction = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    listenConnections();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+        Thread thread = new Thread(runnableFunction);
+        thread.start();
     }
 
     public static void main(String[] args) throws IOException {
