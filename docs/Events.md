@@ -50,7 +50,7 @@ Evento de resposta
 Evento de resposta
 ```JSON
 {
-    "event": "client_joined",
+    "event": "new_client",
     "data": {
         "name": "Beltrano de tal",
         "channelId": 4,

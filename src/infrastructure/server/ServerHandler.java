@@ -105,6 +105,6 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         dataObject.put("avatarId", client.getAvatarId());
         dataObject.put("channelId", client.getChannelId());
 
-        this.broadcastEvent("client_joined", dataObject, client);
+        this.broadcastEvent("new_client", dataObject, client);
     }
 }
