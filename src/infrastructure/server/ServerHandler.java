@@ -76,6 +76,7 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         eventDataObject.put("server", serverInfoObject);
 
         client.emitEvent("joined", eventDataObject);
+        this.emitClientJoinedEvent(client);
     }
 
     private void sendMessageEvent(ConnectedClient client, JSONObject data) throws IOException {
@@ -88,5 +89,14 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         dataObject.put("message", message);
 
         this.broadcastEvent("received_message", dataObject, client);
+    }
+
+    private void emitClientJoinedEvent(ConnectedClient client) throws IOException {
+        JSONObject dataObject = new JSONObject();
+        dataObject.put("name", client.getName());
+        dataObject.put("avatarId", client.getAvatarId());
+        dataObject.put("channelId", client.getChannelId());
+
+        this.broadcastEvent("client_joined", dataObject, client);
     }
 }
