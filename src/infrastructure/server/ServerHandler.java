@@ -88,7 +88,11 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         dataObject.put("channelId", channelId);
         dataObject.put("message", message);
 
-        this.broadcastEvent("received_message", dataObject, client);
+        // General channel has id 0
+        if (channelId == 0) {
+            this.broadcastEvent("received_message", dataObject, client);
+            return;
+        }
     }
 
     private void emitClientJoinedEvent(ConnectedClient client) throws IOException {
