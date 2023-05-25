@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Vector;
 
 import src.entities.Client;
 
@@ -12,6 +13,8 @@ public class ChatClient extends Client {
     private Socket socket;
     private ConnectedServer connectedPoint;
     private String serverName;
+
+    private Vector<Client> serverMembers;
 
     private final ChatClientHandler handler;
     
@@ -42,6 +45,14 @@ public class ChatClient extends Client {
 
     public void setServerName(String name) {
         this.serverName = name;
+    }
+
+    public void setServerMembers(Vector<Client> serverMembers) {
+        this.serverMembers = serverMembers;
+    }
+
+    public Vector<Client> getServerMembers() {
+        return this.serverMembers;
     }
 
     private void createConnectedPoint() throws IOException {
