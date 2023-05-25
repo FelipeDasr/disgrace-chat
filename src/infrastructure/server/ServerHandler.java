@@ -32,6 +32,14 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         };
     }
 
+    private void broadcastEvent(String event, JSONObject data, ConnectedClient excludedClient) throws IOException {
+        for (ConnectedClient clientItem: this.server.getConnectedClients()) {
+            if (clientItem != excludedClient && clientItem.isIdentified()) {
+                clientItem.emitEvent(event, data);
+            }
+        }
+    }
+
     private void joinEvent(ConnectedClient client, JSONObject data) throws IOException {
         String username = data.getString("name");
         int avatarId = data.getInt("avatarId");
