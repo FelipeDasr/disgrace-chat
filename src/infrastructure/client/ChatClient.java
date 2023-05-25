@@ -11,6 +11,7 @@ public class ChatClient extends Client {
     private InetAddress serverAddress;
     private Socket socket;
     private ConnectedServer connectedPoint;
+    private String serverName;
 
     private final ChatClientHandler handler;
     
@@ -33,6 +34,14 @@ public class ChatClient extends Client {
 
     public ConnectedServer getConnectedPoint() {
         return this.connectedPoint;
+    }
+
+    public String getServerName() {
+        return this.serverName;
+    }
+
+    public void setServerName(String name) {
+        this.serverName = name;
     }
 
     private void createConnectedPoint() throws IOException {
