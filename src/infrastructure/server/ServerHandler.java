@@ -81,11 +81,11 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
 
     private void sendMessageEvent(ConnectedClient client, JSONObject data) throws IOException {
         String message = data.getString("message");
-        int clientEmitterChannelId = data.getInt("channelId");
+        int channelId = data.getInt("channelId");
 
         JSONObject dataObject = new JSONObject();
 
-        dataObject.put("channelId", clientEmitterChannelId);
+        dataObject.put("channelId", channelId);
         dataObject.put("message", message);
 
         this.broadcastEvent("received_message", dataObject, client);
