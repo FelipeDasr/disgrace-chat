@@ -16,7 +16,7 @@ public class ChatClient extends Client {
     
     public ChatClient() {
         this.socket = new Socket();
-        this.handler = new ChatClientHandler();
+        this.handler = new ChatClientHandler(this);
     }
 
     public void connectToServer(String serverHost, int serverPort) throws IOException {

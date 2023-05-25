@@ -8,6 +8,11 @@ import src.interfaces.InputEventHandler;
 import src.interfaces.PointHandler;
 
 public class ChatClientHandler implements PointHandler<ConnectedServer>{
+    private ChatClient chatClient;
+
+    public ChatClientHandler(ChatClient chatClient) {
+        this.chatClient = chatClient;
+    }
 
     public InputEventHandler<ConnectedServer> handleEventOnReceive() {
         return new InputEventHandler<ConnectedServer>() {
