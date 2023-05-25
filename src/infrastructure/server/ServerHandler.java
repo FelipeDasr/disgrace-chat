@@ -82,6 +82,7 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
     private void sendMessageEvent(ConnectedClient client, JSONObject data) throws IOException {
         String message = data.getString("message");
         int channelId = data.getInt("channelId");
+        String event = "received_message";
 
         JSONObject dataObject = new JSONObject();
 
@@ -90,9 +91,12 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
 
         // General channel has id 0
         if (channelId == 0) {
-            this.broadcastEvent("received_message", dataObject, client);
+            this.broadcastEvent(event, dataObject, client);
             return;
         }
+
+        ConnectedClient targetClient = this.server.getClientByChannelId(channelId);
+        if (targetClient != null) targetClient.emitEvent(event, dataObject);
     }
 
     private void emitClientJoinedEvent(ConnectedClient client) throws IOException {
