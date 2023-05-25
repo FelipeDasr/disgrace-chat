@@ -25,6 +25,10 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
                         joinEvent(connectedClient, data);
                         break;
 
+                    case "send_message":
+                        sendMessageEvent(connectedClient, data);
+                        break;
+
                     default:
                         break;
                 }
@@ -72,5 +76,17 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         eventDataObject.put("server", serverInfoObject);
 
         client.emitEvent("joined", eventDataObject);
+    }
+
+    private void sendMessageEvent(ConnectedClient client, JSONObject data) throws IOException {
+        String message = data.getString("message");
+        int clientEmitterChannelId = data.getInt("channelId");
+
+        JSONObject dataObject = new JSONObject();
+
+        dataObject.put("channelId", clientEmitterChannelId);
+        dataObject.put("message", message);
+
+        this.broadcastEvent("received_message", dataObject, client);
     }
 }
