@@ -98,6 +98,15 @@ public class SecondStepGenericScreen {
 		label.setText(labelName);
 	}
 
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage.setText(errorMessage);
+		this.errorMessage.setVisible(true);
+	}
+
+	public void hideErrorMessage() {
+		this.errorMessage.setVisible(false);
+	}
+
 	public JTextField getFirstFormInputTextField() {
 		return (JTextField) this.firstFormInput.getComponent(1);
 	}
