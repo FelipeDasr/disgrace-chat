@@ -20,6 +20,8 @@ public class SecondStepGenericScreen {
 	private final JLabel panelTitle;
 	private JPanel firstFormInput;
 	private JPanel secondFormInput;
+
+	private JLabel errorMessage;
 	
 	private final ScreenHandler screenHandler;
 
@@ -41,7 +43,12 @@ public class SecondStepGenericScreen {
 		this.panelTitle = new JLabel(panelTitle);
 		this.panelTitle.setFont(this.mainFont.deriveFont(Font.BOLD, 30));
 		this.panelTitle.setAlignmentX(JTextField.CENTER_ALIGNMENT); // CENTRALIZA O TEXTO NO MEIO DO PANEL
-	
+
+		this.errorMessage = new JLabel("");
+		this.errorMessage.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
+		this.errorMessage.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+		this.errorMessage.setForeground(Color.RED);
+
 		this.mainButton = new GenericButton("");
 		this.firstFormInput = this.getFormInput("");
 		this.secondFormInput = this.getFormInput("");
@@ -59,10 +66,13 @@ public class SecondStepGenericScreen {
 		this.mainPanel.add(Box.createVerticalStrut(25));
 		this.mainPanel.add(this.secondFormInput);
 
-		this.mainPanel.add(Box.createVerticalStrut(111));
+		this.mainPanel.add(Box.createVerticalStrut(40));
+		this.mainPanel.add(this.errorMessage);
+
+		this.mainPanel.add(Box.createVerticalStrut(40));
 		this.mainPanel.add(mainButton);
 
-		this.mainPanel.add(Box.createVerticalStrut(250));
+		this.mainPanel.add(Box.createVerticalStrut(130));
 
 		this.getSecondFormInputTextField().addKeyListener(this.screenHandler.checkKeyPressed());
 
