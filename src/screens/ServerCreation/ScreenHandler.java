@@ -32,11 +32,14 @@ class ScreenHandler {
                 }
 
                 try {
+                    frame.hideErrorMessage();
+                    
                     ChatServer server = new ChatServer(serverName, Integer.parseInt(serverPortString));
                     server.bind();
                     server.listenConnectionsInParallel();
                 } catch (IOException e) {
-                    System.out.println("Error while creating server");
+                    frame.setErrorMessage("Não foi possível criar o servidor, verifique se a porta já está em uso.");
+                    return;
                 }
             }
         };
