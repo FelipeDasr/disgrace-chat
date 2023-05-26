@@ -17,11 +17,22 @@ class ScreenHandler {
         return new ActionListener() {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent event) {
-                String serverName = frame.getFirstFormInputTextField().getText();
-                int serverPort = Integer.parseInt(frame.getSecondFormInputTextField().getText());
+                String serverName = frame.getFirstFormInputTextField().getText().trim();
+
+                if (serverName.length() < 5) {
+                    frame.setErrorMessage("O nome do servidor não pode ter menos de 5 caracteres");
+                    return;
+                }
+
+                String serverPortString = frame.getSecondFormInputTextField().getText().trim();
+
+                if (serverPortString.length() < 4) {
+                    frame.setErrorMessage("A porta do servidor não pode ter menos de 4 algarismos");
+                    return;
+                }
 
                 try {
-                    ChatServer server = new ChatServer(serverName, serverPort);
+                    ChatServer server = new ChatServer(serverName, Integer.parseInt(serverPortString));
                     server.bind();
                     server.listenConnectionsInParallel();
                 } catch (IOException e) {
