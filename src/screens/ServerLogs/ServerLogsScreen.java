@@ -13,6 +13,7 @@ import java.awt.Color;
 import java.io.IOException;
 
 import src.components.Assets;
+import src.components.ServerLogsHeader;
 import src.infrastructure.server.ChatServer;
 
 public class ServerLogsScreen {
@@ -35,6 +36,9 @@ public class ServerLogsScreen {
         leftPanel.setMaximumSize(new Dimension(250, frameHeight));
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBackground(Color.white);
+
+        ServerLogsHeader leftPanelHeader = new ServerLogsHeader(this.server.getName(), this.server.getConnectedClients().size());
+        leftPanel.add(leftPanelHeader);
 
         JPanel rightPanel = new JPanel();
         rightPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
