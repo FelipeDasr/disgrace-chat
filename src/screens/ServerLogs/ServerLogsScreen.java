@@ -34,6 +34,7 @@ public class ServerLogsScreen {
         leftPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 2, commonBorderColor));
         leftPanel.setMaximumSize(new Dimension(250, frameHeight));
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
+        leftPanel.setBackground(Color.white);
 
         JPanel rightPanel = new JPanel();
         rightPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
