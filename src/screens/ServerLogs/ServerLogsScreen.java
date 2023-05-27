@@ -31,11 +31,12 @@ public class ServerLogsScreen {
         Color commonBorderColor = new Color(195, 207, 217);
 
         JPanel leftPanel = new JPanel();
-        leftPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 2, commonBorderColor));
+        leftPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 2, commonBorderColor));
         leftPanel.setMaximumSize(new Dimension(250, frameHeight));
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
 
         JPanel rightPanel = new JPanel();
+        rightPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setMaximumSize(new Dimension(frameWidth - 250, frameHeight));
         rightPanel.setBackground(Color.white);
