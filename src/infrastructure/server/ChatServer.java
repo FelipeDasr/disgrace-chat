@@ -6,6 +6,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.UnknownHostException;
 import java.util.Vector;
 
 public class ChatServer {
@@ -85,6 +86,14 @@ public class ChatServer {
 
         Thread thread = new Thread(runnableFunction);
         thread.start();
+    }
+    
+    public int getPort() {
+        return this.port;
+    }
+
+    public String getHostAddress() throws UnknownHostException {
+        return InetAddress.getLocalHost().getHostAddress();
     }
 
     public static void main(String[] args) throws IOException {
