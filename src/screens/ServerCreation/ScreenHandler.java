@@ -1,9 +1,11 @@
 package src.screens.ServerCreation;
 
+import java.awt.FontFormatException;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import src.infrastructure.server.ChatServer;
+import src.screens.ServerLogs.ServerLogsScreen;
 
 // private class (only to be used by ServerCreationScreen.java)
 class ScreenHandler {
@@ -37,7 +39,12 @@ class ScreenHandler {
                     ChatServer server = new ChatServer(serverName, Integer.parseInt(serverPortString));
                     server.bind();
                     server.listenConnectionsInParallel();
-                } catch (IOException e) {
+
+                    frame.hide();
+                    ServerLogsScreen serverLogsScreen = new ServerLogsScreen(server);
+                    serverLogsScreen.show();
+
+                } catch (IOException | FontFormatException e) {
                     frame.setErrorMessage("Não foi possível criar o servidor, verifique se a porta já está em uso.");
                     return;
                 }
