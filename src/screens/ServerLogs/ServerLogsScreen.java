@@ -85,6 +85,10 @@ public class ServerLogsScreen {
         this.rightPanel.add(Box.createVerticalStrut(15));
     }
 
+    public JPanel getLogsPanel() {
+        return this.rightPanel;
+    }
+
     public void show() {
         this.frame.setVisible(true);
     }
