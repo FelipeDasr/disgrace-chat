@@ -90,6 +90,10 @@ public class ServerLogsScreen {
         return this.rightPanel;
     }
 
+    public JPanel getMembersPanel() {
+        return this.leftPanel;
+    }
+
     public void show() {
         this.frame.setVisible(true);
     }
