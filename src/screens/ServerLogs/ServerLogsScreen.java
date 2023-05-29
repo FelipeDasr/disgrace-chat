@@ -1,6 +1,7 @@
 package src.screens.ServerLogs;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -11,19 +12,27 @@ import java.awt.FontFormatException;
 import java.awt.Color;
 
 import java.io.IOException;
+import java.util.Date;
 
 import src.components.Assets;
 import src.components.ServerLogsHeader;
+import src.components.UserMessageItem;
+import src.entities.Client;
+import src.entities.ClientMessage;
 import src.infrastructure.server.ChatServer;
 
 public class ServerLogsScreen {
     private ChatServer server;
     private JFrame frame;
+    private Client serverClient;
+    private JPanel rightPanel;
 
     public ServerLogsScreen(ChatServer server) throws FontFormatException, IOException {
         this.server = server;
         int frameHeight = 608;
         int frameWidth = 853;
+
+        this.serverClient = new Client(server.getName(), 0, 0);
 
         this.frame = new JFrame("Disgrace - " + this.server.getName());
 		this.frame.setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.X_AXIS));
@@ -40,7 +49,7 @@ public class ServerLogsScreen {
         ServerLogsHeader leftPanelHeader = new ServerLogsHeader(this.server.getName(), this.server.getConnectedClients().size());
         leftPanel.add(leftPanelHeader);
 
-        JPanel rightPanel = new JPanel();
+        this.rightPanel = new JPanel();
         rightPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setMaximumSize(new Dimension(frameWidth - 250, frameHeight));
@@ -58,6 +67,22 @@ public class ServerLogsScreen {
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.showInitialLogs();
+    }
+
+    private void showInitialLogs() throws FontFormatException, IOException {
+        ClientMessage messageLog1 = new ClientMessage(this.serverClient, "Servidor iniciado com sucesso!", new Date());
+        ClientMessage messageLog2 = new ClientMessage(this.serverClient, "Aguardando conexões", new Date());
+        ClientMessage messageLog3 = new ClientMessage(this.serverClient, "Rodando no endereço: " + this.server.getHostAddress(), new Date());
+        ClientMessage messageLog4 = new ClientMessage(this.serverClient, "Rodando na porta: " + this.server.getPort(), new Date());
+
+        this.rightPanel.add(new UserMessageItem(messageLog1));
+        this.rightPanel.add(new UserMessageItem(messageLog2));
+        this.rightPanel.add(Box.createVerticalStrut(15));
+        this.rightPanel.add(new UserMessageItem(messageLog3));
+        this.rightPanel.add(new UserMessageItem(messageLog4));
+        this.rightPanel.add(Box.createVerticalStrut(15));
     }
 
     public void show() {
