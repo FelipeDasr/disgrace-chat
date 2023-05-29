@@ -26,6 +26,7 @@ public class ServerLogsScreen {
     private JFrame frame;
     private Client serverClient;
     private JPanel rightPanel;
+    private JPanel leftPanel;
 
     public ServerLogsScreen(ChatServer server) throws FontFormatException, IOException {
         this.server = server;
@@ -40,7 +41,7 @@ public class ServerLogsScreen {
 
         Color commonBorderColor = new Color(195, 207, 217);
 
-        JPanel leftPanel = new JPanel();
+        this.leftPanel = new JPanel();
         leftPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 2, commonBorderColor));
         leftPanel.setMaximumSize(new Dimension(250, frameHeight));
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
