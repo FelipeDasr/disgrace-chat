@@ -27,9 +27,12 @@ public class ServerLogsScreen {
     private Client serverClient;
     private JPanel rightPanel;
     private JPanel leftPanel;
+    private ScreenHandler handler;
 
     public ServerLogsScreen(ChatServer server) throws FontFormatException, IOException {
         this.server = server;
+        this.handler = new ScreenHandler(this);
+
         int frameHeight = 608;
         int frameWidth = 853;
 
@@ -68,6 +71,8 @@ public class ServerLogsScreen {
 		this.frame.setLocationRelativeTo(null);
 		this.frame.setResizable(false);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.server.setEventActionOnMemberJoin(this.handler.joinedMember());
 
         this.showInitialLogs();
     }

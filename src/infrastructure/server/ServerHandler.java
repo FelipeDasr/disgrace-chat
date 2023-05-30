@@ -7,10 +7,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import src.interfaces.InputEventHandler;
+import src.interfaces.MemberEventHandler;
 import src.interfaces.PointHandler;
 
 public class ServerHandler implements PointHandler<ConnectedClient> {
     private final ChatServer server;
+    private MemberEventHandler eventActionOnMemberJoin;
 
     public ServerHandler(ChatServer server) {
         this.server = server;
@@ -105,6 +107,11 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         dataObject.put("avatarId", client.getAvatarId());
         dataObject.put("channelId", client.getChannelId());
 
+        this.eventActionOnMemberJoin.execute(client);
         this.broadcastEvent("new_client", dataObject, client);
+    }
+
+    public void setEventActionOnMemberJoin(MemberEventHandler eventActionOnMemberJoin) {
+        this.eventActionOnMemberJoin = eventActionOnMemberJoin;
     }
 }

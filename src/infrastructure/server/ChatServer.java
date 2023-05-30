@@ -9,6 +9,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Vector;
 
+import src.interfaces.MemberEventHandler;
+
 public class ChatServer {
     private ServerSocket socket;
     private InetAddress serverAddress; 
@@ -86,6 +88,10 @@ public class ChatServer {
 
         Thread thread = new Thread(runnableFunction);
         thread.start();
+    }
+
+    public void setEventActionOnMemberJoin(MemberEventHandler eventHandler) {
+        this.handler.setEventActionOnMemberJoin(eventHandler);
     }
     
     public int getPort() {

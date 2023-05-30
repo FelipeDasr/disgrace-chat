@@ -109,7 +109,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
 		frame.setVisible(true);
 
         this.chatClient = new ChatClient();
-        this.chatClient.connectToServer("localhost", 8080);
+        this.chatClient.connectToServer("localhost", 7777);
     }
 
     public ImageIcon getAvatarImage(int avatarId) {
