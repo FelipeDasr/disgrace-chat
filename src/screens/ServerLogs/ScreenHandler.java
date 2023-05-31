@@ -1,7 +1,5 @@
 package src.screens.ServerLogs;
 
-import java.awt.FontFormatException;
-import java.io.IOException;
 import java.util.Date;
 
 import src.components.UserConversationItem;
