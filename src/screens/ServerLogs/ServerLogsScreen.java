@@ -27,6 +27,7 @@ public class ServerLogsScreen {
     private Client serverClient;
     private JPanel rightPanel;
     private JPanel leftPanel;
+    private JPanel connectedMembersPanel;
     private ScreenHandler handler;
 
     public ServerLogsScreen(ChatServer server) throws FontFormatException, IOException {
@@ -53,6 +54,11 @@ public class ServerLogsScreen {
         ServerLogsHeader leftPanelHeader = new ServerLogsHeader(this.server.getName(), this.server.getConnectedClients().size());
         leftPanel.add(leftPanelHeader);
 
+        this.connectedMembersPanel = new JPanel();
+        this.connectedMembersPanel.setLayout(new BoxLayout(connectedMembersPanel, BoxLayout.Y_AXIS));
+        this.connectedMembersPanel.setMaximumSize(new Dimension(250, frameHeight - leftPanelHeader.getHeight()));
+        this.connectedMembersPanel.setBackground(Color.white);
+
         this.rightPanel = new JPanel();
         rightPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
@@ -62,14 +68,15 @@ public class ServerLogsScreen {
         JScrollPane rightScrollPanel = new JScrollPane(rightPanel);
         rightScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         rightScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        rightScrollPanel.setMaximumSize(new Dimension(frameWidth - 250, frameHeight));
+        rightScrollPanel.setMaximumSize(new Dimension(250, frameHeight));
 
-        JScrollPane leftScrollPanel = new JScrollPane(leftPanel);
-        leftScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        leftScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        leftScrollPanel.setMaximumSize(new Dimension(250, frameHeight));
+        JScrollPane connectedMembersScrollPanel = new JScrollPane(this.connectedMembersPanel);
+        connectedMembersScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        connectedMembersScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        connectedMembersScrollPanel.setMaximumSize(new Dimension(250, frameHeight));
+        this.leftPanel.add(connectedMembersScrollPanel);
 
-        frame.add(leftScrollPanel);
+        frame.add(this.leftPanel);
         frame.add(rightScrollPanel);
 
 		this.frame.setSize(frameWidth, frameHeight);
@@ -101,7 +108,7 @@ public class ServerLogsScreen {
     }
 
     public JPanel getMembersPanel() {
-        return this.leftPanel;
+        return this.connectedMembersPanel;
     }
 
     public void show() {
