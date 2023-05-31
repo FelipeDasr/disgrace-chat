@@ -64,7 +64,12 @@ public class ServerLogsScreen {
         rightScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         rightScrollPanel.setMaximumSize(new Dimension(frameWidth - 250, frameHeight));
 
-        frame.add(leftPanel);
+        JScrollPane leftScrollPanel = new JScrollPane(leftPanel);
+        leftScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        leftScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        leftScrollPanel.setMaximumSize(new Dimension(250, frameHeight));
+
+        frame.add(leftScrollPanel);
         frame.add(rightScrollPanel);
 
 		this.frame.setSize(frameWidth, frameHeight);
