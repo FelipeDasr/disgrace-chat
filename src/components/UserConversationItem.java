@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import src.entities.Client;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -21,6 +22,7 @@ public class UserConversationItem extends JPanel {
     public UserConversationItem(Client user) throws FontFormatException, IOException {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setMaximumSize(new Dimension(225, 65));
+        this.setBackground(Color.white);
         unreadMessages = 0;
 
         Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId()).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);;
