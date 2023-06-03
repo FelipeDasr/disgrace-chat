@@ -69,7 +69,7 @@ public class ServerLogsScreen {
         JScrollPane rightScrollPanel = new JScrollPane(rightPanel);
         rightScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         rightScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        rightScrollPanel.setMaximumSize(new Dimension(250, frameHeight));
+        rightScrollPanel.setMaximumSize(new Dimension(frameWidth - 250, frameHeight));
 
         JScrollPane connectedMembersScrollPanel = new JScrollPane(this.connectedMembersPanel);
         connectedMembersScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
