@@ -32,7 +32,7 @@ public class ConnectedServer implements ConnectedPoint<ConnectedServer> {
     }
 
     private void listenEvents() throws IOException, ClassNotFoundException {
-        while(this.socket.isConnected()) { 
+        while (this.socket.isConnected()) {
             String dataString = (String) this.inputChannel.readObject();
             JSONObject eventObject = new JSONObject(dataString);
             String event = eventObject.getString("event");
@@ -48,9 +48,11 @@ public class ConnectedServer implements ConnectedPoint<ConnectedServer> {
             public void run() {
                 try {
                     listenEvents();
-                } 
-                catch (IOException | ClassNotFoundException error) {
-                    try { closeConnection(); } catch (IOException error_) {}
+                } catch (IOException | ClassNotFoundException error) {
+                    try {
+                        closeConnection();
+                    } catch (IOException error_) {
+                    }
                 }
             }
         };

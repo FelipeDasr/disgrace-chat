@@ -8,9 +8,9 @@ import src.screens.SecondStepGeneric.SecondStepGenericScreen;
 public class JoinServerScreen extends SecondStepGenericScreen {
     public JoinServerScreen() throws FontFormatException, IOException {
         super("Entrar em um servidor");
-					
-		this.setFirstFormInputLabel("Host:               ");
-		this.setSecondFormInputLabel("Porta:              ");
-		this.setButtonLabel("Entrar");
+
+        this.setFirstFormInputLabel("Host:               ");
+        this.setSecondFormInputLabel("Porta:              ");
+        this.setButtonLabel("Entrar");
     }
 }

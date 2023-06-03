@@ -21,7 +21,7 @@ public class UserMessageItem extends JTextArea {
         this.setText(this.getFormatedContent());
         this.setForeground(this.getColor());
 
-        this.setBorder(BorderFactory.createEmptyBorder(0, 10, 	0, 10));
+        this.setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 10));
 
         this.setLineWrap(true);
         this.setWrapStyleWord(true);
@@ -31,18 +31,18 @@ public class UserMessageItem extends JTextArea {
     }
 
     private String getFormatedContent() {
-        return "[" + this.userMessage.getFormatedHourString() + "h - " 
-                + this.userMessage.getUser().getName() + "]: " 
-                    + this.userMessage.getContent();
+        return "[" + this.userMessage.getFormatedHourString() + "h - "
+                + this.userMessage.getUser().getName() + "]: "
+                + this.userMessage.getContent();
     }
 
     private Color getColor() {
-        switch(this.userMessage.getUser().getAvatarId()) {
+        switch (this.userMessage.getUser().getAvatarId()) {
             case 0:
                 return new Color(236, 38, 143);
 
             case 1:
-                return new Color(0, 152, 218);	
+                return new Color(0, 152, 218);
 
             case 2:
                 return new Color(203, 115, 113);
@@ -68,9 +68,9 @@ public class UserMessageItem extends JTextArea {
         int rowHeight = this.getRowHeight();
         int contentLength = this.getFormatedContent().length();
         int charactersPerRow = 70;
-        
+
         int rowsCount = (int) (Math.ceil((double) contentLength / charactersPerRow));
-        
+
         int maxHeight = 603;
         int maxWidth = rowHeight * rowsCount;
 

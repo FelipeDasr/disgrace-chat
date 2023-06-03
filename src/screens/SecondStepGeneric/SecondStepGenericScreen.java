@@ -1,6 +1,5 @@
 package src.screens.SecondStepGeneric;
 
-
 import java.awt.*;
 import java.io.IOException;
 
@@ -12,7 +11,7 @@ public class SecondStepGenericScreen {
 	private final Color whiteColor = new Color(255, 255, 255);
 	private final ImageIcon icon;
 	private final Font mainFont;
-	
+
 	private final JFrame frame;
 	private final JPanel mainPanel;
 	private GenericButton mainButton;
@@ -22,22 +21,23 @@ public class SecondStepGenericScreen {
 	private JPanel secondFormInput;
 
 	private JLabel errorMessage;
-	
+
 	private final ScreenHandler screenHandler;
 
 	public SecondStepGenericScreen(String panelTitle) throws FontFormatException, IOException {
 		this.frame = new JFrame("DisGrace");
 		this.mainPanel = new JPanel();
 		this.mainPanel.setBackground(this.whiteColor);
-        
-        this.icon = new ImageIcon("src/assets/images/DisgraceIcon1.png");
-		
+
+		this.icon = new ImageIcon("src/assets/images/DisgraceIcon1.png");
+
 		frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.X_AXIS));
 		this.mainPanel.setLayout(new BoxLayout(this.mainPanel, BoxLayout.Y_AXIS));
 		this.mainPanel.setMaximumSize(new Dimension(743, 558));
 		frame.setIconImage(this.icon.getImage());
 
-		this.mainFont = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("src/assets/fonts/MainFont.ttf"));
+		this.mainFont = Font.createFont(Font.TRUETYPE_FONT,
+				getClass().getClassLoader().getResourceAsStream("src/assets/fonts/MainFont.ttf"));
 
 		// Texto que irá aparecer no panel
 		this.panelTitle = new JLabel(panelTitle);
@@ -75,7 +75,6 @@ public class SecondStepGenericScreen {
 		this.mainPanel.add(Box.createVerticalStrut(130));
 
 		this.getSecondFormInputTextField().addKeyListener(this.screenHandler.checkKeyPressed());
-
 
 		this.frame.add(this.mainPanel);
 		this.frame.setSize(743, 558);
@@ -131,7 +130,7 @@ public class SecondStepGenericScreen {
 		this.frame.dispose();
 	}
 
-	private JPanel getFormInput(String labelName){
+	private JPanel getFormInput(String labelName) {
 		JPanel formInputPanel = new JPanel();
 		formInputPanel.setLayout(new BoxLayout(formInputPanel, BoxLayout.Y_AXIS));
 		formInputPanel.setBackground(this.whiteColor);
@@ -142,9 +141,9 @@ public class SecondStepGenericScreen {
 		// Adiciona dois JTextField e formara seu tamanho
 		JTextField textInput = new JTextField();
 		textInput.setMaximumSize(new Dimension(300, 70));
-        textInput.setMinimumSize(new Dimension(300, 35));
-		
-		//text endress and port
+		textInput.setMinimumSize(new Dimension(300, 35));
+
+		// text endress and port
 		JLabel label = new JLabel(labelName);
 		label.setFont(this.mainFont.deriveFont(Font.BOLD, 18));
 		label.setAlignmentX(JTextField.RIGHT_ALIGNMENT);

@@ -32,7 +32,7 @@ public class ConnectedClient extends Client implements ConnectedPoint<ConnectedC
     public void setEventHandler(InputEventHandler<ConnectedClient> inputEventHandler) {
         this.inputEventHandler = inputEventHandler;
     }
-        
+
     public void emitEvent(String event, JSONObject data) throws IOException {
         JSONObject eventObject = new JSONObject();
         eventObject.put("event", event);
@@ -42,7 +42,7 @@ public class ConnectedClient extends Client implements ConnectedPoint<ConnectedC
     }
 
     private void listenEvents() throws IOException, ClassNotFoundException {
-        while(this.socket.isConnected()) { 
+        while (this.socket.isConnected()) {
             String dataString = (String) this.inputChannel.readObject();
             JSONObject eventObject = new JSONObject(dataString);
             String event = eventObject.getString("event");
@@ -58,9 +58,11 @@ public class ConnectedClient extends Client implements ConnectedPoint<ConnectedC
             public void run() {
                 try {
                     listenEvents();
-                } 
-                catch (IOException | ClassNotFoundException error) {
-                    try { closeConnection(); } catch (IOException error_) {}
+                } catch (IOException | ClassNotFoundException error) {
+                    try {
+                        closeConnection();
+                    } catch (IOException error_) {
+                    }
                 }
             }
         };

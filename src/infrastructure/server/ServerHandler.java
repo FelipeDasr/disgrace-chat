@@ -39,7 +39,7 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
     }
 
     private void broadcastEvent(String event, JSONObject data, ConnectedClient excludedClient) throws IOException {
-        for (ConnectedClient clientItem: this.server.getConnectedClients()) {
+        for (ConnectedClient clientItem : this.server.getConnectedClients()) {
             if (clientItem != excludedClient && clientItem.isIdentified()) {
                 clientItem.emitEvent(event, data);
             }
@@ -60,7 +60,7 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         Vector<ConnectedClient> connectedClients = this.server.getConnectedClients();
         JSONArray clientsArray = new JSONArray();
 
-        for (ConnectedClient clientItem: connectedClients) {
+        for (ConnectedClient clientItem : connectedClients) {
             if (clientItem != client && clientItem.isIdentified()) {
                 JSONObject clientObject = new JSONObject();
                 clientObject.put("name", clientItem.getName());
@@ -70,10 +70,10 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
                 clientsArray.put(clientObject);
             }
         }
-        
+
         serverInfoObject.put("connectedClients", clientsArray);
         serverInfoObject.put("name", this.server.getName());
-        
+
         eventDataObject.put("channelId", client.getChannelId());
         eventDataObject.put("server", serverInfoObject);
 
@@ -98,7 +98,8 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         }
 
         ConnectedClient targetClient = this.server.getClientByChannelId(channelId);
-        if (targetClient != null) targetClient.emitEvent(event, dataObject);
+        if (targetClient != null)
+            targetClient.emitEvent(event, dataObject);
     }
 
     private void emitClientJoinedEvent(ConnectedClient client) throws IOException {

@@ -25,12 +25,14 @@ public class UserConversationItem extends JPanel {
         this.setBackground(Color.white);
         unreadMessages = 0;
 
-        Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId()).getImage().getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);;
-		ImageIcon userAvatarIcon = new ImageIcon(userAvatarImage);
-		
-		JLabel userAvatarLabel = new JLabel();
+        Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId()).getImage().getScaledInstance(50, 50,
+                java.awt.Image.SCALE_SMOOTH);
+
+        ImageIcon userAvatarIcon = new ImageIcon(userAvatarImage);
+
+        JLabel userAvatarLabel = new JLabel();
         userAvatarLabel.setAlignmentX(JLabel.LEFT);
-		userAvatarLabel.setIcon(userAvatarIcon);
+        userAvatarLabel.setIcon(userAvatarIcon);
 
         Font mainFont = new Assets().getMainFont().deriveFont(Font.BOLD, 17);
 

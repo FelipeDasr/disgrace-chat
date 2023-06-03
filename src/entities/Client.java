@@ -4,7 +4,7 @@ public class Client {
     private String name;
     private int avatarId;
     private int channelId;
-    
+
     public Client(String name, int avatarId, int channelId) {
         this.avatarId = avatarId;
         this.channelId = channelId;

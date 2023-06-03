@@ -23,11 +23,10 @@ public class ScreenHandler {
                     System.out.println("MEMBER JOINED " + member.getName());
                     UserConversationItem memberItem = new UserConversationItem(member);
                     ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
-                    
+
                     screen.getLogsPanel().add(new UserMessageItem(clientMessage)).revalidate();
                     screen.getMembersPanel().add(memberItem).revalidate();
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     System.out.println(e);
                 }
             }

@@ -40,8 +40,8 @@ public class ServerLogsScreen {
         this.serverClient = new Client(server.getName(), 0, 0);
 
         this.frame = new JFrame("Disgrace - " + this.server.getName());
-		this.frame.setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.X_AXIS));
-		frame.setIconImage(new Assets().getAppIcon());
+        this.frame.setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.X_AXIS));
+        frame.setIconImage(new Assets().getAppIcon());
 
         Color commonBorderColor = new Color(195, 207, 217);
 
@@ -51,7 +51,8 @@ public class ServerLogsScreen {
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBackground(Color.white);
 
-        ServerLogsHeader leftPanelHeader = new ServerLogsHeader(this.server.getName(), this.server.getConnectedClients().size());
+        ServerLogsHeader leftPanelHeader = new ServerLogsHeader(this.server.getName(),
+                this.server.getConnectedClients().size());
         leftPanel.add(leftPanelHeader);
 
         this.connectedMembersPanel = new JPanel();
@@ -64,7 +65,7 @@ public class ServerLogsScreen {
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
         rightPanel.setMaximumSize(new Dimension(frameWidth - 250, frameHeight));
         rightPanel.setBackground(Color.white);
-        
+
         JScrollPane rightScrollPanel = new JScrollPane(rightPanel);
         rightScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         rightScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -79,10 +80,10 @@ public class ServerLogsScreen {
         frame.add(this.leftPanel);
         frame.add(rightScrollPanel);
 
-		this.frame.setSize(frameWidth, frameHeight);
-		this.frame.setLocationRelativeTo(null);
-		this.frame.setResizable(false);
-		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frame.setSize(frameWidth, frameHeight);
+        this.frame.setLocationRelativeTo(null);
+        this.frame.setResizable(false);
+        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.server.setEventActionOnMemberJoin(this.handler.joinedMember());
 
@@ -92,8 +93,10 @@ public class ServerLogsScreen {
     private void showInitialLogs() throws FontFormatException, IOException {
         ClientMessage messageLog1 = new ClientMessage(this.serverClient, "Servidor iniciado com sucesso!", new Date());
         ClientMessage messageLog2 = new ClientMessage(this.serverClient, "Aguardando conexões", new Date());
-        ClientMessage messageLog3 = new ClientMessage(this.serverClient, "Rodando no endereço: " + this.server.getHostAddress(), new Date());
-        ClientMessage messageLog4 = new ClientMessage(this.serverClient, "Rodando na porta: " + this.server.getPort(), new Date());
+        ClientMessage messageLog3 = new ClientMessage(this.serverClient,
+                "Rodando no endereço: " + this.server.getHostAddress(), new Date());
+        ClientMessage messageLog4 = new ClientMessage(this.serverClient, "Rodando na porta: " + this.server.getPort(),
+                new Date());
 
         this.rightPanel.add(new UserMessageItem(messageLog1));
         this.rightPanel.add(new UserMessageItem(messageLog2));

@@ -35,7 +35,7 @@ class ScreenHandler {
 
                 try {
                     frame.hideErrorMessage();
-                    
+
                     ChatServer server = new ChatServer(serverName, Integer.parseInt(serverPortString));
                     server.bind();
                     server.listenConnectionsInParallel();

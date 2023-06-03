@@ -17,7 +17,7 @@ public class ChatClient extends Client {
     private Vector<Client> serverMembers;
 
     private final ChatClientHandler handler;
-    
+
     public ChatClient() {
         this.socket = new Socket();
         this.handler = new ChatClientHandler(this);

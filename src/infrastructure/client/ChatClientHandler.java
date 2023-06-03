@@ -10,7 +10,7 @@ import src.interfaces.PointHandler;
 
 import src.entities.Client;
 
-public class ChatClientHandler implements PointHandler<ConnectedServer>{
+public class ChatClientHandler implements PointHandler<ConnectedServer> {
     private ChatClient chatClient;
 
     public ChatClientHandler(ChatClient chatClient) {
@@ -38,7 +38,7 @@ public class ChatClientHandler implements PointHandler<ConnectedServer>{
         Vector<Client> serverMembers = new Vector<Client>();
 
         // Define all connected server members
-        for (Object memberItem: serverData.getJSONArray("connectedClients").toList()) {
+        for (Object memberItem : serverData.getJSONArray("connectedClients").toList()) {
             int memberChannelId = ((JSONObject) memberItem).getInt("channelId");
             String memberName = ((JSONObject) memberItem).getString("name");
             int avatarId = ((JSONObject) memberItem).getInt("avatarId");

@@ -10,13 +10,13 @@ import src.screens.SecondStepGeneric.SecondStepGenericScreen;
 import src.screens.ServerCreation.ServerCreationScreen;
 
 class ScreenHandler {
-    private final FirstChoiceScreen frame;
+	private final FirstChoiceScreen frame;
 
-    public ScreenHandler(FirstChoiceScreen frame) {
-        this.frame = frame;
-    }
+	public ScreenHandler(FirstChoiceScreen frame) {
+		this.frame = frame;
+	}
 
-    public ActionListener createServerOnClick() {
+	public ActionListener createServerOnClick() {
 		return new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent event) {

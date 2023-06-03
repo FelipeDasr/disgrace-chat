@@ -13,7 +13,7 @@ import src.interfaces.MemberEventHandler;
 
 public class ChatServer {
     private ServerSocket socket;
-    private InetAddress serverAddress; 
+    private InetAddress serverAddress;
     private ServerHandler handler;
     private String name;
     private int port;
@@ -35,7 +35,7 @@ public class ChatServer {
     }
 
     public ConnectedClient getClientByChannelId(int channelId) {
-        for (ConnectedClient client: this.connectedClients) {
+        for (ConnectedClient client : this.connectedClients) {
             if (client.getChannelId() == channelId) {
                 return client;
             }
@@ -62,7 +62,7 @@ public class ChatServer {
     }
 
     private void listenConnections() throws IOException {
-        while(true) {
+        while (true) {
             Socket clientSocket = this.socket.accept();
             int newClientChannelId = this.connectedClients.size() + 1;
 
@@ -93,7 +93,7 @@ public class ChatServer {
     public void setEventActionOnMemberJoin(MemberEventHandler eventHandler) {
         this.handler.setEventActionOnMemberJoin(eventHandler);
     }
-    
+
     public int getPort() {
         return this.port;
     }

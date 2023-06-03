@@ -10,32 +10,35 @@ public class ScreenHandler {
         this.frame = frame;
     }
 
-    public KeyListener checkKeyPressed(){
+    public KeyListener checkKeyPressed() {
         return new KeyListener() {
 
             @Override
             public void keyTyped(KeyEvent event) {
                 boolean keyIsValid = isAValidKeyForPort(event.getKeyChar());
 
-                if(!keyIsValid) {
-                    event.setKeyChar('\u0000'); 
-                } 
+                if (!keyIsValid) {
+                    event.setKeyChar('\u0000');
+                }
             }
 
             @Override
-            public void keyPressed(KeyEvent e) { }
+            public void keyPressed(KeyEvent e) {
+            }
 
             @Override
-            public void keyReleased(KeyEvent e) { }    
-        }; 
+            public void keyReleased(KeyEvent e) {
+            }
+        };
 
     }
 
     private boolean isAValidKeyForPort(char key) {
         int asciiKeyCode = (int) key;
-        int asciiBackspaceCode = 8; 
+        int asciiBackspaceCode = 8;
 
-        if ((asciiKeyCode >= 48 && asciiKeyCode <= 57) || asciiKeyCode == asciiBackspaceCode) return true;
+        if ((asciiKeyCode >= 48 && asciiKeyCode <= 57) || asciiKeyCode == asciiBackspaceCode)
+            return true;
         return false;
     }
 }

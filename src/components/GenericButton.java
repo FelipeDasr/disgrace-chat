@@ -12,14 +12,14 @@ import javax.swing.JButton;
 public class GenericButton extends JButton {
 	private final Color mainColor;
 	private final Color whiteColor;
-    private final Font mainFont;
+	private final Font mainFont;
 
-    public GenericButton(String label) throws FontFormatException, IOException {
+	public GenericButton(String label) throws FontFormatException, IOException {
 		super(label);
 
-        mainColor = new Color(101, 88, 245);
-        whiteColor = new Color(255, 255, 255);
-        mainFont = new Assets().getMainFont();
+		mainColor = new Color(101, 88, 245);
+		whiteColor = new Color(255, 255, 255);
+		mainFont = new Assets().getMainFont();
 
 		this.setMargin(new Insets(6, 16, 6, 16));
 		this.setBackground(this.mainColor);

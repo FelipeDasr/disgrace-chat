@@ -26,7 +26,10 @@ public class Assets {
     }
 
     public ImageIcon getAvatarImage(int avatarId) {
-        if (avatarId < 0 || avatarId > 7) avatarId = 1;
+        if (avatarId < 0 || avatarId > 7) {
+            avatarId = 1;
+        }
+
         String path = "src/assets/images/avatars/" + avatarId + ".png";
         return new ImageIcon(path);
     }
