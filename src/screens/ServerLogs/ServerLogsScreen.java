@@ -51,8 +51,10 @@ public class ServerLogsScreen {
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBackground(Color.white);
 
-        ServerLogsHeader leftPanelHeader = new ServerLogsHeader(this.server.getName(),
-                this.server.getConnectedClients().size());
+        String serverName = this.server.getName();
+        int initialConnectedMembersLength = this.server.getConnectedClients().size();
+
+        ServerLogsHeader leftPanelHeader = new ServerLogsHeader(serverName, initialConnectedMembersLength);
         leftPanel.add(leftPanelHeader);
 
         this.connectedMembersPanel = new JPanel();
