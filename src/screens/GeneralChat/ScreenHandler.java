@@ -14,7 +14,7 @@ public class ScreenHandler {
         this.screen = screen;
     }
 
-    public MemberEventHandler joinedMember() {
+    public MemberEventHandler newConnectedMember() {
         return new MemberEventHandler() {
             @Override
             public void execute(Client member) {

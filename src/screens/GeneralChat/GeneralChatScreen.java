@@ -3,6 +3,8 @@ package src.screens.GeneralChat;
 import javax.swing.*;
 import src.components.Assets;
 import src.components.GenericButton;
+import src.entities.Client;
+import src.infrastructure.client.ChatClient;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -18,8 +20,12 @@ public class GeneralChatScreen {
     private JPanel rightPanel;
     private JPanel messagesPanel;
     private JTextArea inputField;
+    private ChatClient client;
+    private ScreenHandler handler;
 
-    public GeneralChatScreen() throws FontFormatException, IOException {
+    public GeneralChatScreen(ChatClient client) throws FontFormatException, IOException {
+        this.client = client;   
+        this.handler = new ScreenHandler(this);
 
         int frameHeight = 608;
         int frameWidth = 853;
@@ -90,7 +96,8 @@ public class GeneralChatScreen {
         this.frame.setLocationRelativeTo(null);
         this.frame.setResizable(false);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.setVisible(true);
+
+        this.client.setEventActionOnNewMemberJoin(this.handler.newConnectedMember());
     }
 
     public JPanel getMessagesPanel() {
@@ -103,5 +110,9 @@ public class GeneralChatScreen {
 
     public JPanel getConnectMemberPanel() {
         return this.leftPanel;
+    }
+
+    public void show() {
+        this.frame.setVisible(true);
     }
 }

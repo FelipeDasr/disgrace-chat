@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.Vector;
 
 import src.entities.Client;
+import src.interfaces.MemberEventHandler;
 
 public class ChatClient extends Client {
     private InetAddress serverAddress;
@@ -59,5 +60,9 @@ public class ChatClient extends Client {
         this.connectedPoint = new ConnectedServer(this.socket);
         this.connectedPoint.setEventHandler(this.handler.handleEventOnReceive());
         this.connectedPoint.listenEventsInParallel();
+    }
+
+    public void setEventActionOnNewMemberJoin(MemberEventHandler eventHandler) {
+        this.handler.setEventActionOnNewMemberJoin(eventHandler);
     }
 }

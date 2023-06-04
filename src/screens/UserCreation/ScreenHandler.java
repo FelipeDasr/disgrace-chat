@@ -1,5 +1,6 @@
 package src.screens.UserCreation;
 
+import java.awt.FontFormatException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import org.json.JSONObject;
 
 import src.infrastructure.client.ChatClient;
+import src.screens.GeneralChat.GeneralChatScreen;
 
 public class ScreenHandler {
     private final UserCreationScreen frame;
@@ -52,7 +54,10 @@ public class ScreenHandler {
                     chatClient.getConnectedPoint().emitEvent("join", userData);
 
                     frame.hide();
-                } catch (IOException e) {
+                    GeneralChatScreen generalChatScreen = new GeneralChatScreen(chatClient);
+                    generalChatScreen.show();
+                    System.out.println("AQUI BB");
+                } catch (IOException | FontFormatException e) {
                     e.printStackTrace();
                 }
             }
