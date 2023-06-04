@@ -48,8 +48,6 @@ public class UserConversationItem extends JPanel {
         this.add(userNameLabel);
         this.add(Box.createHorizontalStrut(22 + (12 - user.getName().length()) * 8));
         this.add(this.unreadMessagesNotification);
-
-        this.setUnreadMessages(20);
     }
 
     public void setUnreadMessages(int unreadMessages) {
