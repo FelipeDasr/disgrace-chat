@@ -18,7 +18,7 @@ public class GeneralChatScreen {
     private JFrame frame;
     private JPanel leftPanel;
     private JPanel rightPanel;
-    private JPanel messagesPanel; 
+    private JPanel messagesPanel;
     private JTextArea inputField;
     private ChatClient client;
     private ScreenHandler handler;
@@ -108,7 +108,7 @@ public class GeneralChatScreen {
         return this.inputField;
     }
 
-    public JPanel getConnectMemberPanel(){
+    public JPanel getConnectMemberPanel() {
         return this.leftPanel;
     }
 
