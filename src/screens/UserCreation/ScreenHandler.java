@@ -51,6 +51,7 @@ public class ScreenHandler {
 
                     chatClient.getConnectedPoint().emitEvent("join", userData);
 
+                    frame.hide();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
