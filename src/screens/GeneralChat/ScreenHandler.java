@@ -1,4 +1,4 @@
-package src.screens.GeneralChatGeneric;
+package src.screens.GeneralChat;
 
 import java.util.Date;
 import src.components.UserConversationItem;
