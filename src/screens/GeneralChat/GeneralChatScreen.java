@@ -1,9 +1,7 @@
 package src.screens.GeneralChat;
 
-import javax.swing.*;
 import src.components.Assets;
 import src.components.GenericButton;
-import src.entities.Client;
 import src.infrastructure.client.ChatClient;
 
 import java.awt.BorderLayout;
@@ -13,6 +11,13 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Insets;
 import java.io.IOException;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 public class GeneralChatScreen {
     private JFrame frame;
@@ -24,7 +29,7 @@ public class GeneralChatScreen {
     private ScreenHandler handler;
 
     public GeneralChatScreen(ChatClient client) throws FontFormatException, IOException {
-        this.client = client;   
+        this.client = client;
         this.handler = new ScreenHandler(this);
 
         int frameHeight = 608;
