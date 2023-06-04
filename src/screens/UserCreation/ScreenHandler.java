@@ -56,7 +56,6 @@ public class ScreenHandler {
                     frame.hide();
                     GeneralChatScreen generalChatScreen = new GeneralChatScreen(chatClient);
                     generalChatScreen.show();
-                    System.out.println("AQUI BB");
                 } catch (IOException | FontFormatException e) {
                     e.printStackTrace();
                 }
