@@ -21,7 +21,7 @@ public class UserConversationItem extends JPanel {
 
     public UserConversationItem(Client user) throws FontFormatException, IOException {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-        this.setMaximumSize(new Dimension(225, 65));
+        this.setMaximumSize(new Dimension(250, 55));
         this.setBackground(Color.white);
         unreadMessages = 0;
 
@@ -40,13 +40,16 @@ public class UserConversationItem extends JPanel {
         userNameLabel.setFont(mainFont);
 
         this.unreadMessagesNotification = new UnreadMessagesNotification(unreadMessages);
+        this.unreadMessagesNotification.setAlignmentX(Box.RIGHT_ALIGNMENT);
 
         this.add(Box.createHorizontalStrut(7));
         this.add(userAvatarLabel);
         this.add(Box.createHorizontalStrut(7));
         this.add(userNameLabel);
-        this.add(Box.createHorizontalStrut(40));
+        this.add(Box.createHorizontalStrut(22 + (12 - user.getName().length()) * 8));
         this.add(this.unreadMessagesNotification);
+
+        this.setUnreadMessages(20);
     }
 
     public void setUnreadMessages(int unreadMessages) {
