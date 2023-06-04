@@ -6,12 +6,14 @@ import java.util.Vector;
 import org.json.JSONObject;
 
 import src.interfaces.InputEventHandler;
+import src.interfaces.MemberEventHandler;
 import src.interfaces.PointHandler;
 
 import src.entities.Client;
 
 public class ChatClientHandler implements PointHandler<ConnectedServer> {
     private ChatClient chatClient;
+    private MemberEventHandler eventActionOnMemberJoin;
 
     public ChatClientHandler(ChatClient chatClient) {
         this.chatClient = chatClient;
@@ -24,6 +26,10 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
                 switch (event) {
                     case "joined":
                         joinedEvent(connectedClient, data);
+                        break;
+
+                    case "new_client":
+                        newConnectedMember(connectedClient, data);
                         break;
                 }
             }
@@ -50,5 +56,25 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
         this.chatClient.setServerMembers(serverMembers);
         this.chatClient.setServerName(serverName);
         this.chatClient.setChannelId(channelId);
+    }
+
+    public void newConnectedMember(ConnectedServer connectedClient, JSONObject data) {
+        System.out.println(data.toString(2));
+        String memberName = data.getString("name");
+        int memberChannelId = data.getInt("channelId");
+        int memberAvatarId = data.getInt("avatarId");
+        
+        Client newMember = new Client();
+        newMember.setName(memberName);
+        newMember.setChannelId(memberChannelId);
+        newMember.setAvatarId(memberAvatarId);
+
+        this.chatClient.getServerMembers().add(newMember);
+
+        this.eventActionOnMemberJoin.execute(newMember);
+    }
+    
+    public void setEventActionOnNewMemberJoin(MemberEventHandler eventActionOnMemberJoin) {
+        this.eventActionOnMemberJoin = eventActionOnMemberJoin;
     }
 }
