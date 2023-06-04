@@ -44,7 +44,7 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
         Vector<Client> serverMembers = new Vector<Client>();
 
         // Define all connected server members
-        for (Object memberItem : serverData.getJSONArray("connectedClients").toList()) {
+        for (Object memberItem : serverData.getJSONArray("connectedClients")) {
             int memberChannelId = ((JSONObject) memberItem).getInt("channelId");
             String memberName = ((JSONObject) memberItem).getString("name");
             int avatarId = ((JSONObject) memberItem).getInt("avatarId");
@@ -63,7 +63,7 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
         String memberName = data.getString("name");
         int memberChannelId = data.getInt("channelId");
         int memberAvatarId = data.getInt("avatarId");
-        
+
         Client newMember = new Client();
         newMember.setName(memberName);
         newMember.setChannelId(memberChannelId);
@@ -73,7 +73,7 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
 
         this.eventActionOnMemberJoin.execute(newMember);
     }
-    
+
     public void setEventActionOnNewMemberJoin(MemberEventHandler eventActionOnMemberJoin) {
         this.eventActionOnMemberJoin = eventActionOnMemberJoin;
     }
