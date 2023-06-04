@@ -51,15 +51,9 @@ public class ServerLogsScreen {
         leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         leftPanel.setBackground(Color.white);
 
-        String serverName = this.server.getName();
-        int initialConnectedMembersLength = this.server.getConnectedClients().size();
-
-        ServerLogsHeader leftPanelHeader = new ServerLogsHeader(serverName, initialConnectedMembersLength);
-        leftPanel.add(leftPanelHeader);
-
         this.connectedMembersPanel = new JPanel();
         this.connectedMembersPanel.setLayout(new BoxLayout(connectedMembersPanel, BoxLayout.Y_AXIS));
-        this.connectedMembersPanel.setMaximumSize(new Dimension(250, frameHeight - leftPanelHeader.getHeight()));
+        this.connectedMembersPanel.setMaximumSize(new Dimension(250, frameHeight));
         this.connectedMembersPanel.setBackground(Color.white);
 
         this.rightPanel = new JPanel();
@@ -69,12 +63,12 @@ public class ServerLogsScreen {
         rightPanel.setBackground(Color.white);
 
         JScrollPane rightScrollPanel = new JScrollPane(rightPanel);
-        rightScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        rightScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         rightScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         rightScrollPanel.setMaximumSize(new Dimension(frameWidth - 250, frameHeight));
 
         JScrollPane connectedMembersScrollPanel = new JScrollPane(this.connectedMembersPanel);
-        connectedMembersScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        connectedMembersScrollPanel.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         connectedMembersScrollPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
         connectedMembersScrollPanel.setMaximumSize(new Dimension(250, frameHeight));
         this.leftPanel.add(connectedMembersScrollPanel);
