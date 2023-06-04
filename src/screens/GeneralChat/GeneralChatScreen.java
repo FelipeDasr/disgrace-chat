@@ -1,4 +1,4 @@
-package src.screens.GeneralChatGeneric;
+package src.screens.GeneralChat;
 
 import javax.swing.*;
 import src.components.Assets;
@@ -16,7 +16,7 @@ public class GeneralChatScreen {
     private JFrame frame;
     private JPanel leftPanel;
     private JPanel rightPanel;
-    private JPanel messagesPanel; 
+    private JPanel messagesPanel;
     private JTextArea inputField;
 
     public GeneralChatScreen() throws FontFormatException, IOException {
@@ -101,7 +101,7 @@ public class GeneralChatScreen {
         return this.inputField;
     }
 
-    public JPanel getConnectMemberPanel(){
+    public JPanel getConnectMemberPanel() {
         return this.leftPanel;
     }
 }
