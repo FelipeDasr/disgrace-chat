@@ -138,6 +138,10 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         return this.userAvatar;
     }
 
+    public void hide() {
+        this.frame.setVisible(false);
+    }
+
     public static void main(String[] args) throws FontFormatException, IOException {
         new UserCreationScreen();
     }
