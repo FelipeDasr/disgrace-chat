@@ -23,6 +23,14 @@ public class ConnectedServer implements ConnectedPoint<ConnectedServer> {
         this.inputChannel = new ObjectInputStream(this.socket.getInputStream());
     }
 
+    public void sendMessageToServer(int targetChannelId, String message) throws IOException {
+        JSONObject data = new JSONObject();
+        data.put("channelId", targetChannelId);
+        data.put("message", message);
+
+        this.emitEvent("send_message", data);
+    }
+
     public void emitEvent(String event, JSONObject data) throws IOException {
         JSONObject eventObject = new JSONObject();
         eventObject.put("event", event);
