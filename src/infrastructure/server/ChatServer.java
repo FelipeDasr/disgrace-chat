@@ -17,6 +17,7 @@ public class ChatServer {
     private ServerHandler handler;
     private String name;
     private int port;
+    private int nextChannelId = 1;
 
     private final Vector<ConnectedClient> connectedClients;
 
@@ -64,7 +65,7 @@ public class ChatServer {
     private void listenConnections() throws IOException {
         while (true) {
             Socket clientSocket = this.socket.accept();
-            int newClientChannelId = this.connectedClients.size() + 1;
+            int newClientChannelId = nextChannelId++;
 
             ConnectedClient connectedClient = new ConnectedClient(newClientChannelId, clientSocket);
             this.connectedClients.add(connectedClient);
