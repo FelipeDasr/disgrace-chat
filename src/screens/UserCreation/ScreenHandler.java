@@ -47,14 +47,15 @@ public class ScreenHandler {
                     chatClient.setAvatarId(avatarId);
                     chatClient.setName(username);
 
+                    frame.hide();
+                    GeneralChatScreen generalChatScreen = new GeneralChatScreen(chatClient);
+
                     JSONObject userData = new JSONObject();
                     userData.put("name", username);
                     userData.put("avatarId", avatarId);
 
                     chatClient.getConnectedPoint().emitEvent("join", userData);
 
-                    frame.hide();
-                    GeneralChatScreen generalChatScreen = new GeneralChatScreen(chatClient);
                     generalChatScreen.show();
                 } catch (IOException | FontFormatException e) {
                     e.printStackTrace();
