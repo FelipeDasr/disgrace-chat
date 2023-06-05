@@ -54,9 +54,14 @@ public class ScreenHandler {
 
     private void addNewMember(Client member) throws FontFormatException, IOException {
         UserConversationItem memberItem = new UserConversationItem(member);
-        ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
 
-        screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+        // Check if really is a new member
+        // because the channel id 0 is used to send messages in the general chat
+        if (client.getChannelId() != 0) {
+            ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
+            screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+        }
+
         screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
         screen.getConnectMemberPanel().add(memberItem).revalidate();
     }

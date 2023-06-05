@@ -45,6 +45,9 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
         int channelId = data.getInt("channelId");
         Vector<Client> serverMembers = new Vector<Client>();
 
+        Client generalChat = new Client(serverName, 8, 0);
+        serverMembers.add(generalChat);
+
         // Define all connected server members
         for (Object memberItem : serverData.getJSONArray("connectedClients")) {
             int memberChannelId = ((JSONObject) memberItem).getInt("channelId");
