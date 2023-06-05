@@ -1,5 +1,7 @@
 package src.screens.GeneralChat;
 
+import java.awt.FontFormatException;
+import java.io.IOException;
 import java.util.Date;
 import src.components.UserConversationItem;
 import src.components.UserMessageItem;
@@ -19,15 +21,19 @@ public class ScreenHandler {
             @Override
             public void execute(Client member) {
                 try {
-                    UserConversationItem memberItem = new UserConversationItem(member);
-                    ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
-
-                    screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
-                    screen.getConnectMemberPanel().add(memberItem).revalidate();
+                    addNewMember(member);
                 } catch (Exception e) {
                     System.out.println(e);
                 }
             }
         };
+    }
+
+    private void addNewMember(Client member) throws FontFormatException, IOException {
+        UserConversationItem memberItem = new UserConversationItem(member);
+        ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
+
+        screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+        screen.getConnectMemberPanel().add(memberItem).revalidate();
     }
 }
