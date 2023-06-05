@@ -3,6 +3,9 @@ package src.screens.GeneralChat;
 import java.awt.FontFormatException;
 import java.io.IOException;
 import java.util.Date;
+
+import javax.swing.Box;
+
 import src.components.UserConversationItem;
 import src.components.UserMessageItem;
 import src.entities.Client;
@@ -54,6 +57,7 @@ public class ScreenHandler {
         ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
 
         screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+        screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
         screen.getConnectMemberPanel().add(memberItem).revalidate();
     }
 }
