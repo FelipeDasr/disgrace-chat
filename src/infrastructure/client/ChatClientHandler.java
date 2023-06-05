@@ -13,7 +13,9 @@ import src.entities.Client;
 
 public class ChatClientHandler implements PointHandler<ConnectedServer> {
     private ChatClient chatClient;
+
     private MemberEventHandler eventActionOnMemberJoin;
+    private MemberEventHandler eventActionOnJoiningServer;
 
     public ChatClientHandler(ChatClient chatClient) {
         this.chatClient = chatClient;
@@ -56,6 +58,8 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
         this.chatClient.setServerMembers(serverMembers);
         this.chatClient.setServerName(serverName);
         this.chatClient.setChannelId(channelId);
+
+        this.eventActionOnJoiningServer.execute(this.chatClient);
     }
 
     public void newConnectedMember(ConnectedServer connectedClient, JSONObject data) {
@@ -76,5 +80,9 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
 
     public void setEventActionOnNewMemberJoin(MemberEventHandler eventActionOnMemberJoin) {
         this.eventActionOnMemberJoin = eventActionOnMemberJoin;
+    }
+
+    public void setEventActionOnJoiningServer(MemberEventHandler eventActionOnJoiningServer) {
+        this.eventActionOnJoiningServer = eventActionOnJoiningServer;
     }
 }

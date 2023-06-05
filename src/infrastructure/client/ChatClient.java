@@ -65,4 +65,8 @@ public class ChatClient extends Client {
     public void setEventActionOnNewMemberJoin(MemberEventHandler eventHandler) {
         this.handler.setEventActionOnNewMemberJoin(eventHandler);
     }
+
+    public void setEventActionOnJoiningServer(MemberEventHandler eventHandler) {
+        this.handler.setEventActionOnJoiningServer(eventHandler);
+    }
 }

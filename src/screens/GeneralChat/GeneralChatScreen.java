@@ -30,7 +30,7 @@ public class GeneralChatScreen {
 
     public GeneralChatScreen(ChatClient client) throws FontFormatException, IOException {
         this.client = client;
-        this.handler = new ScreenHandler(this);
+        this.handler = new ScreenHandler(this, client);
 
         int frameHeight = 608;
         int frameWidth = 853;
@@ -103,6 +103,7 @@ public class GeneralChatScreen {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.client.setEventActionOnNewMemberJoin(this.handler.newConnectedMember());
+        this.client.setEventActionOnJoiningServer(this.handler.joiningServer());
     }
 
     public JPanel getMessagesPanel() {
