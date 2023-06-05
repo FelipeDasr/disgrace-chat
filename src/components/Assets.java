@@ -26,7 +26,7 @@ public class Assets {
     }
 
     public ImageIcon getAvatarImage(int avatarId) {
-        if (avatarId < 0 || avatarId > 7) {
+        if (avatarId < 0 || avatarId > 8) {
             avatarId = 1;
         }
 
