@@ -28,6 +28,8 @@ public class ScreenHandler {
                     screen.getLogsPanel().add(new UserMessageItem(clientMessage)).revalidate();
                     screen.getMembersPanel().add(Box.createVerticalStrut(10)).revalidate();
                     screen.getMembersPanel().add(memberItem).revalidate();
+
+                    screen.updateScreenTitle();
                 } catch (Exception e) {
                     System.out.println(e);
                 }

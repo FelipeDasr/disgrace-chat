@@ -42,7 +42,7 @@ public class GeneralChatScreen {
         this.messagesPanel.setBackground(Color.white);
         this.messagesPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
 
-        this.frame = new JFrame("Disgrace");
+        this.frame = new JFrame();
         this.frame.setIconImage(new Assets().getAppIcon());
 
         this.leftPanel = new JPanel();
@@ -104,6 +104,11 @@ public class GeneralChatScreen {
 
         this.client.setEventActionOnNewMemberJoin(this.handler.newConnectedMember());
         this.client.setEventActionOnJoiningServer(this.handler.joiningServer());
+    }
+
+    public void updateScreenTitle() {
+        int connectedMembers = this.client.getServerMembers().size() + 1;
+        this.frame.setTitle("Disgrace - " + this.client.getServerName() + " (" + connectedMembers + " membros)");
     }
 
     public JPanel getMessagesPanel() {

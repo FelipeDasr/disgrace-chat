@@ -13,6 +13,7 @@ import java.awt.Color;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.Vector;
 
 import src.components.Assets;
 import src.components.ServerLogsHeader;
@@ -20,6 +21,7 @@ import src.components.UserMessageItem;
 import src.entities.Client;
 import src.entities.ClientMessage;
 import src.infrastructure.server.ChatServer;
+import src.infrastructure.server.ConnectedClient;
 
 public class ServerLogsScreen {
     private ChatServer server;
@@ -39,7 +41,9 @@ public class ServerLogsScreen {
 
         this.serverClient = new Client(server.getName(), 0, 0);
 
-        this.frame = new JFrame("Disgrace - " + this.server.getName());
+        this.frame = new JFrame();
+        this.updateScreenTitle();
+
         this.frame.setLayout(new BoxLayout(this.frame.getContentPane(), BoxLayout.X_AXIS));
         frame.setIconImage(new Assets().getAppIcon());
 
@@ -100,6 +104,11 @@ public class ServerLogsScreen {
         this.rightPanel.add(new UserMessageItem(messageLog3));
         this.rightPanel.add(new UserMessageItem(messageLog4));
         this.rightPanel.add(Box.createVerticalStrut(15));
+    }
+
+    public void updateScreenTitle() {
+        int connectedMembers = this.server.getConnectedClients().size();
+        this.frame.setTitle("Disgrace - " + this.server.getName() + " (" + connectedMembers + " membros)");
     }
 
     public JPanel getLogsPanel() {

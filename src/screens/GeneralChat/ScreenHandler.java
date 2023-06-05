@@ -24,6 +24,7 @@ public class ScreenHandler {
             @Override
             public void execute(Client member) {
                 try {
+                    screen.updateScreenTitle();
                     for (Client serverMember : client.getServerMembers()) {
                         addNewMember(serverMember);
                     }
@@ -39,6 +40,7 @@ public class ScreenHandler {
             @Override
             public void execute(Client member) {
                 try {
+                    screen.updateScreenTitle();
                     addNewMember(member);
                 } catch (Exception e) {
                     System.out.println(e);
