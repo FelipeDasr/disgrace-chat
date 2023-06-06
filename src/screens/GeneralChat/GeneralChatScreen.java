@@ -28,6 +28,8 @@ public class GeneralChatScreen {
     private ChatClient client;
     private ScreenHandler handler;
 
+    int currentChannelId = 0;
+
     public GeneralChatScreen(ChatClient client) throws FontFormatException, IOException {
         this.client = client;
         this.handler = new ScreenHandler(this, client);
@@ -104,6 +106,10 @@ public class GeneralChatScreen {
 
         this.client.setEventActionOnNewMemberJoin(this.handler.newConnectedMember());
         this.client.setEventActionOnJoiningServer(this.handler.joiningServer());
+    }
+
+    public void setCurrentChannelId(int channelId) {
+        this.currentChannelId = channelId;
     }
 
     public void updateScreenTitle() {
