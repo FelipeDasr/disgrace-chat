@@ -56,6 +56,10 @@ public class ChatClient extends Client {
         return this.serverMembers;
     }
 
+    public void sendMessage(int targetChannelId, String message) throws IOException {
+        this.connectedPoint.sendMessageToServer(targetChannelId, message);
+    }
+
     private void createConnectedPoint() throws IOException {
         this.connectedPoint = new ConnectedServer(this.socket);
         this.connectedPoint.setEventHandler(this.handler.handleEventOnReceive());
