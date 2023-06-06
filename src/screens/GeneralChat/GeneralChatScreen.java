@@ -112,6 +112,10 @@ public class GeneralChatScreen {
         this.currentChannelId = channelId;
     }
 
+    public int getCurrentChannelId() {
+        return this.currentChannelId;
+    }
+
     public void updateScreenTitle() {
         int connectedMembers = this.client.getServerMembers().size();
         this.frame.setTitle("Disgrace - " + this.client.getServerName() + " (" + connectedMembers + " membros)");
