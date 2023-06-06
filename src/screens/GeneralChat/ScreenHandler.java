@@ -1,6 +1,7 @@
 package src.screens.GeneralChat;
 
 import java.awt.FontFormatException;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Date;
 
@@ -64,5 +65,26 @@ public class ScreenHandler {
 
         screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
         screen.getConnectMemberPanel().add(memberItem).revalidate();
+    }
+
+    public ActionListener sendMessageOnClick() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent event) {
+                try {
+                    String message = screen.getInputField().getText();
+                    int targetChannelId = screen.getCurrentChannelId();
+
+                    if (!message.isEmpty()) {
+                        ClientMessage clientMessage = new ClientMessage(client, message, new Date());
+                        screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+                        client.sendMessage(targetChannelId, message);
+                        screen.getInputField().setText("");
+                    }
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        };
     }
 }

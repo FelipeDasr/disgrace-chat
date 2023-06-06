@@ -84,6 +84,8 @@ public class GeneralChatScreen {
         sendButton.setMargin(new Insets(2, 6, 2, 6));
         sendButton.setMaximumSize(new Dimension(70, 45));
 
+        sendButton.addActionListener(this.handler.sendMessageOnClick());
+
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.X_AXIS));
         inputPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
