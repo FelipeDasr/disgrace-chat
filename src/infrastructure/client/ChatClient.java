@@ -44,6 +44,16 @@ public class ChatClient extends Client {
         return this.serverName;
     }
 
+    public Client getClientByChannelId(int channelId) {
+        for (Client client : this.serverMembers) {
+            if (client.getChannelId() == channelId) {
+                return client;
+            }
+        }
+
+        return null;
+    }
+
     public void setServerName(String name) {
         this.serverName = name;
     }
