@@ -25,6 +25,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
     private final JTextField usernameTextInput;
     private final JLabel userAvatar;
     private final ChatClient chatClient;
+    private final JLabel errorMessage;
 
     public UserCreationScreen() throws FontFormatException, IOException {
         this.screenHandler = new ScreenHandler(this);
@@ -74,6 +75,11 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         this.usernameTextInput.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
         this.usernameTextInput.setAlignmentY(JTextField.CENTER_ALIGNMENT);
 
+        this.errorMessage = new JLabel("");
+        this.errorMessage.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
+        this.errorMessage.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+        this.errorMessage.setForeground(Color.RED);
+
         // text username
         JLabel textInputLabel = new JLabel("Nome de usuario:                             ");
         textInputLabel.setFont(this.mainFont.deriveFont(Font.BOLD, 18));
@@ -96,8 +102,11 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         secondaryPanel.add(Box.createVerticalStrut(69));
         secondaryPanel.add(textInputLabel);
         secondaryPanel.add(this.usernameTextInput);
-        secondaryPanel.add(Box.createVerticalStrut(60));
+        secondaryPanel.add(Box.createVerticalStrut(10));
+        secondaryPanel.add(this.errorMessage);
+        secondaryPanel.add(Box.createVerticalStrut(30));
         secondaryPanel.add(enterButton);
+        secondaryPanel.add(Box.createVerticalStrut(30));
 
         mainPanel.add(secondaryPanel);
         frame.add(mainPanel);
@@ -121,6 +130,15 @@ public class UserCreationScreen extends JFrame implements ItemListener {
 
     public void itemStateChanged(ItemEvent e) {
         throw new UnsupportedOperationException("Unimplemented method 'itemStateChanged'");
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage.setText(errorMessage);
+        this.errorMessage.setVisible(true);
+    }
+
+    public void hideErrorMessage() {
+        this.errorMessage.setVisible(false);
     }
 
     public JComboBox<String> getDropdown() {

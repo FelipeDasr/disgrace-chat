@@ -39,9 +39,12 @@ public class ScreenHandler {
                     int avatarId = frame.getDropdown().getSelectedIndex();
                     String username = frame.getUsernameField().getText();
 
-                    if (username.length() == 0 || username.length() <= 3) {
+                    if (username.length() == 0 || username.length() <= 3 || username.length() > 12) {
+                        frame.setErrorMessage("O nome de usuário deve ter de 3 a 12 caracteres");
                         return;
                     }
+
+                    frame.hideErrorMessage();
 
                     ChatClient chatClient = frame.getChatClient();
                     chatClient.setAvatarId(avatarId);
