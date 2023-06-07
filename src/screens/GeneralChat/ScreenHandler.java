@@ -1,5 +1,6 @@
 package src.screens.GeneralChat;
 
+import java.awt.Component;
 import java.awt.FontFormatException;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -63,17 +64,9 @@ public class ScreenHandler {
             public void execute(ClientMessage message) {
                 try {
                     JPanel messagesPanel = screen.getMessagesPanel();
-                    int indexOfLastMessage = messagesPanel.getComponentCount() - 1;
 
-                    UserMessageItem lastMessage = (UserMessageItem) messagesPanel.getComponent(indexOfLastMessage);
-
-                    if (lastMessage != null) {
-                        int userChannelId1 = lastMessage.getUserMessage().getUser().getChannelId();
-                        int userChannelId2 = message.getUser().getChannelId();
-
-                        if (userChannelId1 != userChannelId2) {
-                            addSpaceBetweenMessages();
-                        }
+                    if (lastMessageIsFromAnotherUser(message.getUser().getChannelId())) {
+                        addSpaceBetweenMessages();
                     }
 
                     messagesPanel.add(new UserMessageItem(message)).revalidate();
@@ -92,10 +85,13 @@ public class ScreenHandler {
         if (member.getChannelId() != 0) {
             int generalChatChannelId = 0;
             ClientMessage clientMessage = new ClientMessage(member, generalChatChannelId, "Se conectou", new Date());
+
+            this.addSpaceBetweenMessages();
             screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
         }
 
         screen.getConnectMemberPanel().add(memberItem).revalidate();
+        screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
     }
 
     public ActionListener sendMessageOnClick() {
@@ -107,6 +103,10 @@ public class ScreenHandler {
                     int targetChannelId = screen.getCurrentChannelId();
 
                     if (!message.isEmpty()) {
+                        if (lastMessageIsFromAnotherUser(client.getChannelId())) {
+                            addSpaceBetweenMessages();
+                        }
+
                         ClientMessage clientMessage = new ClientMessage(client, targetChannelId, message, new Date());
                         screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
                         client.sendMessage(targetChannelId, message);
@@ -121,5 +121,25 @@ public class ScreenHandler {
 
     private void addSpaceBetweenMessages() {
         screen.getMessagesPanel().add(Box.createVerticalStrut(10)).revalidate();
+    }
+
+    private boolean lastMessageIsFromAnotherUser(int currentMemberChannelId) {
+        JPanel messagesPanel = screen.getMessagesPanel();
+        int indexOfLastMessage = messagesPanel.getComponentCount() - 1;
+
+        Component lastComponent = messagesPanel.getComponent(indexOfLastMessage);
+
+        if (lastComponent != null) {
+            if (!(lastComponent instanceof UserMessageItem)) {
+                return true;
+            }
+
+            int userChannelId1 = ((UserMessageItem) lastComponent).getUserMessage().getUser().getChannelId();
+            if (userChannelId1 != currentMemberChannelId) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
