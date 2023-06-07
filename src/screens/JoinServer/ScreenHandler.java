@@ -15,7 +15,12 @@ class ScreenHandler {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String serverHost = frame.getFirstFormInputTextField().getText();
+                String serverPort = frame.getSecondFormInputTextField().getText();
 
+                if (serverHost.length() == 0 || serverPort.length() == 0) {
+                    frame.setErrorMessage("Preencha todos os campos!");
+                }
             }
         };
     }
