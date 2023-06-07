@@ -4,12 +4,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class ScreenHandler {
-    private final SecondStepGenericScreen frame;
-
-    public ScreenHandler(SecondStepGenericScreen frame) {
-        this.frame = frame;
-    }
-
     public KeyListener checkKeyPressed() {
         return new KeyListener() {
 

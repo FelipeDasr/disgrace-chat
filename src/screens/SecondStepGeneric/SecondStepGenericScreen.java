@@ -53,7 +53,7 @@ public class SecondStepGenericScreen {
 
 		this.mainButton.setAlignmentX(GenericButton.CENTER_ALIGNMENT);
 
-		this.screenHandler = new ScreenHandler(this);
+		this.screenHandler = new ScreenHandler();
 
 		this.mainPanel.add(Box.createVerticalStrut(55));
 		this.mainPanel.add(this.panelTitle);
