@@ -8,6 +8,7 @@ import java.util.Vector;
 
 import src.entities.Client;
 import src.interfaces.MemberEventHandler;
+import src.interfaces.MessageEventHandler;
 
 public class ChatClient extends Client {
     private InetAddress serverAddress;
@@ -82,5 +83,9 @@ public class ChatClient extends Client {
 
     public void setEventActionOnJoiningServer(MemberEventHandler eventHandler) {
         this.handler.setEventActionOnJoiningServer(eventHandler);
+    }
+
+    public void setEventActionOnReceiveMessage(MessageEventHandler eventHandler) {
+        this.handler.setEventActionOnReceiveMessage(eventHandler);
     }
 }

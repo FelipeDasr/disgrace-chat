@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import src.interfaces.InputEventHandler;
 import src.interfaces.MemberEventHandler;
+import src.interfaces.MessageEventHandler;
 import src.interfaces.PointHandler;
 
 import src.entities.Client;
@@ -16,6 +17,7 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
 
     private MemberEventHandler eventActionOnMemberJoin;
     private MemberEventHandler eventActionOnJoiningServer;
+    private MessageEventHandler eventActionOnReceiveMessage;
 
     public ChatClientHandler(ChatClient chatClient) {
         this.chatClient = chatClient;
@@ -87,5 +89,9 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
 
     public void setEventActionOnJoiningServer(MemberEventHandler eventActionOnJoiningServer) {
         this.eventActionOnJoiningServer = eventActionOnJoiningServer;
+    }
+
+    public void setEventActionOnReceiveMessage(MessageEventHandler eventHandler) {
+        this.eventActionOnReceiveMessage = eventHandler;
     }
 }
