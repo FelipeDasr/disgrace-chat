@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
+import src.components.ErrorMessage;
 import src.components.GenericButton;
 
 public class SecondStepGenericScreen {
@@ -20,7 +21,7 @@ public class SecondStepGenericScreen {
 	private JPanel firstFormInput;
 	private JPanel secondFormInput;
 
-	private JLabel errorMessage;
+	private ErrorMessage errorMessage;
 
 	private final ScreenHandler screenHandler;
 
@@ -44,10 +45,7 @@ public class SecondStepGenericScreen {
 		this.panelTitle.setFont(this.mainFont.deriveFont(Font.BOLD, 30));
 		this.panelTitle.setAlignmentX(JTextField.CENTER_ALIGNMENT); // CENTRALIZA O TEXTO NO MEIO DO PANEL
 
-		this.errorMessage = new JLabel("");
-		this.errorMessage.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
-		this.errorMessage.setAlignmentX(JTextField.CENTER_ALIGNMENT);
-		this.errorMessage.setForeground(Color.RED);
+		this.errorMessage = new ErrorMessage();
 
 		this.mainButton = new GenericButton("");
 		this.firstFormInput = this.getFormInput("");

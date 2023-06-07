@@ -1,6 +1,7 @@
 package src.screens.UserCreation;
 
 import src.components.Assets;
+import src.components.ErrorMessage;
 import src.components.GenericButton;
 import src.infrastructure.client.ChatClient;
 
@@ -25,7 +26,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
     private final JTextField usernameTextInput;
     private final JLabel userAvatar;
     private final ChatClient chatClient;
-    private final JLabel errorMessage;
+    private final ErrorMessage errorMessage;
 
     public UserCreationScreen() throws FontFormatException, IOException {
         this.screenHandler = new ScreenHandler(this);
@@ -75,10 +76,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         this.usernameTextInput.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
         this.usernameTextInput.setAlignmentY(JTextField.CENTER_ALIGNMENT);
 
-        this.errorMessage = new JLabel("");
-        this.errorMessage.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
-        this.errorMessage.setAlignmentX(JTextField.CENTER_ALIGNMENT);
-        this.errorMessage.setForeground(Color.RED);
+        this.errorMessage = new ErrorMessage();
 
         // text username
         JLabel textInputLabel = new JLabel("Nome de usuario:                             ");
