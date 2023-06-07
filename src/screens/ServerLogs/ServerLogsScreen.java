@@ -13,15 +13,12 @@ import java.awt.Color;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.Vector;
 
 import src.components.Assets;
-import src.components.ServerLogsHeader;
 import src.components.UserMessageItem;
 import src.entities.Client;
 import src.entities.ClientMessage;
 import src.infrastructure.server.ChatServer;
-import src.infrastructure.server.ConnectedClient;
 
 public class ServerLogsScreen {
     private ChatServer server;
