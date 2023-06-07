@@ -32,6 +32,8 @@ public class ScreenHandler {
                     for (Client serverMember : client.getServerMembers()) {
                         addNewMember(serverMember);
                     }
+
+                    addSpaceBetweenMessages();
                 } catch (Exception e) {
                     System.out.println(e);
                 }
@@ -63,7 +65,6 @@ public class ScreenHandler {
             screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
         }
 
-        screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
         screen.getConnectMemberPanel().add(memberItem).revalidate();
     }
 
@@ -86,5 +87,9 @@ public class ScreenHandler {
                 }
             }
         };
+    }
+
+    private void addSpaceBetweenMessages() {
+        screen.getMessagesPanel().add(Box.createVerticalStrut(10)).revalidate();
     }
 }
