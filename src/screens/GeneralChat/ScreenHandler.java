@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import javax.swing.Box;
+import javax.swing.JPanel;
 
 import src.components.UserConversationItem;
 import src.components.UserMessageItem;
@@ -13,6 +14,7 @@ import src.entities.Client;
 import src.entities.ClientMessage;
 import src.infrastructure.client.ChatClient;
 import src.interfaces.MemberEventHandler;
+import src.interfaces.MessageEventHandler;
 
 public class ScreenHandler {
     private GeneralChatScreen screen;
@@ -48,6 +50,33 @@ public class ScreenHandler {
                 try {
                     screen.updateScreenTitle();
                     addNewMember(member);
+                } catch (Exception e) {
+                    System.out.println(e);
+                }
+            }
+        };
+    }
+
+    public MessageEventHandler receivedMessage() {
+        return new MessageEventHandler() {
+            @Override
+            public void execute(ClientMessage message) {
+                try {
+                    JPanel messagesPanel = screen.getMessagesPanel();
+                    int indexOfLastMessage = messagesPanel.getComponentCount() - 1;
+
+                    UserMessageItem lastMessage = (UserMessageItem) messagesPanel.getComponent(indexOfLastMessage);
+
+                    if (lastMessage != null) {
+                        int userChannelId1 = lastMessage.getUserMessage().getUser().getChannelId();
+                        int userChannelId2 = message.getUser().getChannelId();
+
+                        if (userChannelId1 != userChannelId2) {
+                            addSpaceBetweenMessages();
+                        }
+                    }
+
+                    messagesPanel.add(new UserMessageItem(message)).revalidate();
                 } catch (Exception e) {
                     System.out.println(e);
                 }

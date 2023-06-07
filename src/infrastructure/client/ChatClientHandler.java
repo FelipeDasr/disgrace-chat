@@ -1,7 +1,7 @@
 package src.infrastructure.client;
 
 import java.io.IOException;
-
+import java.util.Date;
 import java.util.Vector;
 import org.json.JSONObject;
 
@@ -11,6 +11,7 @@ import src.interfaces.MessageEventHandler;
 import src.interfaces.PointHandler;
 
 import src.entities.Client;
+import src.entities.ClientMessage;
 
 public class ChatClientHandler implements PointHandler<ConnectedServer> {
     private ChatClient chatClient;
@@ -34,6 +35,10 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
 
                     case "new_client":
                         newConnectedMember(connectedClient, data);
+                        break;
+
+                    case "received_message":
+                        receivedMessage(connectedClient, data);
                         break;
                 }
             }
@@ -81,6 +86,17 @@ public class ChatClientHandler implements PointHandler<ConnectedServer> {
         this.chatClient.getServerMembers().add(newMember);
 
         this.eventActionOnMemberJoin.execute(newMember);
+    }
+
+    public void receivedMessage(ConnectedServer connectedClient, JSONObject data) {
+        String message = data.getString("message");
+        int senderChannelId = data.getInt("memberChannelId");
+        int targetChannelId = data.getInt("targetChannelId");
+
+        Client client = this.chatClient.getClientByChannelId(senderChannelId);
+        ClientMessage clientMessage = new ClientMessage(client, targetChannelId, message, new Date());
+
+        this.eventActionOnReceiveMessage.execute(clientMessage);
     }
 
     public void setEventActionOnNewMemberJoin(MemberEventHandler eventActionOnMemberJoin) {

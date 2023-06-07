@@ -107,6 +107,7 @@ public class GeneralChatScreen {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.client.setEventActionOnNewMemberJoin(this.handler.newConnectedMember());
+        this.client.setEventActionOnReceiveMessage(this.handler.receivedMessage());
         this.client.setEventActionOnJoiningServer(this.handler.joiningServer());
     }
 
