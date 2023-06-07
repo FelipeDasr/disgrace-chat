@@ -97,7 +97,8 @@ Evento de resposta
 {
     "event": "received_message",
     "data": {
-        "channelId": 2,
+        "memberChannelId": 1,
+        "targetChannelId": 2,
         "message": "E aí, pessoal, como estão?",
     }
 }

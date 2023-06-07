@@ -83,21 +83,23 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
 
     private void sendMessageEvent(ConnectedClient client, JSONObject data) throws IOException {
         String message = data.getString("message");
-        int channelId = data.getInt("channelId");
+        int targetChannelId = data.getInt("channelId");
         String event = "received_message";
 
         JSONObject dataObject = new JSONObject();
 
-        dataObject.put("channelId", channelId);
+        dataObject.put("targetChannelId", targetChannelId);
+        dataObject.put("memberChannelId", client.getChannelId());
         dataObject.put("message", message);
 
         // General channel has id 0
-        if (channelId == 0) {
+        if (targetChannelId == 0) {
             this.broadcastEvent(event, dataObject, client);
             return;
         }
 
-        ConnectedClient targetClient = this.server.getClientByChannelId(channelId);
+        int senderChannelId = client.getChannelId();
+        ConnectedClient targetClient = this.server.getClientByChannelId(senderChannelId);
         if (targetClient != null)
             targetClient.emitEvent(event, dataObject);
     }
