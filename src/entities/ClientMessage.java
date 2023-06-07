@@ -7,12 +7,18 @@ import java.util.Date;
 public class ClientMessage {
     private final Client user;
     private final String content;
+    private final int targetChannelId;
     private final Date date;
 
-    public ClientMessage(Client user, String content, Date date) {
+    public ClientMessage(Client user, int targetChannelId, String content, Date date) {
         this.user = user;
+        this.targetChannelId = targetChannelId;
         this.content = content;
         this.date = date;
+    }
+
+    public int getTargetChannelId() {
+        return this.targetChannelId;
     }
 
     public Client getUser() {

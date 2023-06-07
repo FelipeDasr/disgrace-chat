@@ -23,7 +23,7 @@ public class ScreenHandler {
             public void execute(Client member) {
                 try {
                     UserConversationItem memberItem = new UserConversationItem(member);
-                    ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
+                    ClientMessage clientMessage = new ClientMessage(member, 0, "Se conectou", new Date());
 
                     screen.getLogsPanel().add(new UserMessageItem(clientMessage)).revalidate();
                     screen.getMembersPanel().add(Box.createVerticalStrut(10)).revalidate();

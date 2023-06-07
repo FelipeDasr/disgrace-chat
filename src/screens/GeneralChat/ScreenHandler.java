@@ -61,7 +61,8 @@ public class ScreenHandler {
         // Check if really is a new member
         // because the channel id 0 is used to send messages in the general chat
         if (member.getChannelId() != 0) {
-            ClientMessage clientMessage = new ClientMessage(member, "Se conectou", new Date());
+            int generalChatChannelId = 0;
+            ClientMessage clientMessage = new ClientMessage(member, generalChatChannelId, "Se conectou", new Date());
             screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
         }
 
@@ -77,7 +78,7 @@ public class ScreenHandler {
                     int targetChannelId = screen.getCurrentChannelId();
 
                     if (!message.isEmpty()) {
-                        ClientMessage clientMessage = new ClientMessage(client, message, new Date());
+                        ClientMessage clientMessage = new ClientMessage(client, targetChannelId, message, new Date());
                         screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
                         client.sendMessage(targetChannelId, message);
                         screen.getInputField().setText("");

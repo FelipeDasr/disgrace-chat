@@ -88,11 +88,13 @@ public class ServerLogsScreen {
     }
 
     private void showInitialLogs() throws FontFormatException, IOException {
-        ClientMessage messageLog1 = new ClientMessage(this.serverClient, "Servidor iniciado com sucesso!", new Date());
-        ClientMessage messageLog2 = new ClientMessage(this.serverClient, "Aguardando conexões", new Date());
-        ClientMessage messageLog3 = new ClientMessage(this.serverClient,
+        ClientMessage messageLog1 = new ClientMessage(this.serverClient, 0, "Servidor iniciado com sucesso!",
+                new Date());
+        ClientMessage messageLog2 = new ClientMessage(this.serverClient, 0, "Aguardando conexões", new Date());
+        ClientMessage messageLog3 = new ClientMessage(this.serverClient, 0,
                 "Rodando no endereço: " + this.server.getHostAddress(), new Date());
-        ClientMessage messageLog4 = new ClientMessage(this.serverClient, "Rodando na porta: " + this.server.getPort(),
+        ClientMessage messageLog4 = new ClientMessage(this.serverClient, 0,
+                "Rodando na porta: " + this.server.getPort(),
                 new Date());
 
         this.rightPanel.add(new UserMessageItem(messageLog1));
