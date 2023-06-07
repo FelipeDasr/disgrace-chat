@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
