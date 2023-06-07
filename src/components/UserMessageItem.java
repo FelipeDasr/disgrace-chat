@@ -30,6 +30,10 @@ public class UserMessageItem extends JTextArea {
         this.setMaximumSize(this.getMaximunHeightSize());
     }
 
+    public ClientMessage getUserMessage() {
+        return this.userMessage;
+    }
+
     private String getFormatedContent() {
         return "[" + this.userMessage.getFormatedHourString() + "h - "
                 + this.userMessage.getUser().getName() + "]: "
