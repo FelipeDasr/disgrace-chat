@@ -71,6 +71,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         this.usernameTextInput = new JTextField();
         this.usernameTextInput.setMaximumSize(new Dimension(250, 35));
         this.usernameTextInput.setMinimumSize(new Dimension(250, 35));
+        this.usernameTextInput.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
         this.usernameTextInput.setAlignmentY(JTextField.CENTER_ALIGNMENT);
 
         // text username

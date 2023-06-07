@@ -142,6 +142,7 @@ public class SecondStepGenericScreen {
 		JTextField textInput = new JTextField();
 		textInput.setMaximumSize(new Dimension(300, 70));
 		textInput.setMinimumSize(new Dimension(300, 35));
+		textInput.setFont(this.mainFont.deriveFont(Font.BOLD, 16));
 
 		// text endress and port
 		JLabel label = new JLabel(labelName);
