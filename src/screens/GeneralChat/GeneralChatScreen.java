@@ -137,7 +137,7 @@ public class GeneralChatScreen {
         this.setCurrentChannelId(memberChannelId);
         Component component = this.frame.getComponent(0);
         JScrollPane memberPanel = this.membersPanel.get(memberChannelId);
-        System.out.println("Tamanho do Vetor: " + this.membersPanel.size());
+        
         if(component instanceof JScrollPane){
             this.frame.remove(0);
         }
