@@ -30,6 +30,7 @@ class ScreenHandler {
 
                 try {
                     ChatClient chatClient = new ChatClient();
+                    chatClient.connectToServer(serverHost, Integer.parseInt(serverPort));
                     frame.hide();
 
                     UserCreationScreen userCreationScreen = new UserCreationScreen(chatClient);
