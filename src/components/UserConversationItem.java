@@ -1,10 +1,11 @@
 package src.components;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import src.entities.Client;
 
@@ -15,14 +16,18 @@ import java.awt.FontFormatException;
 import java.awt.Image;
 import java.io.IOException;
 
-public class UserConversationItem extends JPanel {
+public class UserConversationItem extends JButton {
     private UnreadMessagesNotification unreadMessagesNotification;
     private int unreadMessages;
+    private Client user;
 
     public UserConversationItem(Client user) throws FontFormatException, IOException {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setMaximumSize(new Dimension(250, 55));
-        this.setBackground(Color.white);
+        this.setBorder(BorderFactory.createEmptyBorder());
+        this.setIsFocuzed(false);
+        
+        this.user = user;
         unreadMessages = 0;
 
         Image userAvatarImage = new Assets().getAvatarImage(user.getAvatarId()).getImage().getScaledInstance(50, 50,
@@ -71,5 +76,17 @@ public class UserConversationItem extends JPanel {
 
     public int getUnreadMessages() {
         return this.unreadMessages;
+    }
+
+    public void setIsFocuzed(boolean isFocuzed) {
+        if (isFocuzed) {
+            this.setBackground(new Color(215,217,220));
+        } else {
+            this.setBackground(Color.white);
+        }
+    }
+
+    public int getChannelId() {
+        return this.user.getChannelId();
     }
 }
