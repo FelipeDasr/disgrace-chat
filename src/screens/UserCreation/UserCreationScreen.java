@@ -28,8 +28,9 @@ public class UserCreationScreen extends JFrame implements ItemListener {
     private final ChatClient chatClient;
     private final ErrorMessage errorMessage;
 
-    public UserCreationScreen() throws FontFormatException, IOException {
+    public UserCreationScreen(ChatClient chatClient) throws FontFormatException, IOException {
         this.screenHandler = new ScreenHandler(this);
+        this.chatClient = chatClient;
 
         this.mainFont = new Assets().getMainFont();
 
@@ -114,10 +115,6 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-
-        this.chatClient = new ChatClient();
-        this.chatClient.connectToServer("localhost", 7777);
     }
 
     public ImageIcon getAvatarImage(int avatarId) {
@@ -159,7 +156,7 @@ public class UserCreationScreen extends JFrame implements ItemListener {
         this.frame.setVisible(false);
     }
 
-    public static void main(String[] args) throws FontFormatException, IOException {
-        new UserCreationScreen();
+    public void show() {
+        this.frame.setVisible(true);
     }
 }
