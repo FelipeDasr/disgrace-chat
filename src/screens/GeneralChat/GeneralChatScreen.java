@@ -6,11 +6,13 @@ import src.infrastructure.client.ChatClient;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Insets;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
@@ -22,11 +24,10 @@ import javax.swing.JTextArea;
 public class GeneralChatScreen {
     private JFrame frame;
     private JPanel leftPanel;
-    private JPanel rightPanel;
-    private JPanel messagesPanel;
     private JTextArea inputField;
     private ChatClient client;
     private ScreenHandler handler;
+    private HashMap<Integer, JScrollPane> membersPanel;
 
     int currentChannelId = 0;
 
@@ -34,15 +35,12 @@ public class GeneralChatScreen {
         this.client = client;
         this.handler = new ScreenHandler(this, client);
 
+        this.membersPanel = new HashMap<Integer, JScrollPane>();
+
         int frameHeight = 608;
         int frameWidth = 853;
 
         Color commonBorderColor = new Color(195, 207, 217);
-
-        this.messagesPanel = new JPanel();
-        this.messagesPanel.setLayout(new BoxLayout(messagesPanel, BoxLayout.Y_AXIS));
-        this.messagesPanel.setBackground(Color.white);
-        this.messagesPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
 
         this.frame = new JFrame();
         this.frame.setIconImage(new Assets().getAppIcon());
@@ -53,21 +51,10 @@ public class GeneralChatScreen {
         this.leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.Y_AXIS));
         this.leftPanel.setBackground(Color.white);
 
-        this.rightPanel = new JPanel();
-        this.rightPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
-        this.rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
-        this.rightPanel.setMaximumSize(new Dimension(frameWidth, frameHeight));
-        this.rightPanel.setBackground(Color.white);
-
         JScrollPane onlineUsersScrollPane = new JScrollPane(leftPanel);
         onlineUsersScrollPane.setPreferredSize(new Dimension(250, frameHeight));
         onlineUsersScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         onlineUsersScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-
-        JScrollPane messagesScrollPane = new JScrollPane(messagesPanel);
-        messagesScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        messagesScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        messagesScrollPane.setMaximumSize(new Dimension(250, frameHeight));
 
         this.inputField = new JTextArea();
         this.inputField.setMaximumSize(new Dimension(frameHeight, 45));
@@ -98,8 +85,10 @@ public class GeneralChatScreen {
 
         this.frame.setLayout(new BorderLayout());
         this.frame.add(onlineUsersScrollPane, BorderLayout.WEST);
-        this.frame.add(messagesScrollPane);
         this.frame.add(inputPanel, BorderLayout.SOUTH);
+
+        this.addMemberPanel(0);
+        this.setMainPanel(0);
 
         this.frame.setSize(frameWidth, frameHeight);
         this.frame.setLocationRelativeTo(null);
@@ -124,8 +113,12 @@ public class GeneralChatScreen {
         this.frame.setTitle("Disgrace - " + this.client.getServerName() + " (" + connectedMembers + " membros)");
     }
 
+    public JPanel getMessagesPanel(int channelId) {
+        return (JPanel) this.membersPanel.get(channelId).getViewport().getView();
+    }
+
     public JPanel getMessagesPanel() {
-        return this.messagesPanel;
+        return (JPanel) this.membersPanel.get(0).getViewport().getView();
     }
 
     public JTextArea getInputField() {
@@ -138,5 +131,35 @@ public class GeneralChatScreen {
 
     public void show() {
         this.frame.setVisible(true);
+    }
+
+    public void setMainPanel(int memberChannelId) {
+        this.setCurrentChannelId(memberChannelId);
+        Component component = this.frame.getComponent(0);
+        JScrollPane memberPanel = this.membersPanel.get(memberChannelId);
+        System.out.println("Tamanho do Vetor: " + this.membersPanel.size());
+        if(component instanceof JScrollPane){
+            this.frame.remove(0);
+        }
+
+        this.frame.add(memberPanel, 0);
+        this.frame.revalidate();
+        this.frame.repaint();
+    }
+        
+    public void addMemberPanel(int channelId) {
+        Color commonBorderColor = new Color(195, 207, 217);
+
+        JPanel memberPanel = new JPanel();
+        memberPanel.setLayout(new BoxLayout(memberPanel, BoxLayout.Y_AXIS));
+        memberPanel.setBackground(Color.white);
+        memberPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
+
+        JScrollPane messagesScrollPane = new JScrollPane(memberPanel);
+        messagesScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        messagesScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        messagesScrollPane.setMaximumSize(new Dimension(250, 608));
+
+        this.membersPanel.put(channelId, messagesScrollPane);
     }
 }

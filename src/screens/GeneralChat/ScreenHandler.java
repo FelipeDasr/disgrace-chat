@@ -2,6 +2,7 @@ package src.screens.GeneralChat;
 
 import java.awt.Component;
 import java.awt.FontFormatException;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Date;
@@ -79,6 +80,7 @@ public class ScreenHandler {
 
     private void addNewMember(Client member) throws FontFormatException, IOException {
         UserConversationItem memberItem = new UserConversationItem(member);
+        memberItem.addActionListener(this.changeMainPanel());
 
         // Check if really is a new member
         // because the channel id 0 is used to send messages in the general chat
@@ -92,6 +94,8 @@ public class ScreenHandler {
 
         screen.getConnectMemberPanel().add(memberItem).revalidate();
         screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
+
+        screen.addMemberPanel(member.getChannelId());
     }
 
     public ActionListener sendMessageOnClick() {
@@ -141,5 +145,20 @@ public class ScreenHandler {
         }
 
         return false;
+    }
+
+    private ActionListener changeMainPanel(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                    UserConversationItem userConversationItem = (UserConversationItem) e.getSource();
+                    int channelId = userConversationItem.getChannelId();
+                    System.out.println(channelId);
+                    screen.setMainPanel(channelId);
+                    
+                
+            }
+        };
     }
 }
