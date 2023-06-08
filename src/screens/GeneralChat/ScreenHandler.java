@@ -112,7 +112,7 @@ public class ScreenHandler {
                         }
 
                         ClientMessage clientMessage = new ClientMessage(client, targetChannelId, message, new Date());
-                        screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+                        screen.getMessagesPanel(targetChannelId).add(new UserMessageItem(clientMessage)).revalidate();
                         client.sendMessage(targetChannelId, message);
                         screen.getInputField().setText("");
                     }
