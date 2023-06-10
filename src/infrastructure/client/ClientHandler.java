@@ -13,14 +13,14 @@ import src.interfaces.PointHandler;
 import src.entities.Client;
 import src.entities.ClientMessage;
 
-public class ChatClientHandler implements PointHandler<ConnectedServer> {
+public class ClientHandler implements PointHandler<ConnectedServer> {
     private ChatClient chatClient;
 
     private MemberEventHandler eventActionOnMemberJoin;
     private MemberEventHandler eventActionOnJoiningServer;
     private MessageEventHandler eventActionOnReceiveMessage;
 
-    public ChatClientHandler(ChatClient chatClient) {
+    public ClientHandler(ChatClient chatClient) {
         this.chatClient = chatClient;
     }
 
