@@ -73,7 +73,6 @@ public class ClientHandler implements PointHandler<ConnectedServer> {
     }
 
     public void newConnectedMember(ConnectedServer connectedClient, JSONObject data) {
-        System.out.println(data.toString(2));
         String memberName = data.getString("name");
         int memberChannelId = data.getInt("channelId");
         int memberAvatarId = data.getInt("avatarId");

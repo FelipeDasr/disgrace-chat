@@ -137,8 +137,8 @@ public class GeneralChatScreen {
         this.setCurrentChannelId(memberChannelId);
         Component component = this.frame.getComponent(0);
         JScrollPane memberPanel = this.membersPanel.get(memberChannelId);
-        
-        if(component instanceof JScrollPane){
+
+        if (component instanceof JScrollPane) {
             this.frame.remove(0);
         }
 
@@ -146,7 +146,7 @@ public class GeneralChatScreen {
         this.frame.revalidate();
         this.frame.repaint();
     }
-        
+
     public void addMemberPanel(int channelId) {
         Color commonBorderColor = new Color(195, 207, 217);
 
