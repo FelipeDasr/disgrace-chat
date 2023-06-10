@@ -98,8 +98,7 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
             return;
         }
 
-        int senderChannelId = client.getChannelId();
-        ConnectedClient targetClient = this.server.getClientByChannelId(senderChannelId);
+        ConnectedClient targetClient = this.server.getClientByChannelId(targetChannelId);
         if (targetClient != null)
             targetClient.emitEvent(event, dataObject);
     }
