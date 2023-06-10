@@ -64,7 +64,7 @@ public class ScreenHandler {
             @Override
             public void execute(ClientMessage message) {
                 try {
-                    JPanel messagesPanel = screen.getMessagesPanel(message.getUser().getChannelId());
+                    JPanel messagesPanel = screen.getMessagesPanel(message.getTargetChannelId());
 
                     if (lastMessageIsFromAnotherUser(message.getUser().getChannelId())) {
                         addSpaceBetweenMessages();
