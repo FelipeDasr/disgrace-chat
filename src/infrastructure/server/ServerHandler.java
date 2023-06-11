@@ -88,15 +88,17 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
 
         JSONObject dataObject = new JSONObject();
 
-        dataObject.put("targetChannelId", targetChannelId);
         dataObject.put("memberChannelId", client.getChannelId());
         dataObject.put("message", message);
 
         // General channel has id 0
         if (targetChannelId == 0) {
+            dataObject.put("targetChannelId", targetChannelId);
             this.broadcastEvent(event, dataObject, client);
             return;
         }
+
+        dataObject.put("targetChannelId", client.getChannelId());
 
         ConnectedClient targetClient = this.server.getClientByChannelId(targetChannelId);
         if (targetClient != null)
