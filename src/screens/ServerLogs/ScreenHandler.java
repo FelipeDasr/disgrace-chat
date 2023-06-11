@@ -11,10 +11,10 @@ import src.entities.ClientMessage;
 import src.interfaces.MemberEventHandler;
 
 public class ScreenHandler {
-    private ServerLogsScreen screen;
+    private ServerLogsScreen frame;
 
-    public ScreenHandler(ServerLogsScreen screen) {
-        this.screen = screen;
+    public ScreenHandler(ServerLogsScreen frame) {
+        this.frame = frame;
     }
 
     public MemberEventHandler joinedMember() {
@@ -25,11 +25,11 @@ public class ScreenHandler {
                     UserConversationItem memberItem = new UserConversationItem(member);
                     ClientMessage clientMessage = new ClientMessage(member, 0, "Se conectou", new Date());
 
-                    screen.getLogsPanel().add(new UserMessageItem(clientMessage)).revalidate();
-                    screen.getMembersPanel().add(Box.createVerticalStrut(10)).revalidate();
-                    screen.getMembersPanel().add(memberItem).revalidate();
+                    frame.getLogsPanel().add(new UserMessageItem(clientMessage)).revalidate();
+                    frame.getMembersPanel().add(Box.createVerticalStrut(10)).revalidate();
+                    frame.getMembersPanel().add(memberItem).revalidate();
 
-                    screen.updateScreenTitle();
+                    frame.updateScreenTitle();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -19,11 +19,11 @@ import src.interfaces.MemberEventHandler;
 import src.interfaces.MessageEventHandler;
 
 public class ScreenHandler {
-    private GeneralChatScreen screen;
+    private GeneralChatScreen frame;
     private ChatClient client;
 
-    public ScreenHandler(GeneralChatScreen screen, ChatClient client) {
-        this.screen = screen;
+    public ScreenHandler(GeneralChatScreen frame, ChatClient client) {
+        this.frame = frame;
         this.client = client;
     }
 
@@ -32,7 +32,7 @@ public class ScreenHandler {
             @Override
             public void execute(Client member) {
                 try {
-                    screen.updateScreenTitle();
+                    frame.updateScreenTitle();
                     for (Client serverMember : client.getServerMembers()) {
                         addNewMember(serverMember);
                     }
@@ -50,7 +50,7 @@ public class ScreenHandler {
             @Override
             public void execute(Client member) {
                 try {
-                    screen.updateScreenTitle();
+                    frame.updateScreenTitle();
                     addNewMember(member);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -64,7 +64,7 @@ public class ScreenHandler {
             @Override
             public void execute(ClientMessage message) {
                 try {
-                    JPanel messagesPanel = screen.getMessagesPanel(message.getTargetChannelId());
+                    JPanel messagesPanel = frame.getMessagesPanel(message.getTargetChannelId());
 
                     if (!lastMessageIsFromAnotherUser(message.getTargetChannelId())) {
                         addSpaceBetweenMessages(message.getTargetChannelId());
@@ -89,14 +89,14 @@ public class ScreenHandler {
             ClientMessage clientMessage = new ClientMessage(member, generalChatChannelId, "Se conectou", new Date());
 
             this.addSpaceBetweenMessages(0);
-            screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+            frame.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
         }
 
-        screen.getConnectMemberPanel().add(memberItem).revalidate();
-        screen.getConnectMemberPanel().add(memberItem).repaint();
-        screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
+        frame.getConnectMemberPanel().add(memberItem).revalidate();
+        frame.getConnectMemberPanel().add(memberItem).repaint();
+        frame.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
 
-        screen.addMemberPanel(member.getChannelId());
+        frame.addMemberPanel(member.getChannelId());
     }
 
     public ActionListener sendMessageOnClick() {
@@ -104,18 +104,18 @@ public class ScreenHandler {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent event) {
                 try {
-                    String message = screen.getInputField().getText();
-                    int targetChannelId = screen.getCurrentChannelId();
+                    String message = frame.getInputField().getText();
+                    int targetChannelId = frame.getCurrentChannelId();
 
                     if (!message.isEmpty()) {
-                        if (lastMessageIsFromAnotherUser(screen.getCurrentChannelId())) {
-                            addSpaceBetweenMessages(screen.getCurrentChannelId());
+                        if (lastMessageIsFromAnotherUser(frame.getCurrentChannelId())) {
+                            addSpaceBetweenMessages(frame.getCurrentChannelId());
                         }
 
                         ClientMessage clientMessage = new ClientMessage(client, targetChannelId, message, new Date());
-                        screen.getMessagesPanel(targetChannelId).add(new UserMessageItem(clientMessage)).revalidate();
+                        frame.getMessagesPanel(targetChannelId).add(new UserMessageItem(clientMessage)).revalidate();
                         client.sendMessage(targetChannelId, message);
-                        screen.getInputField().setText("");
+                        frame.getInputField().setText("");
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -125,11 +125,11 @@ public class ScreenHandler {
     }
 
     private void addSpaceBetweenMessages(int channelId) {
-        screen.getMessagesPanel(channelId).add(Box.createVerticalStrut(10)).revalidate();
+        frame.getMessagesPanel(channelId).add(Box.createVerticalStrut(10)).revalidate();
     }
 
     private boolean lastMessageIsFromAnotherUser(int channelId) {
-        JPanel messagesPanel = screen.getMessagesPanel(channelId);
+        JPanel messagesPanel = frame.getMessagesPanel(channelId);
         int messagesCount = messagesPanel.getComponentCount();
 
         if (messagesCount == 0) {
@@ -158,10 +158,10 @@ public class ScreenHandler {
             public void actionPerformed(ActionEvent e) {
                 UserConversationItem userConversationItem = (UserConversationItem) e.getSource();
                 int channelId = userConversationItem.getChannelId();
-                screen.setMainPanel(channelId);
-                screen.setMainPanel(channelId);
+                frame.setMainPanel(channelId);
+                frame.setMainPanel(channelId);
 
-                screen.setMainPanel(channelId);
+                frame.setMainPanel(channelId);
             }
         };
     }
