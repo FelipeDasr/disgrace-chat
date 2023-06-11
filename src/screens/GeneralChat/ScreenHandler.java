@@ -70,7 +70,12 @@ public class ScreenHandler {
                         addSpaceBetweenMessages(message.getTargetChannelId());
                     }
 
-                    messagesPanel.add(new UserMessageItem(message)).revalidate();
+                    messagesPanel.add(new UserMessageItem(message));
+
+                    if (frame.currentChannelId == message.getTargetChannelId()) {
+                        messagesPanel.revalidate();
+                        messagesPanel.repaint();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
