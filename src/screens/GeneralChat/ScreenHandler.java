@@ -38,6 +38,9 @@ public class ScreenHandler {
                     }
 
                     addSpaceBetweenMessages(0);
+
+                    frame.addMemberPanel(0);
+                    frame.setMainPanel(0);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -75,7 +78,11 @@ public class ScreenHandler {
                     if (frame.currentChannelId == message.getTargetChannelId()) {
                         messagesPanel.revalidate();
                         messagesPanel.repaint();
+                    } else {
+                        UserConversationItem memberItem = frame.getUserConversationItem(message.getTargetChannelId());
+                        memberItem.setUnreadMessages(memberItem.getUnreadMessages() + 1);
                     }
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

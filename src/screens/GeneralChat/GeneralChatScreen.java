@@ -2,6 +2,7 @@ package src.screens.GeneralChat;
 
 import src.components.Assets;
 import src.components.GenericButton;
+import src.components.UserConversationItem;
 import src.infrastructure.client.ChatClient;
 
 import java.awt.BorderLayout;
@@ -87,9 +88,6 @@ public class GeneralChatScreen {
         this.frame.add(onlineUsersScrollPane, BorderLayout.WEST);
         this.frame.add(inputPanel, BorderLayout.SOUTH);
 
-        this.addMemberPanel(0);
-        this.setMainPanel(0);
-
         this.frame.setSize(frameWidth, frameHeight);
         this.frame.setLocationRelativeTo(null);
         this.frame.setResizable(false);
@@ -129,12 +127,30 @@ public class GeneralChatScreen {
         return this.leftPanel;
     }
 
+    public UserConversationItem getUserConversationItem(int channelId) {
+        Component[] components = this.leftPanel.getComponents();
+
+        for (Component component : components) {
+            if (component instanceof UserConversationItem) {
+                UserConversationItem userConversationItem = (UserConversationItem) component;
+                if (userConversationItem.getChannelId() == channelId) {
+                    return userConversationItem;
+                }
+            }
+        }
+
+        return null;
+    }
+
     public void show() {
         this.frame.setVisible(true);
     }
 
     public void setMainPanel(int memberChannelId) {
         this.setCurrentChannelId(memberChannelId);
+        UserConversationItem userConversationItem = this.getUserConversationItem(memberChannelId);
+        userConversationItem.setUnreadMessages(0);
+
         Component component = this.frame.getComponent(0);
         JScrollPane memberPanel = this.membersPanel.get(memberChannelId);
 
