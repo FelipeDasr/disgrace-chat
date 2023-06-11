@@ -40,7 +40,6 @@ public class ScreenHandler {
                     addSpaceBetweenMessages(0);
 
                     frame.addMemberPanel(0);
-                    frame.setMainPanel(0);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -116,6 +115,10 @@ public class ScreenHandler {
             @Override
             public void actionPerformed(java.awt.event.ActionEvent event) {
                 try {
+                    if (frame.currentChannelId < 0) {
+                        return;
+                    }
+
                     String message = frame.getInputField().getText();
                     int targetChannelId = frame.getCurrentChannelId();
 

@@ -30,7 +30,8 @@ public class GeneralChatScreen {
     private ScreenHandler handler;
     private HashMap<Integer, JScrollPane> membersPanel;
 
-    int currentChannelId = 0;
+    // Selected chat, starts with -1 (no chat selected)
+    int currentChannelId = -1;
 
     public GeneralChatScreen(ChatClient client) throws FontFormatException, IOException {
         this.client = client;
