@@ -170,8 +170,6 @@ public class ScreenHandler {
             public void actionPerformed(ActionEvent e) {
                 UserConversationItem userConversationItem = (UserConversationItem) e.getSource();
                 int channelId = userConversationItem.getChannelId();
-                frame.setMainPanel(channelId);
-                frame.setMainPanel(channelId);
 
                 frame.setMainPanel(channelId);
             }

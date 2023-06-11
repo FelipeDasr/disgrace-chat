@@ -25,8 +25,8 @@ public class UserConversationItem extends JButton {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setMaximumSize(new Dimension(250, 55));
         this.setBorder(BorderFactory.createEmptyBorder());
-        this.setIsFocuzed(false);
-        
+        this.setIsFocused(false);
+
         this.user = user;
         unreadMessages = 0;
 
@@ -78,9 +78,9 @@ public class UserConversationItem extends JButton {
         return this.unreadMessages;
     }
 
-    public void setIsFocuzed(boolean isFocuzed) {
-        if (isFocuzed) {
-            this.setBackground(new Color(215,217,220));
+    public void setIsFocused(boolean isFocused) {
+        if (isFocused) {
+            this.setBackground(new Color(215, 217, 220));
         } else {
             this.setBackground(Color.white);
         }

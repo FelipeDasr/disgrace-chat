@@ -147,9 +147,15 @@ public class GeneralChatScreen {
     }
 
     public void setMainPanel(int memberChannelId) {
+        UserConversationItem oldUserConversationItem = this.getUserConversationItem(this.currentChannelId);
+        if (oldUserConversationItem != null) {
+            oldUserConversationItem.setIsFocused(false);
+        }
+
         this.setCurrentChannelId(memberChannelId);
-        UserConversationItem userConversationItem = this.getUserConversationItem(memberChannelId);
-        userConversationItem.setUnreadMessages(0);
+        UserConversationItem currentUserConversationItem = this.getUserConversationItem(memberChannelId);
+        currentUserConversationItem.setUnreadMessages(0);
+        currentUserConversationItem.setIsFocused(true);
 
         Component component = this.frame.getComponent(0);
         JScrollPane memberPanel = this.membersPanel.get(memberChannelId);
