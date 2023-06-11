@@ -93,6 +93,7 @@ public class ScreenHandler {
         }
 
         screen.getConnectMemberPanel().add(memberItem).revalidate();
+        screen.getConnectMemberPanel().add(memberItem).repaint();
         screen.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
 
         screen.addMemberPanel(member.getChannelId());

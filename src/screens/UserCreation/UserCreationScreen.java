@@ -14,9 +14,11 @@ import java.awt.GridLayout;
 import java.awt.event.*;
 import java.io.IOException;
 
-public class UserCreationScreen extends JFrame implements ItemListener {
+public class UserCreationScreen extends JFrame {
     private final JFrame frame;
-    private final JPanel mainPanel, panelDropdown, secondaryPanel;
+    private final JPanel mainPanel;
+    private final JPanel panelDropdown; 
+    private final JPanel secondaryPanel;
     private final Color whiteColor = new Color(255, 255, 255);
     private final JComboBox<String> dropdown;
     private final ImageIcon icon;
