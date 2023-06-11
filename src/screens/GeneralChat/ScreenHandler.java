@@ -37,7 +37,7 @@ public class ScreenHandler {
                         addNewMember(serverMember);
                     }
 
-                    addSpaceBetweenMessages();
+                    addSpaceBetweenMessages(0);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -66,8 +66,8 @@ public class ScreenHandler {
                 try {
                     JPanel messagesPanel = screen.getMessagesPanel(message.getTargetChannelId());
 
-                    if (lastMessageIsFromAnotherUser(message.getUser().getChannelId())) {
-                        addSpaceBetweenMessages();
+                    if (!lastMessageIsFromAnotherUser(message.getTargetChannelId())) {
+                        addSpaceBetweenMessages(message.getTargetChannelId());
                     }
 
                     messagesPanel.add(new UserMessageItem(message)).revalidate();
@@ -88,7 +88,7 @@ public class ScreenHandler {
             int generalChatChannelId = 0;
             ClientMessage clientMessage = new ClientMessage(member, generalChatChannelId, "Se conectou", new Date());
 
-            this.addSpaceBetweenMessages();
+            this.addSpaceBetweenMessages(0);
             screen.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
         }
 
@@ -107,8 +107,8 @@ public class ScreenHandler {
                     int targetChannelId = screen.getCurrentChannelId();
 
                     if (!message.isEmpty()) {
-                        if (lastMessageIsFromAnotherUser(client.getChannelId())) {
-                            addSpaceBetweenMessages();
+                        if (lastMessageIsFromAnotherUser(screen.getCurrentChannelId())) {
+                            addSpaceBetweenMessages(screen.getCurrentChannelId());
                         }
 
                         ClientMessage clientMessage = new ClientMessage(client, targetChannelId, message, new Date());
@@ -123,15 +123,19 @@ public class ScreenHandler {
         };
     }
 
-    private void addSpaceBetweenMessages() {
-        screen.getMessagesPanel().add(Box.createVerticalStrut(10)).revalidate();
+    private void addSpaceBetweenMessages(int channelId) {
+        screen.getMessagesPanel(channelId).add(Box.createVerticalStrut(10)).revalidate();
     }
 
-    private boolean lastMessageIsFromAnotherUser(int currentMemberChannelId) {
-        JPanel messagesPanel = screen.getMessagesPanel();
-        int indexOfLastMessage = messagesPanel.getComponentCount() - 1;
+    private boolean lastMessageIsFromAnotherUser(int channelId) {
+        JPanel messagesPanel = screen.getMessagesPanel(channelId);
+        int messagesCount = messagesPanel.getComponentCount();
 
-        Component lastComponent = messagesPanel.getComponent(indexOfLastMessage);
+        if (messagesCount == 0) {
+            return false;
+        }
+
+        Component lastComponent = messagesPanel.getComponent(messagesCount - 1);
 
         if (lastComponent != null) {
             if (!(lastComponent instanceof UserMessageItem)) {
@@ -139,7 +143,7 @@ public class ScreenHandler {
             }
 
             int userChannelId1 = ((UserMessageItem) lastComponent).getUserMessage().getUser().getChannelId();
-            if (userChannelId1 != currentMemberChannelId) {
+            if (userChannelId1 != client.getChannelId()) {
                 return true;
             }
         }
