@@ -148,17 +148,16 @@ public class ScreenHandler {
         return false;
     }
 
-    private ActionListener changeMainPanel(){
+    private ActionListener changeMainPanel() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                    UserConversationItem userConversationItem = (UserConversationItem) e.getSource();
-                    int channelId = userConversationItem.getChannelId();
-                    System.out.println(channelId);
-                    screen.setMainPanel(channelId);
-                    
-                
+                UserConversationItem userConversationItem = (UserConversationItem) e.getSource();
+                int channelId = userConversationItem.getChannelId();
+                screen.setMainPanel(channelId);
+                screen.setMainPanel(channelId);
+
+                screen.setMainPanel(channelId);
             }
         };
     }

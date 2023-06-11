@@ -18,11 +18,11 @@ public class ChatClient extends Client {
 
     private Vector<Client> serverMembers;
 
-    private final ChatClientHandler handler;
+    private final ClientHandler handler;
 
     public ChatClient() {
         this.socket = new Socket();
-        this.handler = new ChatClientHandler(this);
+        this.handler = new ClientHandler(this);
     }
 
     public void connectToServer(String serverHost, int serverPort) throws IOException {
