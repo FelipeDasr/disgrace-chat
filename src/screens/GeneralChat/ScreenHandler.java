@@ -39,7 +39,7 @@ public class ScreenHandler {
 
                     addSpaceBetweenMessages();
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             }
         };
@@ -53,7 +53,7 @@ public class ScreenHandler {
                     screen.updateScreenTitle();
                     addNewMember(member);
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             }
         };
@@ -72,7 +72,7 @@ public class ScreenHandler {
 
                     messagesPanel.add(new UserMessageItem(message)).revalidate();
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             }
         };
@@ -117,7 +117,7 @@ public class ScreenHandler {
                         screen.getInputField().setText("");
                     }
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             }
         };

@@ -40,7 +40,7 @@ class ScreenHandler {
 					JoinServerScreen createServerScreen = new JoinServerScreen();
 					createServerScreen.show();
 				} catch (FontFormatException | IOException e) {
-					System.out.println(e.getMessage());
+					e.printStackTrace();
 				}
 			}
 		};

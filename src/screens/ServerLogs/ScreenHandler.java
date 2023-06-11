@@ -31,7 +31,7 @@ public class ScreenHandler {
 
                     screen.updateScreenTitle();
                 } catch (Exception e) {
-                    System.out.println(e);
+                    e.printStackTrace();
                 }
             }
         };
