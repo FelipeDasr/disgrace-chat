@@ -21,8 +21,8 @@ class ScreenHandler {
             public void actionPerformed(java.awt.event.ActionEvent event) {
                 String serverName = frame.getFirstFormInputTextField().getText().trim();
 
-                if (serverName.length() < 5) {
-                    frame.setErrorMessage("O nome do servidor não pode ter menos de 5 caracteres");
+                if (serverName.length() < 5 || serverName.length() > 12) {
+                    frame.setErrorMessage("O nome do servidor deve ter de 5 a 12 caracteres");
                     return;
                 }
 
