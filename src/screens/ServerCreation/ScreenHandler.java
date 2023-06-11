@@ -28,8 +28,8 @@ class ScreenHandler {
 
                 String serverPortString = frame.getSecondFormInputTextField().getText().trim();
 
-                if (serverPortString.length() < 4) {
-                    frame.setErrorMessage("A porta do servidor não pode ter menos de 4 algarismos");
+                if (serverPortString.length() != 4) {
+                    frame.setErrorMessage("A porta do servidor deve ter 4 algarismos");
                     return;
                 }
 
