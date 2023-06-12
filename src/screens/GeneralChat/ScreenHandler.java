@@ -32,14 +32,14 @@ public class ScreenHandler {
             @Override
             public void execute(Client member) {
                 try {
+                    frame.addMemberPanel(0);
                     frame.updateScreenTitle();
+
                     for (Client serverMember : client.getServerMembers()) {
                         addNewMember(serverMember);
                     }
 
                     addSpaceBetweenMessages(0);
-
-                    frame.addMemberPanel(0);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
