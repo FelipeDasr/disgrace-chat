@@ -83,6 +83,7 @@ public class ServerLogsScreen {
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.server.setEventActionOnMemberJoin(this.handler.joinedMember());
+        this.server.setEventActionOnMemberLeave(this.handler.leftMember());
 
         this.showInitialLogs();
     }

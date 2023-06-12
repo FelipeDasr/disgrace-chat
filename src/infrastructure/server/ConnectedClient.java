@@ -11,6 +11,7 @@ import org.json.JSONObject;
 import src.entities.Client;
 import src.interfaces.ConnectedPoint;
 import src.interfaces.InputEventHandler;
+import src.interfaces.MemberEventHandler;
 
 public class ConnectedClient extends Client implements ConnectedPoint<ConnectedClient> {
     private final ObjectOutputStream outputChannel;
@@ -19,6 +20,7 @@ public class ConnectedClient extends Client implements ConnectedPoint<ConnectedC
     private boolean isIdentified;
 
     private InputEventHandler<ConnectedClient> inputEventHandler;
+    private MemberEventHandler onDisconnectEventHandler;
 
     public ConnectedClient(int channelId, Socket socket) throws IOException {
         super(channelId);
@@ -31,6 +33,10 @@ public class ConnectedClient extends Client implements ConnectedPoint<ConnectedC
 
     public void setEventHandler(InputEventHandler<ConnectedClient> inputEventHandler) {
         this.inputEventHandler = inputEventHandler;
+    }
+
+    public void setDisconnectedClientEventHandler(MemberEventHandler onDisconnectEventHandler) {
+        this.onDisconnectEventHandler = onDisconnectEventHandler;
     }
 
     public void emitEvent(String event, JSONObject data) throws IOException {
@@ -59,10 +65,7 @@ public class ConnectedClient extends Client implements ConnectedPoint<ConnectedC
                 try {
                     listenEvents();
                 } catch (IOException | ClassNotFoundException error) {
-                    try {
-                        closeConnection();
-                    } catch (IOException error_) {
-                    }
+                    closeConnection();
                 }
             }
         };
@@ -71,14 +74,16 @@ public class ConnectedClient extends Client implements ConnectedPoint<ConnectedC
         parallelThread.start();
     }
 
-    public void closeConnection() throws IOException {
-        this.socket.close();
-        this.inputChannel.close();
-        this.outputChannel.close();
+    public void closeConnection() {
+        try {
+            this.socket.close();
+            this.inputChannel.close();
+            this.outputChannel.close();
 
-        JSONObject data = new JSONObject();
-        data.put("channelId", this.getChannelId());
-        this.emitEvent("client_left", data);
+            this.onDisconnectEventHandler.execute(this);
+        } catch (Exception error) {
+            System.out.println("Erro ao desconectar cliente");
+        }
     }
 
     public boolean isIdentified() {

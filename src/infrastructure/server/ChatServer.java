@@ -71,6 +71,7 @@ public class ChatServer {
             this.connectedClients.add(connectedClient);
 
             connectedClient.setEventHandler(this.handler.handleEventOnReceive());
+            connectedClient.setDisconnectedClientEventHandler(this.handler.handleDisconnectedClientEvent());
             connectedClient.listenEventsInParallel();
         }
     }
@@ -93,6 +94,10 @@ public class ChatServer {
 
     public void setEventActionOnMemberJoin(MemberEventHandler eventHandler) {
         this.handler.setEventActionOnMemberJoin(eventHandler);
+    }
+
+    public void setEventActionOnMemberLeave(MemberEventHandler eventHandler) {
+        this.handler.setEventActionOnMemberLeave(eventHandler);
     }
 
     public int getPort() {
