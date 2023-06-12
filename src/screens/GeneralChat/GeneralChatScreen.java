@@ -110,7 +110,7 @@ public class GeneralChatScreen {
 
     public void updateScreenTitle() {
         int connectedMembers = this.client.getServerMembers().size();
-        this.frame.setTitle("Disgrace - " + this.client.getServerName() + " (" + connectedMembers + " membros)");
+        this.frame.setTitle("Disgrace - " + this.client.getServerName() + " (" + connectedMembers + " membro(s)");
     }
 
     public JPanel getMessagesPanel(int channelId) {

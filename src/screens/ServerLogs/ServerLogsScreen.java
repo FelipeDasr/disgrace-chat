@@ -108,7 +108,7 @@ public class ServerLogsScreen {
 
     public void updateScreenTitle() {
         int connectedMembers = this.server.getConnectedClients().size();
-        this.frame.setTitle("Disgrace - " + this.server.getName() + " (" + connectedMembers + " membros)");
+        this.frame.setTitle("Disgrace - " + this.server.getName() + " (" + connectedMembers + " membro(s)");
     }
 
     public JPanel getLogsPanel() {
