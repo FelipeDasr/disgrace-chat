@@ -6,6 +6,7 @@ import java.util.Vector;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import src.entities.Client;
 import src.interfaces.InputEventHandler;
 import src.interfaces.MemberEventHandler;
 import src.interfaces.PointHandler;
@@ -13,6 +14,7 @@ import src.interfaces.PointHandler;
 public class ServerHandler implements PointHandler<ConnectedClient> {
     private final ChatServer server;
     private MemberEventHandler eventActionOnMemberJoin;
+    private MemberEventHandler eventActionOnMemberLeft;
 
     public ServerHandler(ChatServer server) {
         this.server = server;
@@ -81,6 +83,26 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
         this.emitClientJoinedEvent(client);
     }
 
+    public MemberEventHandler handleDisconnectedClientEvent() {
+        return new MemberEventHandler() {
+            @Override
+            public void execute(Client client) {
+                try {
+                    ConnectedClient disconnectedClient = server.getClientByChannelId(client.getChannelId());
+                    server.getConnectedClients().remove(disconnectedClient);
+
+                    JSONObject dataObject = new JSONObject();
+                    dataObject.put("channelId", client.getChannelId());
+
+                    eventActionOnMemberLeft.execute(client);
+                    broadcastEvent("client_left", dataObject, null);
+                } catch (Exception e) {
+                    System.out.println("Erro ao emitir evento de cliente desconectado");
+                }
+            }
+        };
+    }
+
     private void sendMessageEvent(ConnectedClient client, JSONObject data) throws IOException {
         String message = data.getString("message");
         int targetChannelId = data.getInt("channelId");
@@ -117,5 +139,9 @@ public class ServerHandler implements PointHandler<ConnectedClient> {
 
     public void setEventActionOnMemberJoin(MemberEventHandler eventActionOnMemberJoin) {
         this.eventActionOnMemberJoin = eventActionOnMemberJoin;
+    }
+
+    public void setEventActionOnMemberLeave(MemberEventHandler eventActionOnMemberLeft) {
+        this.eventActionOnMemberLeft = eventActionOnMemberLeft;
     }
 }
