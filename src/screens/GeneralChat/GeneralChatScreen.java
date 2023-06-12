@@ -148,42 +148,11 @@ public class GeneralChatScreen {
         this.frame.setVisible(true);
     }
 
-    public void setMainPanel(int memberChannelId) {
-        UserConversationItem oldUserConversationItem = this.getUserConversationItem(this.currentChannelId);
-        if (oldUserConversationItem != null) {
-            oldUserConversationItem.setIsFocused(false);
-        }
-
-        this.setCurrentChannelId(memberChannelId);
-        UserConversationItem currentUserConversationItem = this.getUserConversationItem(memberChannelId);
-        currentUserConversationItem.setUnreadMessages(0);
-        currentUserConversationItem.setIsFocused(true);
-
-        Component component = this.frame.getComponent(0);
-        JScrollPane memberPanel = this.membersPanel.get(memberChannelId);
-
-        if (component instanceof JScrollPane) {
-            this.frame.remove(0);
-        }
-
-        this.frame.add(memberPanel, 0);
-        this.frame.revalidate();
-        this.frame.repaint();
+    public JFrame getFrame() {
+        return this.frame;
     }
 
-    public void addMemberPanel(int channelId) {
-        Color commonBorderColor = new Color(195, 207, 217);
-
-        JPanel memberPanel = new JPanel();
-        memberPanel.setLayout(new BoxLayout(memberPanel, BoxLayout.Y_AXIS));
-        memberPanel.setBackground(Color.white);
-        memberPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
-
-        JScrollPane messagesScrollPane = new JScrollPane(memberPanel);
-        messagesScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        messagesScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
-        messagesScrollPane.setMaximumSize(new Dimension(250, 608));
-
-        this.membersPanel.put(channelId, messagesScrollPane);
+    public HashMap<Integer, JScrollPane> getMembersPanelHashMap() {
+        return this.membersPanel;
     }
 }

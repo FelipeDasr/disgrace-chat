@@ -1,14 +1,19 @@
 package src.screens.GeneralChat;
 
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.FontFormatException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import src.components.UserConversationItem;
 import src.components.UserMessageItem;
@@ -32,7 +37,7 @@ public class ScreenHandler {
             @Override
             public void execute(Client member) {
                 try {
-                    frame.addMemberPanel(0);
+                    addMemberPanel(0);
                     frame.updateScreenTitle();
 
                     for (Client serverMember : client.getServerMembers()) {
@@ -107,7 +112,7 @@ public class ScreenHandler {
         frame.getConnectMemberPanel().add(memberItem).repaint();
         frame.getConnectMemberPanel().add(Box.createVerticalStrut(10)).revalidate();
 
-        frame.addMemberPanel(member.getChannelId());
+        addMemberPanel(member.getChannelId());
     }
 
     public ActionListener sendMessageOnClick() {
@@ -196,7 +201,7 @@ public class ScreenHandler {
                 UserConversationItem userConversationItem = (UserConversationItem) e.getSource();
                 int channelId = userConversationItem.getChannelId();
 
-                frame.setMainPanel(channelId);
+                setMainPanel(channelId);
             }
         };
     }
@@ -219,5 +224,44 @@ public class ScreenHandler {
                 emptySpace = component;
             }
         }
+    }
+
+    public void setMainPanel(int memberChannelId) {
+        UserConversationItem oldUserConversationItem = frame.getUserConversationItem(frame.getCurrentChannelId());
+        if (oldUserConversationItem != null) {
+            oldUserConversationItem.setIsFocused(false);
+        }
+
+        frame.setCurrentChannelId(memberChannelId);
+        UserConversationItem currentUserConversationItem = frame.getUserConversationItem(memberChannelId);
+        currentUserConversationItem.setUnreadMessages(0);
+        currentUserConversationItem.setIsFocused(true);
+
+        Component component = this.frame.getFrame().getComponent(0);
+        JScrollPane memberPanel = this.frame.getMembersPanelHashMap().get(memberChannelId);
+
+        if (component instanceof JScrollPane) {
+            this.frame.getFrame().remove(0);
+        }
+
+        this.frame.getFrame().add(memberPanel, 0);
+        this.frame.getFrame().revalidate();
+        this.frame.getFrame().repaint();
+    }
+
+    public void addMemberPanel(int channelId) {
+        Color commonBorderColor = new Color(195, 207, 217);
+
+        JPanel memberPanel = new JPanel();
+        memberPanel.setLayout(new BoxLayout(memberPanel, BoxLayout.Y_AXIS));
+        memberPanel.setBackground(Color.white);
+        memberPanel.setBorder(BorderFactory.createMatteBorder(2, 0, 0, 0, commonBorderColor));
+
+        JScrollPane messagesScrollPane = new JScrollPane(memberPanel);
+        messagesScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        messagesScrollPane.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+        messagesScrollPane.setMaximumSize(new Dimension(250, 608));
+
+        this.frame.getMembersPanelHashMap().put(channelId, messagesScrollPane);
     }
 }
