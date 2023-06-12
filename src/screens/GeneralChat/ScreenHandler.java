@@ -158,7 +158,10 @@ public class ScreenHandler {
                     removeMemberPanel(member.getChannelId());
                     addSpaceBetweenMessages(0);
 
-                    goToChatPanel(0);
+                    if (frame.getCurrentChannelId() == member.getChannelId()) {
+                        goToChatPanel(0);
+                    }
+
                     frame.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
                 } catch (Exception e) {
                     e.printStackTrace();
