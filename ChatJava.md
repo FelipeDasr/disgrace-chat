@@ -15,6 +15,6 @@ $> java -jar .DisgraceChat.jar
 
 Terminal (Programa não compilado)
 
-Lamentavelmente, não conseguimos compilar o código pelo terminal, mesmo após os esforços empreendidos.
+Lamentavelmente, não conseguimos compilar o código pelo terminal, mesmo após os esforços empreendidos, pois não configuramos o projeto no eclipse, que ajuda nesses casos, no entanto, conseguimos compilar e executar ele pela extensão do Visual Studio Code (Extension Pack for Java) e não pelo terminal, por isso deixamos o arquivo .jar para ser executado pelo terminal, pois o mesmo já está compilado e rodando certinho.
 
-Ao tentar compilar o código pelo terminal, encontramos obstáculos que impediram a correta compilação e execução. O erro "package src.screens.FirstChoice does not exist". No entanto, conseguimos compilar ele pela extensão do Visual Studio Code e não pelo terminal do linux.
+Caso o queira tentar compilar o código pelo terminal, lembre-se de que se deve incluir a biblioteca que está dentro da pasta /lib.
