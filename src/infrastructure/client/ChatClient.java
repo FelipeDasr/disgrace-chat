@@ -88,4 +88,8 @@ public class ChatClient extends Client {
     public void setEventActionOnReceiveMessage(MessageEventHandler eventHandler) {
         this.handler.setEventActionOnReceiveMessage(eventHandler);
     }
+
+    public void setEventActionOnMemberLeft(MemberEventHandler eventHandler) {
+        this.handler.setEventActionOnMemberseLeft(eventHandler);
+    }
 }

@@ -139,6 +139,28 @@ public class ScreenHandler {
         };
     }
 
+    public MemberEventHandler clientLeft() {
+        return new MemberEventHandler() {
+            @Override
+            public void execute(Client member) {
+                try {
+                    frame.updateScreenTitle();
+
+                    String message = "Se desconectou";
+                    int generalChatChannelId = 0;
+                    ClientMessage clientMessage = new ClientMessage(member, generalChatChannelId, message, new Date());
+
+                    removeMemberPanel(member.getChannelId());
+                    addSpaceBetweenMessages(0);
+                    frame.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+    }
+
     private void addSpaceBetweenMessages(int channelId) {
         frame.getMessagesPanel(channelId).add(Box.createVerticalStrut(10)).revalidate();
     }
@@ -177,5 +199,25 @@ public class ScreenHandler {
                 frame.setMainPanel(channelId);
             }
         };
+    }
+
+    private void removeMemberPanel(int channelId) {
+        // Remove member from connected members list (GUI)
+        Component emptySpace = null;
+        for (Component component : frame.getConnectMemberPanel().getComponents()) {
+            if (component instanceof UserConversationItem) {
+                UserConversationItem memberItem = (UserConversationItem) component;
+
+                if (memberItem.getChannelId() == channelId) {
+                    frame.getConnectMemberPanel().remove(emptySpace);
+                    frame.getConnectMemberPanel().remove(memberItem);
+                    frame.getConnectMemberPanel().revalidate();
+                    frame.getConnectMemberPanel().repaint();
+                    break;
+                }
+            } else {
+                emptySpace = component;
+            }
+        }
     }
 }

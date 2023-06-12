@@ -97,6 +97,7 @@ public class GeneralChatScreen {
         this.client.setEventActionOnNewMemberJoin(this.handler.newConnectedMember());
         this.client.setEventActionOnReceiveMessage(this.handler.receivedMessage());
         this.client.setEventActionOnJoiningServer(this.handler.joiningServer());
+        this.client.setEventActionOnMemberLeft(this.handler.clientLeft());
     }
 
     public void setCurrentChannelId(int channelId) {

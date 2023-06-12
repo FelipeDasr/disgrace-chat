@@ -17,6 +17,7 @@ public class ClientHandler implements PointHandler<ConnectedServer> {
     private ChatClient chatClient;
 
     private MemberEventHandler eventActionOnMemberJoin;
+    private MemberEventHandler eventActionOnMemberLeft;
     private MemberEventHandler eventActionOnJoiningServer;
     private MessageEventHandler eventActionOnReceiveMessage;
 
@@ -39,6 +40,10 @@ public class ClientHandler implements PointHandler<ConnectedServer> {
 
                     case "received_message":
                         receivedMessage(connectedClient, data);
+                        break;
+
+                    case "client_left":
+                        clientLeave(connectedClient, data);
                         break;
                 }
             }
@@ -98,6 +103,14 @@ public class ClientHandler implements PointHandler<ConnectedServer> {
         this.eventActionOnReceiveMessage.execute(clientMessage);
     }
 
+    public void clientLeave(ConnectedServer connectedClient, JSONObject data) {
+        int channelId = data.getInt("channelId");
+        Client client = this.chatClient.getClientByChannelId(channelId);
+
+        this.chatClient.getServerMembers().remove(client);
+        this.eventActionOnMemberLeft.execute(client);
+    }
+
     public void setEventActionOnNewMemberJoin(MemberEventHandler eventActionOnMemberJoin) {
         this.eventActionOnMemberJoin = eventActionOnMemberJoin;
     }
@@ -108,5 +121,9 @@ public class ClientHandler implements PointHandler<ConnectedServer> {
 
     public void setEventActionOnReceiveMessage(MessageEventHandler eventHandler) {
         this.eventActionOnReceiveMessage = eventHandler;
+    }
+
+    public void setEventActionOnMemberseLeft(MemberEventHandler eventActionOnClientLeave) {
+        this.eventActionOnMemberLeft = eventActionOnClientLeave;
     }
 }
