@@ -157,8 +157,9 @@ public class ScreenHandler {
 
                     removeMemberPanel(member.getChannelId());
                     addSpaceBetweenMessages(0);
-                    frame.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
 
+                    goToChatPanel(0);
+                    frame.getMessagesPanel().add(new UserMessageItem(clientMessage)).revalidate();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -201,7 +202,7 @@ public class ScreenHandler {
                 UserConversationItem userConversationItem = (UserConversationItem) e.getSource();
                 int channelId = userConversationItem.getChannelId();
 
-                setMainPanel(channelId);
+                goToChatPanel(channelId);
             }
         };
     }
@@ -226,7 +227,7 @@ public class ScreenHandler {
         }
     }
 
-    public void setMainPanel(int memberChannelId) {
+    public void goToChatPanel(int memberChannelId) {
         UserConversationItem oldUserConversationItem = frame.getUserConversationItem(frame.getCurrentChannelId());
         if (oldUserConversationItem != null) {
             oldUserConversationItem.setIsFocused(false);
